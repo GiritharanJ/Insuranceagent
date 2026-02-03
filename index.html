@@ -1080,7 +1080,7 @@
         </div>
     </section>
     
-    <!-- Consultation Form -->
+   <!-- Consultation Form -->
     <section class="consultation-form-section" id="contact">
         <div class="container">
             <div class="form-container">
@@ -1112,7 +1112,7 @@
                                     <option value="">Select an option</option>
                                     <option value="health">Health Insurance</option>
                                     <option value="medical">Medical Insurance</option>
-                                    <option value="life">Life Insurance</option
+                                    <option value="life">Life Insurance</option>
                                 </select>
                             </div>
                         </div>
@@ -1139,4 +1139,127 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <h2 class="agent-name">JANA</h2>
-                    <p>
+                    <p>Your trusted insurance advisor with over 10 years of experience helping individuals and businesses secure their futures with the right insurance coverage.</p>
+                    <div class="social-icons" style="margin-top: 25px;">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Me</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#consultation">Free Consultation</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Dharmapuri, Tamilnadu, India</p>
+                    <p><i class="fas fa-phone"></i> +91 77085 89817</p>
+                    <p><i class="fas fa-envelope"></i> jana@securelifeinsurance.com</p>
+                    <p><i class="fab fa-whatsapp"></i> +91 77085 89817 (WhatsApp)</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 SecureLife Insurance. All rights reserved. | JANA - Licensed Insurance Agent</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a, .consultation-btn').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update active navigation
+                        document.querySelectorAll('nav a').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                }
+            });
+        });
+        
+        // Form submission handling
+        document.getElementById('consultationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const mobile = document.getElementById('mobile').value;
+            const insuranceType = document.getElementById('insurance-type').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real application, you would send this data to a server
+            // For this demo, we'll just show an alert
+            alert(`Thank you ${name}! Your consultation request has been received. I will contact you at ${email} or ${mobile} within 24 hours.`);
+            
+            // Reset the form
+            this.reset();
+        });
+        
+        // Consultation button click handlers
+        document.getElementById('consultationBtn').addEventListener('click', function() {
+            document.getElementById('consultationForm').scrollIntoView({behavior: 'smooth'});
+        });
+        
+        document.getElementById('heroConsultationBtn').addEventListener('click', function() {
+            document.getElementById('consultationForm').scrollIntoView({behavior: 'smooth'});
+        });
+        
+        // Add active state to navigation based on scroll position
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if(pageYOffset >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // WhatsApp hover effect enhancement
+        const whatsappContainer = document.querySelector('.whatsapp-container');
+        if(whatsappContainer) {
+            whatsappContainer.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+            });
+            
+            whatsappContainer.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        }
+    </script>
+</body>
+</html>
