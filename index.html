@@ -954,8 +954,9 @@
         
         <div class="main-header">
             <div class="container">
-               <div class="logo-container">
-                    <img src="jana-log.jpg" alt="JANA - Professional Insurance Agent" class="logo-img">
+                <div class="logo-container">
+                    <!-- Professional Insurance Agent Image -->
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Jana - Professional Insurance Agent" class="logo-img">
                     <div class="logo-text">
                         <h1 class="agent-name">JANA</h1>
                         <p class="agent-title">Certified Insurance Agent | 10+ Years Experience</p>
@@ -984,8 +985,9 @@
                 <p>With over 10 years of expertise, I provide comprehensive insurance coverage tailored to your unique needs. From life and health to auto and home insurance, I'm here to protect what matters most to you.</p>
                 <button class="consultation-btn" id="heroConsultationBtn">Start Protecting Today</button>
             </div>
-          <div class="hero-image">
-                <img src="insulogo.png" alt="Insurance Protection Services" class="hero-img">
+            <div class="hero-image">
+                <!-- Professional Insurance Image -->
+                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Insurance Protection Services" class="hero-img">
             </div>
         </div>
     </section>
@@ -1033,6 +1035,32 @@
                     <div class="service-icon">
                         <i class="fas fa-home"></i>
                     </div>
+                    <div class="service-content">
+                        <h3>Home Insurance</h3>
+                        <p>Protect your home and belongings against fire, theft, and natural disasters with comprehensive home insurance.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Auto Insurance</h3>
+                        <p>Complete vehicle insurance coverage with options for third-party liability and comprehensive protection.</p>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-plane"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Travel Insurance</h3>
+                        <p>Travel with confidence knowing you're protected against medical emergencies, trip cancellations, and lost baggage.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     
@@ -1080,7 +1108,7 @@
         </div>
     </section>
     
-   <!-- Consultation Form -->
+    <!-- Consultation Form -->
     <section class="consultation-form-section" id="contact">
         <div class="container">
             <div class="form-container">
@@ -1113,6 +1141,9 @@
                                     <option value="health">Health Insurance</option>
                                     <option value="medical">Medical Insurance</option>
                                     <option value="life">Life Insurance</option>
+                                    <option value="home">Home Insurance</option>
+                                    <option value="auto">Auto Insurance</option>
+                                    <option value="travel">Travel Insurance</option>
                                 </select>
                             </div>
                         </div>
@@ -1168,10 +1199,43 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 SecureLife Insurance. All rights reserved. | JANA - Licensed Insurance Agent</p>
+                <p>&copy; 2023 Jana Insurance. All rights reserved. | JANA - Licensed Insurance Agent</p>
             </div>
         </div>
     </footer>
+    
+    <!-- WhatsApp Chatbot -->
+    <div class="whatsapp-chatbot" id="whatsappChatbot">
+        <button class="whatsapp-chatbot-btn" id="chatbotToggle">
+            <i class="fab fa-whatsapp"></i>
+        </button>
+        <div class="whatsapp-chatbot-popup" id="chatbotPopup">
+            <div class="chatbot-header">
+                <i class="fab fa-whatsapp"></i>
+                <h4>Start a Conversation</h4>
+            </div>
+            <div class="chatbot-message">
+                <strong>Hi! Click one of our options below to chat on WhatsApp</strong>
+                <p class="chatbot-note" style="margin-top: 8px; font-size: 0.8rem; color: #666;">The team typically replies in a few minutes</p>
+            </div>
+            <a href="https://wa.me/917708589817?text=Hi!%20I'm%20interested%20in%20Health%20Insurance%20from%20your%20website." class="chatbot-option" target="_blank">
+                Health Insurance
+            </a>
+            <a href="https://wa.me/917708589817?text=Hi!%20I'm%20interested%20in%20Life%20Insurance%20from%20your%20website." class="chatbot-option" target="_blank">
+                Life Insurance
+            </a>
+            <a href="https://wa.me/917708589817?text=Hi!%20I'm%20interested%20in%20Medical%20Insurance%20from%20your%20website." class="chatbot-option" target="_blank">
+                Medical Insurance
+            </a>
+            <a href="https://wa.me/917708589817?text=Hi!%20I%20need%20a%20free%20consultation%20about%20insurance%20from%20your%20website." class="chatbot-option" target="_blank">
+                Free Consultation
+            </a>
+            <a href="https://wa.me/917708589817?text=Hi!%20I%20have%20a%20general%20query%20about%20insurance%20from%20your%20website." class="chatbot-option" target="_blank">
+                General Query
+            </a>
+            <p class="chatbot-note">Click any option to open WhatsApp automatically</p>
+        </div>
+    </div>
     
     <script>
         // Smooth scrolling for navigation links
@@ -1249,17 +1313,40 @@
             });
         });
         
-        // WhatsApp hover effect enhancement
-        const whatsappContainer = document.querySelector('.whatsapp-container');
-        if(whatsappContainer) {
-            whatsappContainer.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-2px)';
+        // WhatsApp Chatbot Toggle
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        const chatbotPopup = document.getElementById('chatbotPopup');
+        
+        chatbotToggle.addEventListener('click', function() {
+            chatbotPopup.classList.toggle('show');
+        });
+        
+        // Close chatbot when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideChatbot = document.getElementById('whatsappChatbot').contains(event.target);
+            if (!isClickInsideChatbot) {
+                chatbotPopup.classList.remove('show');
+            }
+        });
+        
+        // Auto open WhatsApp with pre-filled message for chatbot options
+        document.querySelectorAll('.chatbot-option').forEach(option => {
+            option.addEventListener('click', function(e) {
+                // The WhatsApp link is already in the href, so it will open automatically
+                chatbotPopup.classList.remove('show');
             });
-            
-            whatsappContainer.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0)';
-            });
-        }
+        });
+        
+        // Auto open WhatsApp when clicking WhatsApp number in header
+        document.querySelector('.whatsapp-container').addEventListener('click', function() {
+            window.open('https://wa.me/917708589817?text=Hi!%20I%20visited%20your%20website%20and%20want%20to%20know%20more%20about%20insurance%20services.', '_blank');
+        });
+        
+        // Auto open WhatsApp for header WhatsApp icon
+        document.querySelector('.whatsapp-icon').addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent triggering parent click
+            window.open('https://wa.me/917708589817?text=Hi!%20I%20visited%20your%20website%20and%20want%20to%20know%20more%20about%20insurance%20services.', '_blank');
+        });
     </script>
 </body>
 </html>
