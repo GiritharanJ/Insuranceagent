@@ -443,6 +443,134 @@
             font-size: 1.4rem;
         }
         
+        /* WhatsApp Chatbot - Like Ethical Insurance */
+        .whatsapp-chatbot {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .whatsapp-chatbot-btn {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            border: none;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .whatsapp-chatbot-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+        }
+        
+        .whatsapp-chatbot-popup {
+            position: absolute;
+            bottom: 85px;
+            right: 0;
+            width: 300px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            display: none;
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .whatsapp-chatbot-popup.show {
+            display: block;
+        }
+        
+        .chatbot-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .chatbot-header i {
+            color: #25D366;
+            font-size: 1.5rem;
+        }
+        
+        .chatbot-header h4 {
+            color: var(--dark-blue);
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .chatbot-message {
+            background: var(--light-green);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+        
+        .chatbot-option {
+            background: var(--light-pink);
+            border: 2px solid var(--medium-green);
+            color: var(--dark-blue);
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin-bottom: 10px;
+            display: block;
+            width: 100%;
+            text-decoration: none;
+        }
+        
+        .chatbot-option:hover {
+            background: var(--medium-green);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .chatbot-note {
+            font-size: 0.8rem;
+            color: #666;
+            text-align: center;
+            margin-top: 15px;
+            font-style: italic;
+        }
+        
         /* Consultation Form - Light Pink Background */
         .consultation-form-section {
             padding: 100px 0;
@@ -746,6 +874,16 @@
             .form-body {
                 padding: 35px 25px;
             }
+            
+            .whatsapp-chatbot {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .whatsapp-chatbot-popup {
+                width: 280px;
+                right: -50px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -783,6 +921,11 @@
                 justify-content: center;
                 gap: 15px 25px;
             }
+            
+            .whatsapp-chatbot-popup {
+                width: 250px;
+                right: -80px;
+            }
         }
     </style>
 </head>
@@ -811,9 +954,8 @@
         
         <div class="main-header">
             <div class="container">
-                <div class="logo-container">
-                    <!-- Professional Insurance Agent Image -->
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Jana - Professional Insurance Agent" class="logo-img">
+               <div class="logo-container">
+                    <img src="jana-log.jpg" alt="JANA - Professional Insurance Agent" class="logo-img">
                     <div class="logo-text">
                         <h1 class="agent-name">JANA</h1>
                         <p class="agent-title">Certified Insurance Agent | 10+ Years Experience</p>
@@ -842,9 +984,8 @@
                 <p>With over 10 years of expertise, I provide comprehensive insurance coverage tailored to your unique needs. From life and health to auto and home insurance, I'm here to protect what matters most to you.</p>
                 <button class="consultation-btn" id="heroConsultationBtn">Start Protecting Today</button>
             </div>
-            <div class="hero-image">
-                <!-- Professional Insurance Image -->
-                <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Insurance Protection Services" class="hero-img">
+          <div class="hero-image">
+                <img src="insulogo.png" alt="Insurance Protection Services" class="hero-img">
             </div>
         </div>
     </section>
@@ -892,32 +1033,6 @@
                     <div class="service-icon">
                         <i class="fas fa-home"></i>
                     </div>
-                    <div class="service-content">
-                        <h3>Home Insurance</h3>
-                        <p>Protect your home and belongings against fire, theft, and natural disasters with comprehensive home insurance.</p>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Auto Insurance</h3>
-                        <p>Complete vehicle insurance coverage with options for third-party liability and comprehensive protection.</p>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-plane"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Travel Insurance</h3>
-                        <p>Travel with confidence knowing you're protected against medical emergencies, trip cancellations, and lost baggage.</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
     
@@ -997,10 +1112,7 @@
                                     <option value="">Select an option</option>
                                     <option value="health">Health Insurance</option>
                                     <option value="medical">Medical Insurance</option>
-                                    <option value="life">Life Insurance</option>
-                                    <option value="home">Home Insurance</option>
-                                    <option value="auto">Auto Insurance</option>
-                                    <option value="travel">Travel Insurance</option>
+                                    <option value="life">Life Insurance</option
                                 </select>
                             </div>
                         </div>
@@ -1027,115 +1139,4 @@
             <div class="footer-content">
                 <div class="footer-logo">
                     <h2 class="agent-name">JANA</h2>
-                    <p>Your trusted insurance advisor with over 10 years of experience helping individuals and businesses secure their futures with the right insurance coverage.</p>
-                    <div class="social-icons" style="margin-top: 25px;">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Me</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#consultation">Free Consultation</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-contact">
-                    <h3>Contact Info</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Dharmapuri, Tamilnadu, India</p>
-                    <p><i class="fas fa-phone"></i> +91 77085 89817</p>
-                    <p><i class="fas fa-envelope"></i> jana@securelifeinsurance.com</p>
-                    <p><i class="fab fa-whatsapp"></i> +91 77085 89817 (WhatsApp)</p>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 Jana Insurance. All rights reserved. | JANA - Licensed Insurance Agent</p>
-            </div>
-        </div>
-    </footer>
-    
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a, .consultation-btn').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                if(this.getAttribute('href').startsWith('#')) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href');
-                    if(targetId === '#') return;
-                    
-                    const targetElement = document.querySelector(targetId);
-                    if(targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100,
-                            behavior: 'smooth'
-                        });
-                        
-                        // Update active navigation
-                        document.querySelectorAll('nav a').forEach(link => {
-                            link.classList.remove('active');
-                        });
-                        this.classList.add('active');
-                    }
-                }
-            });
-        });
-        
-        // Form submission handling
-        document.getElementById('consultationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const mobile = document.getElementById('mobile').value;
-            const insuranceType = document.getElementById('insurance-type').value;
-            const message = document.getElementById('message').value;
-            
-            // In a real application, you would send this data to a server
-            // For this demo, we'll just show an alert
-            alert(`Thank you ${name}! Your consultation request has been received. I will contact you at ${email} or ${mobile} within 24 hours.`);
-            
-            // Reset the form
-            this.reset();
-        });
-        
-        // Consultation button click handlers
-        document.getElementById('consultationBtn').addEventListener('click', function() {
-            document.getElementById('consultationForm').scrollIntoView({behavior: 'smooth'});
-        });
-        
-        document.getElementById('heroConsultationBtn').addEventListener('click', function() {
-            document.getElementById('consultationForm').scrollIntoView({behavior: 'smooth'});
-        });
-        
-        // Add active state to navigation based on scroll position
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('nav a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if(pageYOffset >= (sectionTop - 150)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if(link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                    <p>
