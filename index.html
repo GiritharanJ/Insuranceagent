@@ -265,18 +265,29 @@
         }
         
         /* HERO SECTION - UPDATED */
+         /* HERO SECTION - CORRECTED */
         .hero {
             position: relative;
             width: 100%;
             height: 100vh;
             min-height: 800px;
             overflow: hidden;
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
-                        url('insulogo.png') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+        }
+        
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                url('insulogo.png') center/cover no-repeat;
+            z-index: 1;
         }
         
         .hero-content {
@@ -304,6 +315,7 @@
             font-weight: 900;
             letter-spacing: 3px;
             text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+            margin-top: 10px;
         }
         
         .hero-content p {
@@ -331,12 +343,121 @@
             background: linear-gradient(135deg, #0056b3 0%, #003d82 100%);
             transform: translateY(-3px);
             box-shadow: 0 12px 30px rgba(0, 123, 255, 0.5);
-        }        
-        /* Services Section */
-        .services {
-            padding: 100px 0;
-            background-color: var(--light-pink);
-            position: relative;
+        }
+        
+        /* Update responsive styles for hero section */
+        @media (max-width: 1150px) {
+            .hero-content h1 {
+                font-size: 3.2rem;
+            }
+            
+            .hero-content h1 span {
+                font-size: 3.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero {
+                min-height: 700px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero-content h1 span {
+                font-size: 3rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+                max-width: 600px;
+            }
+            
+            .hero-content .consultation-btn {
+                padding: 16px 35px;
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 600px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.3rem;
+            }
+            
+            .hero-content h1 span {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+                max-width: 500px;
+            }
+            
+            .hero-content .consultation-btn {
+                padding: 14px 30px;
+                font-size: 1rem;
+            }
+            
+            .hero-content {
+                padding: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                min-height: 500px;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .hero-content h1 span {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+            
+            .hero-content p {
+                font-size: 0.95rem;
+                margin-bottom: 2rem;
+            }
+            
+            .hero-content .consultation-btn {
+                padding: 12px 25px;
+                font-size: 0.95rem;
+            }
+            
+            .hero-content {
+                padding: 1rem;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .hero {
+                min-height: 450px;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.6rem;
+            }
+            
+            .hero-content h1 span {
+                font-size: 1.8rem;
+                letter-spacing: 1px;
+            }
+            
+            .hero-content p {
+                font-size: 0.9rem;
+            }
         }
         
         .section-title {
