@@ -842,6 +842,241 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
         }
+        /* OTP Verification Styles */
+        .otp-verification-section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: linear-gradient(135deg, var(--light-green) 0%, #e8f5e9 100%);
+            border-radius: 15px;
+            border: 2px solid var(--medium-green);
+            display: none;
+        }
+
+        .otp-verification-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .otp-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .otp-icon {
+            background: var(--medium-green);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .otp-header h4 {
+            color: var(--dark-blue);
+            font-size: 1.4rem;
+            margin: 0;
+        }
+
+        .otp-message {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+            border-left: 4px solid var(--medium-green);
+        }
+
+        .otp-input-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .otp-input {
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .otp-input:focus {
+            border-color: var(--medium-green);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+
+        .otp-input.filled {
+            border-color: var(--medium-green);
+            background-color: #f0fff0;
+        }
+
+        .otp-actions {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .verify-otp-btn {
+            background: linear-gradient(135deg, var(--medium-green) 0%, var(--dark-green) 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .verify-otp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .verify-otp-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .resend-otp-btn {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--dark-blue) 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .resend-otp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+        }
+
+        .resend-otp-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .timer {
+            text-align: center;
+            color: var(--dark-blue);
+            font-weight: 600;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .otp-success {
+            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
+            color: var(--dark-green);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid var(--dark-green);
+            margin-top: 20px;
+            display: none;
+        }
+
+        .otp-success.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .otp-success i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-green);
+        }
+
+        .verify-btn {
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .verify-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
+        }
+
+        .mobile-verify-container {
+            position: relative;
+        }
+
+        .mobile-verify-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .mobile-verify-btn.active {
+            display: block;
+        }
+
+        .mobile-verify-btn:hover {
+            background: linear-gradient(135deg, #f57c00 0%, #e65100 100%);
+        }
+
+        .mobile-verify-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+
+        /* Hide form sections until OTP is verified */
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
         
         /* Footer */
         footer {
@@ -1105,6 +1340,45 @@
                 width: 250px;
                 right: -80px;
             }
+         @media (max-width: 768px) {
+            .otp-input {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+
+            .otp-input-container {
+                gap: 10px;
+            }
+
+            .otp-actions {
+                flex-direction: column;
+            }
+
+            .verify-otp-btn,
+            .resend-otp-btn {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .mobile-verify-btn {
+                position: static;
+                transform: none;
+                margin-top: 10px;
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .otp-input {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .otp-input-container {
+                gap: 8px;
+            }
         }
     </style>
 </head>
@@ -1188,51 +1462,11 @@
                 
                 <div class="service-card">
                     <div class="service-icon">
-                        <i class="fas fa-stethoscope"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Medical Insurance</h3>
-                        <p>We provide comprehensive medical insurance coverage to protect you and your family from unexpected healthcare expenses.</p>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
                         <i class="fas fa-user-friends"></i>
                     </div>
                     <div class="service-content">
                         <h3>Life Insurance</h3>
                         <p>Secure your family's financial future with tailored life insurance plans that provide peace of mind.</p>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-home"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Home Insurance</h3>
-                        <p>Protect your home and belongings against fire, theft, and natural disasters with comprehensive home insurance.</p>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-car"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Auto Insurance</h3>
-                        <p>Complete vehicle insurance coverage with options for third-party liability and comprehensive protection.</p>
-                    </div>
-                </div>
-                
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-plane"></i>
-                    </div>
-                    <div class="service-content">
-                        <h3>Travel Insurance</h3>
-                        <p>Travel with confidence knowing you're protected against medical emergencies, trip cancellations, and lost baggage.</p>
                     </div>
                 </div>
             </div>
@@ -1284,6 +1518,7 @@
     </section>
     
     <!-- Consultation Form -->
+    <!-- Consultation Form -->
     <section class="consultation-form-section" id="contact">
         <div class="container">
             <div class="section-title">
@@ -1299,7 +1534,7 @@
                 <div class="form-body">
                     <form id="consultationForm">
                         <!-- Personal Information -->
-                        <div class="form-section">
+                        <div class="form-section active" id="personal-info-section">
                             <h3 class="form-section-title">Personal Information</h3>
                             
                             <div class="form-row">
@@ -1314,9 +1549,12 @@
                             </div>
                             
                             <div class="form-row">
-                                <div class="form-group">
+                                <div class="form-group mobile-verify-container">
                                     <label for="mobile">Mobile Number *</label>
-                                    <input type="tel" id="mobile" class="form-control" placeholder="Enter your 10-digit mobile number" pattern="[0-9]{10}" required>
+                                    <input type="tel" id="mobile" class="form-control" placeholder="Enter your 10-digit mobile number" pattern="[0-9]{10}" required maxlength="10">
+                                    <button type="button" class="mobile-verify-btn" id="mobileVerifyBtn">
+                                        <i class="fas fa-mobile-alt"></i> Verify Mobile
+                                    </button>
                                 </div>
                                 <div class="form-group">
                                     <label>Gender *</label>
@@ -1352,9 +1590,48 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- OTP Verification Section -->
+                        <div class="otp-verification-section" id="otpSection">
+                            <div class="otp-header">
+                                <div class="otp-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h4>Mobile Number Verification</h4>
+                            </div>
+                            
+                            <div class="otp-message">
+                                <p>We've sent a 6-digit OTP to your mobile number <strong id="mobileDisplay"></strong>. Please enter it below to verify your number.</p>
+                                <p class="timer">OTP valid for: <span id="otpTimer">05:00</span></p>
+                            </div>
+                            
+                            <div class="otp-input-container">
+                                <input type="text" class="otp-input" maxlength="1" data-index="1">
+                                <input type="text" class="otp-input" maxlength="1" data-index="2">
+                                <input type="text" class="otp-input" maxlength="1" data-index="3">
+                                <input type="text" class="otp-input" maxlength="1" data-index="4">
+                                <input type="text" class="otp-input" maxlength="1" data-index="5">
+                                <input type="text" class="otp-input" maxlength="1" data-index="6">
+                            </div>
+                            
+                            <div class="otp-actions">
+                                <button type="button" class="verify-otp-btn" id="verifyOtpBtn" disabled>
+                                    <i class="fas fa-check-circle"></i> Verify OTP
+                                </button>
+                                <button type="button" class="resend-otp-btn" id="resendOtpBtn" disabled>
+                                    <i class="fas fa-redo"></i> Resend OTP
+                                </button>
+                            </div>
+                            
+                            <div class="otp-success" id="otpSuccess">
+                                <i class="fas fa-check-circle"></i>
+                                <h4>Mobile Number Verified Successfully!</h4>
+                                <p>Your mobile number has been verified. You can now proceed with the rest of the form.</p>
+                            </div>
+                        </div>
                         
                         <!-- Family Members Section (Conditional) -->
-                        <div class="form-section" id="family-section" style="display: none;">
+                        <div class="form-section" id="family-section">
                             <h3 class="form-section-title">Family Members Details</h3>
                             <div class="form-note">
                                 <p>Please provide details of all family members to be covered</p>
@@ -1386,7 +1663,7 @@
                         </div>
                         
                         <!-- Existing Insurance -->
-                        <div class="form-section">
+                        <div class="form-section" id="existing-insurance-section">
                             <h3 class="form-section-title">Existing Insurance Information</h3>
                             
                             <div class="form-row">
@@ -1409,7 +1686,7 @@
                         </div>
                         
                         <!-- Medical History -->
-                        <div class="form-section">
+                        <div class="form-section" id="medical-history-section">
                             <h3 class="form-section-title">Medical History</h3>
                             <div class="form-note">
                                 <p>Please provide accurate medical history for better insurance planning</p>
@@ -1475,7 +1752,7 @@
                         </div>
                         
                         <!-- Submit Button -->
-                        <button type="submit" class="submit-btn">
+                        <button type="submit" class="submit-btn" id="submitBtn" disabled>
                             <i class="fas fa-paper-plane"></i> Submit for Free Consultation
                         </button>
                         
@@ -1570,6 +1847,269 @@
     </div>
     
     <script>
+        // OTP Verification Variables
+        let otpSent = false;
+        let otpVerified = false;
+        let otpTimer = null;
+        let timeLeft = 300; // 5 minutes in seconds
+        let generatedOTP = "";
+
+        // Mobile number verification
+        const mobileInput = document.getElementById('mobile');
+        const mobileVerifyBtn = document.getElementById('mobileVerifyBtn');
+        const otpSection = document.getElementById('otpSection');
+        const mobileDisplay = document.getElementById('mobileDisplay');
+        const otpInputs = document.querySelectorAll('.otp-input');
+        const verifyOtpBtn = document.getElementById('verifyOtpBtn');
+        const resendOtpBtn = document.getElementById('resendOtpBtn');
+        const otpTimerDisplay = document.getElementById('otpTimer');
+        const otpSuccess = document.getElementById('otpSuccess');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Form sections
+        const formSections = document.querySelectorAll('.form-section:not(#personal-info-section)');
+
+        // Show verify button when mobile number is valid
+        mobileInput.addEventListener('input', function() {
+            const mobileNumber = this.value.replace(/\D/g, '');
+            this.value = mobileNumber;
+            
+            if (mobileNumber.length === 10 && !otpVerified) {
+                mobileVerifyBtn.classList.add('active');
+                mobileVerifyBtn.disabled = false;
+            } else {
+                mobileVerifyBtn.classList.remove('active');
+                mobileVerifyBtn.disabled = true;
+            }
+        });
+
+        // Send OTP
+        mobileVerifyBtn.addEventListener('click', function() {
+            const mobileNumber = mobileInput.value;
+            if (mobileNumber.length !== 10) {
+                alert('Please enter a valid 10-digit mobile number');
+                return;
+            }
+
+            // Generate random 6-digit OTP
+            generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+            
+            // For demo purposes, show OTP in alert
+            alert(`OTP for verification: ${generatedOTP}\n\nIn a real application, this would be sent via SMS to ${mobileNumber}`);
+            
+            // Show OTP section
+            mobileDisplay.textContent = `+91 ${mobileNumber}`;
+            otpSection.classList.add('active');
+            otpSent = true;
+            
+            // Start timer
+            startOTPTimer();
+            
+            // Scroll to OTP section
+            otpSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        // OTP input handling
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('input', function() {
+                // Move to next input
+                if (this.value.length === 1 && index < otpInputs.length - 1) {
+                    otpInputs[index + 1].focus();
+                }
+                
+                // Check if all inputs are filled
+                checkOTPInputs();
+            });
+            
+            input.addEventListener('keydown', function(e) {
+                // Handle backspace
+                if (e.key === 'Backspace' && this.value.length === 0 && index > 0) {
+                    otpInputs[index - 1].focus();
+                }
+            });
+        });
+
+        // Check OTP inputs
+        function checkOTPInputs() {
+            let allFilled = true;
+            otpInputs.forEach(input => {
+                if (input.value.length === 0) {
+                    allFilled = false;
+                } else {
+                    input.classList.add('filled');
+                }
+            });
+            
+            verifyOtpBtn.disabled = !allFilled;
+        }
+
+        // Verify OTP
+        verifyOtpBtn.addEventListener('click', function() {
+            if (!otpSent) {
+                alert('Please request an OTP first');
+                return;
+            }
+
+            // Get entered OTP
+            let enteredOTP = '';
+            otpInputs.forEach(input => {
+                enteredOTP += input.value;
+            });
+
+            // Verify OTP (in real app, this would be verified with server)
+            if (enteredOTP === generatedOTP) {
+                otpVerified = true;
+                
+                // Show success message
+                otpSuccess.classList.add('active');
+                
+                // Enable form sections
+                formSections.forEach(section => {
+                    section.classList.add('active');
+                });
+                
+                // Enable submit button
+                submitBtn.disabled = false;
+                
+                // Clear timer
+                clearInterval(otpTimer);
+                
+                // Scroll to next section
+                setTimeout(() => {
+                    document.getElementById('family-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 1500);
+                
+                // Update UI
+                verifyOtpBtn.disabled = true;
+                resendOtpBtn.disabled = true;
+                mobileVerifyBtn.disabled = true;
+                mobileVerifyBtn.innerHTML = '<i class="fas fa-check-circle"></i> Verified';
+                mobileVerifyBtn.style.background = 'linear-gradient(135deg, var(--medium-green) 0%, var(--dark-green) 100%)';
+                
+                // Store verification status
+                localStorage.setItem('mobileVerified', 'true');
+                localStorage.setItem('verifiedMobile', mobileInput.value);
+            } else {
+                alert('Invalid OTP. Please try again.');
+                // Clear OTP inputs
+                otpInputs.forEach(input => {
+                    input.value = '';
+                    input.classList.remove('filled');
+                });
+                otpInputs[0].focus();
+                verifyOtpBtn.disabled = true;
+            }
+        });
+
+        // Resend OTP
+        resendOtpBtn.addEventListener('click', function() {
+            if (!mobileInput.value || mobileInput.value.length !== 10) {
+                alert('Please enter a valid mobile number');
+                return;
+            }
+
+            // Generate new OTP
+            generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+            
+            // For demo purposes
+            alert(`New OTP sent: ${generatedOTP}`);
+            
+            // Reset timer
+            clearInterval(otpTimer);
+            timeLeft = 300;
+            updateTimerDisplay();
+            startOTPTimer();
+            
+            // Clear OTP inputs
+            otpInputs.forEach(input => {
+                input.value = '';
+                input.classList.remove('filled');
+            });
+            otpInputs[0].focus();
+            verifyOtpBtn.disabled = true;
+            
+            // Hide success message if shown
+            otpSuccess.classList.remove('active');
+        });
+
+        // Start OTP timer
+        function startOTPTimer() {
+            // Enable resend button after 30 seconds
+            setTimeout(() => {
+                resendOtpBtn.disabled = false;
+            }, 30000);
+            
+            otpTimer = setInterval(() => {
+                timeLeft--;
+                updateTimerDisplay();
+                
+                if (timeLeft <= 0) {
+                    clearInterval(otpTimer);
+                    verifyOtpBtn.disabled = true;
+                    resendOtpBtn.disabled = false;
+                    otpSent = false;
+                    alert('OTP has expired. Please request a new one.');
+                }
+            }, 1000);
+        }
+
+        // Update timer display
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            otpTimerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // Check if mobile was already verified
+        document.addEventListener('DOMContentLoaded', function() {
+            const isVerified = localStorage.getItem('mobileVerified') === 'true';
+            const savedMobile = localStorage.getItem('verifiedMobile');
+            
+            if (isVerified && savedMobile) {
+                mobileInput.value = savedMobile;
+                otpVerified = true;
+                mobileVerifyBtn.disabled = true;
+                mobileVerifyBtn.innerHTML = '<i class="fas fa-check-circle"></i> Verified';
+                mobileVerifyBtn.style.background = 'linear-gradient(135deg, var(--medium-green) 0%, var(--dark-green) 100%)';
+                mobileVerifyBtn.classList.add('active');
+                
+                // Enable form sections
+                formSections.forEach(section => {
+                    section.classList.add('active');
+                });
+                
+                // Enable submit button
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Update form submission to include verification status
+        document.getElementById('consultationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Check if mobile is verified
+            if (!otpVerified) {
+                alert('Please verify your mobile number before submitting the form.');
+                otpSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                return;
+            }
+            
+            // ... Your existing form submission code ...
+            // Make sure to include mobile verification status in the WhatsApp message
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                mobile: document.getElementById('mobile').value,
+                mobileVerified: otpVerified,
+                // ... rest of your form data
+            };
+            
+            // ... rest of your form submission logic
+        });
+
+        // Your existing form JavaScript code remains here...
+        // Make sure to integrate it with the OTP verification flow
+
         // Family Members Section Logic
         document.getElementById('insurance-for').addEventListener('change', function() {
             const familySection = document.getElementById('family-section');
