@@ -511,6 +511,162 @@
             margin-top: 15px;
             font-style: italic;
         }
+      /* INSURANCE BRANDS SECTION */
+        .insurance-brands {
+            background: white;
+            padding: 80px 5%;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: #1a365d;
+            font-size: 36px;
+            margin-bottom: 50px;
+            font-weight: 800;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #2d4a7c, #e91e63);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .brands-container {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .brand-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+            transition: transform 0.3s ease;
+        }
+        
+        .brand-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .brand-header {
+            background: #1a365d;
+            padding: 25px;
+            text-align: center;
+            color: white;
+        }
+        
+        .brand-logo {
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+        
+        .brand-header h3 {
+            font-size: 28px;
+            color: white;
+            margin-bottom: 5px;
+        }
+        
+        .brand-content {
+            padding: 30px;
+            color: #1a365d; /* Dark Blue Color */
+        }
+        
+        .brand-content h4 {
+            color: #2d4a7c;
+            font-size: 20px;
+            margin: 20px 0 10px;
+            border-bottom: 2px solid #e91e63;
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+        
+        .brand-content ul {
+            list-style-type: none;
+            margin: 15px 0;
+        }
+        
+        .brand-content li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.5;
+        }
+        
+        .brand-content li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #e91e63;
+            font-weight: bold;
+        }
+        
+        .highlight-box {
+            background: #f0f7ff;
+            border-left: 4px solid #2d4a7c;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .highlight-box strong {
+            color: #1a365d;
+        }
+        
+        /* SEO Keywords Section */
+        .seo-keywords {
+            background: #f8f9fa;
+            padding: 40px 5%;
+            margin-top: 50px;
+            border-radius: 15px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .seo-keywords h4 {
+            color: #1a365d;
+            font-size: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .keywords-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        
+        .keyword-tag {
+            background: white;
+            color: #2d4a7c;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        
+        .keyword-tag:hover {
+            background: #2d4a7c;
+            color: white;
+            border-color: #2d4a7c;
+            transform: scale(1.05);
+        }
+        
+
         
         /* Form Styles */
         .form-section {
@@ -779,6 +935,8 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
         }
+
+        
         /* OTP Verification Styles */
         .otp-verification-section {
             margin-bottom: 40px;
@@ -1230,6 +1388,71 @@
                 padding: 15px;
             }
         }
+         @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 50px 5%;
+            }
+            
+            .hero-content {
+                margin-bottom: 40px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 20px;
+                padding: 15px 5%;
+            }
+            
+            .header-left, .header-right {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nav {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .brands-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .brand-card {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .top-head {
+                font-size: 14px;
+                padding: 8px 10px;
+            }
+            
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            
+            .hero-content p {
+                font-size: 16px;
+            }
+            
+            .agent-info h2 {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .brand-header h3 {
+                font-size: 24px;
+            }
+        }
         
         @media (max-width: 576px) {
             .form-body {
@@ -1447,6 +1670,127 @@
                     <h3>Quick Claims</h3>
                     <p>Fast and hassle-free claim settlement</p>
                 </div>
+            </div>
+        </div>
+    </section>
+        
+          <!-- Our INSURANCE BRANDS Section -->
+    <section class="insurance-brands">
+        <h2 class="section-title">Our INSURANCE BRANDS</h2>
+        
+        <div class="brands-container">
+            <!-- Star Health Insurance Card -->
+            <div class="brand-card">
+                <div class="brand-header">
+                    <img src="starhealthlogo.jpeg" alt="Star Health Insurance Logo" class="brand-logo">
+                    <h3>Star Health Insurance</h3>
+                    <p>Comprehensive Health Insurance Solutions</p>
+                </div>
+                
+                <div class="brand-content">
+                    <h4>Health Insurance Services</h4>
+                    <p>Health insurance is a financial safety net that protects you and your family from rising medical costs. With increasing healthcare expenses, having the right health insurance plan ensures quality treatment without financial stress.</p>
+                    
+                    <h4>Key Insurance Plans</h4>
+                    <ul>
+                        <li><strong>₹1 Crore Health Insurance:</strong> Extensive coverage for major medical emergencies and critical illnesses</li>
+                        <li><strong>Individual Health Insurance:</strong> Personalized coverage based on age, lifestyle, and medical history</li>
+                        <li><strong>Family Health Insurance:</strong> Complete family coverage under one policy with shared sum insured</li>
+                        <li><strong>Cancer Insurance:</strong> Financial support for cancer diagnosis, treatment, and recovery</li>
+                        <li><strong>Cashless Health Insurance:</strong> Treatment at network hospitals without upfront payments</li>
+                        <li><strong>Senior Citizen Health Insurance:</strong> Coverage for age-related medical conditions and hospitalization</li>
+                        <li><strong>Health Insurance for Parents:</strong> Medical care coverage for aging parents</li>
+                        <li><strong>Group Health Insurance:</strong> Employee medical coverage for businesses and organizations</li>
+                        <li><strong>Critical Illness Insurance:</strong> Lump-sum benefit on diagnosis of serious illnesses</li>
+                        <li><strong>Affordable Health Insurance:</strong> Essential medical coverage at budget-friendly premiums</li>
+                        <li><strong>OPD Health Insurance:</strong> Coverage for outpatient expenses and routine medical needs</li>
+                        <li><strong>Maternity Insurance:</strong> Pregnancy, childbirth, and newborn care expenses</li>
+                        <li><strong>Top-up Health Insurance:</strong> Additional coverage over existing policies</li>
+                        <li><strong>Arogya Sanjeevani Policy:</strong> Standard health insurance with uniform benefits</li>
+                        <li><strong>Comprehensive Health Insurance:</strong> Wide-ranging coverage including wellness benefits</li>
+                        <li><strong>Health Insurance for NRIs:</strong> Medical treatment coverage in India for NRIs</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <strong>Why Choose Star Health:</strong> India's first standalone health insurance company with specialized health coverage solutions and extensive hospital network.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- TATA AIA Insurance Card -->
+            <div class="brand-card">
+                <div class="brand-header">
+                    <img src="tatalogo.jpeg" alt="TATA AIA Logo" class="brand-logo">
+                    <h3>TATA AIA Life Insurance</h3>
+                    <p>Life Insurance & Financial Protection Solutions</p>
+                </div>
+                
+                <div class="brand-content">
+                    <h4>Life Insurance Products</h4>
+                    <ul>
+                        <li><strong>Term Plans:</strong> Pure protection plans - Sampoorna Raksha and Param Raksha</li>
+                        <li><strong>Savings & Investment:</strong> ULIPs and Endowment plans for long-term growth</li>
+                        <li><strong>Retirement Plans:</strong> Secured retirement income solutions</li>
+                        <li><strong>Child Plans:</strong> Specialized plans for children's futures</li>
+                    </ul>
+                    
+                    <h4>Health & Wellness Solutions</h4>
+                    <ul>
+                        <li><strong>Tata AIA Pro Fit:</strong> Outpatient consultation and diagnostic tests</li>
+                        <li><strong>Critical Care Support:</strong> Comprehensive critical illness coverage</li>
+                        <li><strong>Cashless Claims:</strong> Hassle-free claim settlement process</li>
+                        <li><strong>Telemedicine Services:</strong> Remote medical consultations</li>
+                        <li><strong>Health Screenings:</strong> Preventive health check-ups</li>
+                    </ul>
+                    
+                    <h4>Customer Services & Support</h4>
+                    <ul>
+                        <li><strong>Digital Tools:</strong> Online policy tracking and premium payments</li>
+                        <li><strong>4-Hour Express Claims:</strong> Fast claim settlement process</li>
+                        <li><strong>Click & Claim:</strong> Digital claim submission options</li>
+                        <li><strong>7-Day Service Turnaround:</strong> Quick policy servicing</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <strong>Key Highlights:</strong>
+                        <ul>
+                            <li>99.41% individual death claim settlement ratio</li>
+                            <li>International medical expenses coverage in select plans</li>
+                            <li>Covers over 89 lakh families nationwide</li>
+                            <li>Managed assets exceeding ₹1.3 lakh crore</li>
+                            <li>Joint venture between Tata Sons and AIA Group</li>
+                        </ul>
+                    </div>
+                    
+                    <h4>Global Coverage & Financial Protection</h4>
+                    <p>Select TATA AIA plans offer international medical expense coverage, making them ideal for frequent travelers and globally mobile individuals. The company provides financial protection to over 89 lakh families across India.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SEO Keywords Section -->
+        <div class="seo-keywords">
+            <h4>Insurance Services & Coverage</h4>
+            <div class="keywords-container">
+                <span class="keyword-tag">Health Insurance</span>
+                <span class="keyword-tag">Life Insurance</span>
+                <span class="keyword-tag">Term Insurance</span>
+                <span class="keyword-tag">Critical Illness Insurance</span>
+                <span class="keyword-tag">Family Health Insurance</span>
+                <span class="keyword-tag">Senior Citizen Insurance</span>
+                <span class="keyword-tag">Cashless Hospitalization</span>
+                <span class="keyword-tag">ULIP Plans</span>
+                <span class="keyword-tag">Retirement Plans</span>
+                <span class="keyword-tag">Child Education Plans</span>
+                <span class="keyword-tag">Group Health Insurance</span>
+                <span class="keyword-tag">Maternity Insurance</span>
+                <span class="keyword-tag">Cancer Insurance</span>
+                <span class="keyword-tag">Arogya Sanjeevani Policy</span>
+                <span class="keyword-tag">NRI Insurance</span>
+                <span class="keyword-tag">Affordable Insurance</span>
+                <span class="keyword-tag">Insurance Agent Near Me</span>
+                <span class="keyword-tag">Best Insurance Plans</span>
+                <span class="keyword-tag">Financial Protection</span>
             </div>
         </div>
     </section>
@@ -1781,6 +2125,27 @@
     </div>
     
     <script>
+        // Simple hover effect enhancement
+        document.querySelectorAll('.consultation-btn, .cta-button').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transition = 'all 0.3s ease';
+            });
+        });
+        
+        // Mobile menu toggle (optional enhancement)
+        if (window.innerWidth <= 992) {
+            document.querySelector('.nav').style.flexDirection = 'column';
+        }
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        
         // OTP Verification Variables
         let otpSent = false;
         let otpVerified = false;
