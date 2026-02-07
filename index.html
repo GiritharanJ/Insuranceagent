@@ -7,18 +7,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            /* New Color Scheme - Light Pink Background & Light Green Content */
+            /* Consistent Color Scheme */
             --light-pink: #fff5f7;
             --light-green: #e8f5e9;
             --medium-green: #4caf50;
             --dark-green: #2e7d32;
             --dark-blue: #1a237e;
+            --navy-blue: #2d4a7c;
             --white: #ffffff;
             --accent-pink: #ff4081;
             --accent-blue: #2196f3;
             --gray: #f5f5f5;
             --dark-gray: #333;
             --light-blue: #e3f2fd;
+            --hero-pink: #880E4F;
         }
         
         * {
@@ -32,6 +34,7 @@
             background-color: var(--light-pink);
             color: var(--dark-gray);
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
         
         .container {
@@ -41,16 +44,11 @@
             padding: 0 20px;
         }
         
-        /* Header Styles - NOT Fixed (Scrolls Normally) */
-        header {
-            position: relative; /* Changed from fixed */
-            width: 100%;
-            z-index: 1000;
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        section {
+            padding: 80px 0;
         }
         
-        /* Top Header Bar */
+        /* ===== HEADER STYLES ===== */
         .header-top {
             background: linear-gradient(90deg, var(--dark-blue) 0%, var(--accent-blue) 100%);
             color: var(--white);
@@ -62,14 +60,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
         
         .whatsapp-container {
-            position: relative;
             display: flex;
             align-items: center;
             gap: 10px;
             cursor: pointer;
+            position: relative;
         }
         
         .whatsapp-hover-note {
@@ -135,37 +134,44 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
-        /* Main Header */
-        .header {
-            background: #e8f5e9; /* Light Green Background */
-            padding: 20px 5%;
+        /* Main Header - Fixed with improved design */
+        .main-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--light-green);
+            padding: 15px 0;
+            border-bottom: 3px solid var(--navy-blue);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 3px solid #2d4a7c; /* Subtle bottom border */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            gap: 30px;
         }
         
-        .header-left {
+        .logo-section {
             display: flex;
             align-items: center;
             gap: 20px;
         }
         
         .customer-photo {
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            border: 4px solid #2d4a7c; /* Bold Blue Border */
+            border: 4px solid var(--navy-blue);
             object-fit: cover;
-            box-shadow: 0 4px 8px rgba(45, 74, 124, 0.2);
+            box-shadow: 0 4px 12px rgba(45, 74, 124, 0.25);
         }
         
         .agent-info h2 {
-            color: #2d4a7c; /* Bold Blue Color */
-            font-size: 22px;
+            color: var(--navy-blue);
+            font-size: 24px;
             margin-bottom: 5px;
-            font-weight: 700;
+            font-weight: 800;
         }
         
         .agent-info p {
@@ -174,73 +180,87 @@
             font-weight: 500;
         }
         
-        .header-right {
+        .navigation {
             display: flex;
             align-items: center;
             gap: 30px;
         }
         
-        .nav {
+        .main-nav {
             display: flex;
-            gap: 25px;
+            gap: 30px;
         }
         
-        .nav a {
+        .main-nav a {
             text-decoration: none;
-            color: #2d4a7c; /* Blue color to match theme */
-            font-weight: 600;
+            color: var(--navy-blue);
+            font-weight: 700;
             font-size: 16px;
             padding: 8px 0;
             position: relative;
             transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
-        .nav a:hover {
-            color: #e91e63; /* Pink accent on hover */
+        .main-nav a:hover,
+        .main-nav a.active {
+            color: var(--accent-pink);
         }
         
-        .nav a::after {
+        .main-nav a::after {
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
+            height: 3px;
             bottom: 0;
             left: 0;
-            background-color: #e91e63;
+            background-color: var(--accent-pink);
             transition: width 0.3s ease;
+            border-radius: 2px;
         }
         
-        .nav a:hover::after {
+        .main-nav a:hover::after,
+        .main-nav a.active::after {
             width: 100%;
         }
         
         .consultation-btn {
-            background: linear-gradient(135deg, #2d4a7c, #4a7bc3);
+            background: linear-gradient(135deg, var(--navy-blue), var(--accent-blue));
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 14px 28px;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 700;
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 12px rgba(45, 74, 124, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
         }
         
         .consultation-btn:hover {
-            background: linear-gradient(135deg, #e91e63, #ff4081);
+            background: linear-gradient(135deg, var(--accent-pink), #ff4081);
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(233, 30, 99, 0.4);
         }
         
-        /* HERO SECTION - NEW DESIGN */
+        /* ===== HERO SECTION ===== */
         .hero {
-            background: linear-gradient(135deg, #87CEEB, #B3E5FC); /* Sky Blue Gradient */
-            padding: 80px 5%;
+            background: linear-gradient(135deg, #87CEEB, #B3E5FC);
+            padding: 100px 0;
+            min-height: 600px;
+        }
+        
+        .hero .container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            min-height: 500px;
+            gap: 50px;
         }
         
         .hero-content {
@@ -249,40 +269,43 @@
         }
         
         .hero-content h1 {
-            color: #880E4F; /* Dark Pink Color */
-            font-size: 42px;
+            color: var(--hero-pink);
+            font-size: 48px;
             line-height: 1.2;
             margin-bottom: 25px;
-            font-weight: 800;
+            font-weight: 900;
             text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
         }
         
         .hero-content p {
-            color: #880E4F; /* Dark Pink Color */
+            color: var(--hero-pink);
             font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 35px;
-            opacity: 0.9;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            opacity: 0.95;
         }
         
         .cta-button {
-            background: linear-gradient(135deg, #880E4F, #AD1457);
+            background: linear-gradient(135deg, var(--hero-pink), #AD1457);
             color: white;
             border: none;
-            padding: 16px 40px;
+            padding: 18px 45px;
             font-size: 18px;
             font-weight: 700;
             border-radius: 35px;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 6px 15px rgba(136, 14, 79, 0.3);
+            box-shadow: 0 8px 20px rgba(136, 14, 79, 0.3);
             letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
         }
         
         .cta-button:hover {
             background: linear-gradient(135deg, #AD1457, #C2185B);
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(136, 14, 79, 0.4);
+            box-shadow: 0 12px 25px rgba(136, 14, 79, 0.4);
         }
         
         .hero-image {
@@ -293,249 +316,147 @@
         .hero-image img {
             max-width: 100%;
             border-radius: 20px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
         }
         
-      
-        /* Service Cards - Updated with your content */
+        .hero-image img:hover {
+            transform: scale(1.02);
+        }
+        
+        /* ===== SECTION TITLES ===== */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            color: var(--navy-blue);
+            font-size: 42px;
+            margin-bottom: 15px;
+            font-weight: 900;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--navy-blue), var(--accent-pink));
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: #666;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 25px auto 0;
+        }
+        
+        /* ===== SERVICES SECTION ===== */
+        .services {
+            background-color: var(--white);
+        }
+        
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 35px;
+            margin-top: 40px;
         }
         
         .service-card {
             background-color: var(--white);
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             transition: all 0.4s ease;
             position: relative;
             border-top: 5px solid var(--medium-green);
         }
         
         .service-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-12px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
         
         .service-icon {
             background: linear-gradient(135deg, var(--light-green) 0%, #c8e6c9 100%);
-            padding: 30px;
+            padding: 35px;
             text-align: center;
-            font-size: 3rem;
-            color: var(--dark-blue);
+            font-size: 3.5rem;
+            color: var(--navy-blue);
         }
         
         .service-content {
-            padding: 30px;
+            padding: 35px;
         }
         
         .service-content h3 {
-            font-size: 1.6rem;
-            color: var(--dark-blue);
+            font-size: 1.8rem;
+            color: var(--navy-blue);
             margin-bottom: 20px;
             font-weight: 800;
         }
         
         .service-content p {
-            margin-bottom: 0;
             line-height: 1.7;
             color: var(--dark-gray);
+            font-size: 16px;
         }
         
-        /* Why Choose Me Section */
+        /* ===== WHY CHOOSE ME ===== */
         .why-choose {
-            padding: 100px 0;
             background-color: var(--light-green);
-            position: relative;
         }
         
         .why-choose-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            gap: 35px;
             margin-top: 50px;
         }
         
         .feature-card {
             background-color: var(--white);
-            padding: 35px 30px;
+            padding: 40px 30px;
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
         }
         
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
         }
         
         .feature-icon {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--accent-pink);
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         
         .feature-card h3 {
-            color: var(--dark-blue);
+            color: var(--navy-blue);
             margin-bottom: 15px;
-            font-size: 1.4rem;
-        }
-        
-        /* WhatsApp Chatbot */
-        .whatsapp-chatbot {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 999;
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-        
-        .whatsapp-chatbot-btn {
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-            color: white;
-            border: none;
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5rem;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .whatsapp-chatbot-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
-        }
-        
-        .whatsapp-chatbot-popup {
-            position: absolute;
-            bottom: 85px;
-            right: 0;
-            width: 300px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            display: none;
-            animation: slideUp 0.3s ease;
-        }
-        
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .whatsapp-chatbot-popup.show {
-            display: block;
-        }
-        
-        .chatbot-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .chatbot-header i {
-            color: #25D366;
             font-size: 1.5rem;
-        }
-        
-        .chatbot-header h4 {
-            color: var(--dark-blue);
-            margin: 0;
-            font-size: 1.2rem;
-        }
-        
-        .chatbot-message {
-            background: var(--light-green);
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-            color: var(--dark-gray);
-        }
-        
-        .chatbot-option {
-            background: var(--light-pink);
-            border: 2px solid var(--medium-green);
-            color: var(--dark-blue);
-            padding: 12px 20px;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            margin-bottom: 10px;
-            display: block;
-            width: 100%;
-            text-decoration: none;
-        }
-        
-        .chatbot-option:hover {
-            background: var(--medium-green);
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        .chatbot-note {
-            font-size: 0.8rem;
-            color: #666;
-            text-align: center;
-            margin-top: 15px;
-            font-style: italic;
-        }
-      /* INSURANCE BRANDS SECTION */
-        .insurance-brands {
-            background: white;
-            padding: 80px 5%;
-        }
-        
-        .section-title {
-            text-align: center;
-            color: #1a365d;
-            font-size: 36px;
-            margin-bottom: 50px;
             font-weight: 800;
-            position: relative;
         }
         
-        .section-title::after {
-            content: '';
-            position: absolute;
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, #2d4a7c, #e91e63);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-radius: 2px;
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* ===== INSURANCE BRANDS ===== */
+        .insurance-brands {
+            background: var(--white);
         }
         
         .brands-container {
@@ -546,99 +467,106 @@
         }
         
         .brand-card {
-            background: white;
-            border-radius: 15px;
+            background: var(--white);
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             flex: 1;
             min-width: 300px;
             max-width: 600px;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
         
         .brand-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
         }
         
         .brand-header {
-            background: #1a365d;
-            padding: 25px;
+            background: var(--navy-blue);
+            padding: 35px;
             text-align: center;
-            color: white;
+            color: var(--white);
         }
         
         .brand-logo {
             height: 80px;
             object-fit: contain;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
         
         .brand-header h3 {
             font-size: 28px;
-            color: white;
-            margin-bottom: 5px;
+            color: var(--white);
+            margin-bottom: 10px;
+            font-weight: 800;
         }
         
         .brand-content {
-            padding: 30px;
-            color: #1a365d; /* Dark Blue Color */
+            padding: 40px;
+            color: var(--navy-blue);
         }
         
         .brand-content h4 {
-            color: #2d4a7c;
-            font-size: 20px;
-            margin: 20px 0 10px;
-            border-bottom: 2px solid #e91e63;
-            padding-bottom: 5px;
+            color: var(--navy-blue);
+            font-size: 22px;
+            margin: 25px 0 15px;
+            border-bottom: 3px solid var(--accent-pink);
+            padding-bottom: 8px;
             display: inline-block;
+            font-weight: 800;
         }
         
         .brand-content ul {
             list-style-type: none;
-            margin: 15px 0;
+            margin: 20px 0;
         }
         
         .brand-content li {
-            margin-bottom: 12px;
-            padding-left: 25px;
+            margin-bottom: 14px;
+            padding-left: 30px;
             position: relative;
-            line-height: 1.5;
+            line-height: 1.6;
+            font-size: 16px;
         }
         
         .brand-content li:before {
             content: '✓';
             position: absolute;
             left: 0;
-            color: #e91e63;
+            color: var(--accent-pink);
             font-weight: bold;
+            font-size: 18px;
         }
         
         .highlight-box {
-            background: #f0f7ff;
-            border-left: 4px solid #2d4a7c;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 0 8px 8px 0;
+            background: var(--light-blue);
+            border-left: 5px solid var(--navy-blue);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
         }
         
         .highlight-box strong {
-            color: #1a365d;
+            color: var(--navy-blue);
+            font-size: 18px;
         }
         
-        /* SEO Keywords Section */
+        /* ===== SEO KEYWORDS ===== */
         .seo-keywords {
             background: #f8f9fa;
-            padding: 40px 5%;
-            margin-top: 50px;
+            padding: 50px;
+            margin-top: 60px;
             border-radius: 15px;
             border: 1px solid #e0e0e0;
         }
         
         .seo-keywords h4 {
-            color: #1a365d;
-            font-size: 20px;
-            margin-bottom: 20px;
+            color: var(--navy-blue);
+            font-size: 24px;
+            margin-bottom: 30px;
             text-align: center;
+            font-weight: 800;
         }
         
         .keywords-container {
@@ -649,184 +577,54 @@
         }
         
         .keyword-tag {
-            background: white;
-            color: #2d4a7c;
-            padding: 8px 20px;
+            background: var(--white);
+            color: var(--navy-blue);
+            padding: 10px 25px;
             border-radius: 30px;
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 15px;
+            font-weight: 700;
             border: 2px solid #e0e0e0;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
         
         .keyword-tag:hover {
-            background: #2d4a7c;
-            color: white;
-            border-color: #2d4a7c;
+            background: var(--navy-blue);
+            color: var(--white);
+            border-color: var(--navy-blue);
             transform: scale(1.05);
         }
         
-
-        
-        /* Form Styles */
-        .form-section {
-            margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        
-        .form-section:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-        
-        .form-section-title {
-            color: var(--dark-blue);
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--accent-pink);
-            font-weight: 700;
-        }
-        
-        .gender-options {
-            display: flex;
-            gap: 20px;
-            margin-top: 5px;
-        }
-        
-        .radio-option {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-        
-        .radio-option input[type="radio"] {
-            margin-right: 8px;
-            width: 18px;
-            height: 18px;
-        }
-        
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            margin-bottom: 10px;
-        }
-        
-        .checkbox-label input[type="checkbox"] {
-            margin-right: 10px;
-            width: 18px;
-            height: 18px;
-        }
-        
-        .checkbox-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .form-note {
-            background-color: var(--light-green);
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            color: var(--dark-gray);
-        }
-        
-        .add-btn {
-            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--dark-blue) 100%);
-            color: var(--white);
-            border: none;
-            padding: 12px 20px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin: 0 auto;
-        }
-        
-        .add-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
-        }
-        
-        .family-member-card {
-            background: var(--light-pink);
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 15px;
-            position: relative;
-        }
-        
-        .family-member-card h4 {
-            color: var(--dark-blue);
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-        
-        .remove-member {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--accent-pink);
-            color: white;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-        }
-        
-        .remove-member:hover {
-            background: #e91e63;
-        }
-        
-        /* Consultation Form Section */
+        /* ===== CONSULTATION FORM ===== */
         .consultation-form-section {
-            padding: 100px 0;
             background-color: var(--light-pink);
-            position: relative;
         }
         
         .form-container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
             background-color: var(--white);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
-            position: relative;
-            z-index: 1;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
         }
         
         .form-header {
-            background: linear-gradient(90deg, var(--dark-blue) 0%, var(--accent-blue) 100%);
+            background: linear-gradient(90deg, var(--navy-blue) 0%, var(--accent-blue) 100%);
             color: var(--white);
-            padding: 35px;
+            padding: 45px;
             text-align: center;
         }
         
         .form-header h2 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 15px;
-            font-weight: 800;
+            font-weight: 900;
         }
         
         .form-header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+            font-size: 1.2rem;
+            opacity: 0.95;
         }
         
         .form-body {
@@ -837,7 +635,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 25px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
         
         .form-group {
@@ -847,10 +645,10 @@
         
         .form-group label {
             display: block;
-            margin-bottom: 10px;
-            color: var(--dark-blue);
+            margin-bottom: 12px;
+            color: var(--navy-blue);
             font-weight: 700;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
         }
         
         .form-control {
@@ -879,301 +677,151 @@
             color: var(--white);
             border: none;
             padding: 20px 45px;
-            border-radius: 10px;
-            font-weight: 800;
+            border-radius: 12px;
+            font-weight: 900;
             font-size: 1.2rem;
             cursor: pointer;
             transition: all 0.3s ease;
             display: block;
-            margin: 40px auto 0;
-            min-width: 220px;
-            box-shadow: 0 8px 25px rgba(255, 64, 129, 0.3);
+            margin: 50px auto 0;
+            min-width: 250px;
+            box-shadow: 0 10px 25px rgba(255, 64, 129, 0.3);
+            letter-spacing: 0.5px;
         }
         
         .submit-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(255, 64, 129, 0.4);
+            box-shadow: 0 15px 30px rgba(255, 64, 129, 0.4);
         }
         
-        .whatsapp-success {
-            background-color: var(--light-green);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            text-align: center;
-            border: 2px solid var(--medium-green);
-            display: none;
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
         }
         
-        .whatsapp-success h4 {
-            color: var(--dark-green);
-            margin-bottom: 10px;
+        /* ===== WHATSAPP CHATBOT ===== */
+        .whatsapp-chatbot {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            animation: float 3s ease-in-out infinite;
         }
         
-        .whatsapp-success p {
-            margin-bottom: 15px;
-            color: var(--dark-gray);
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
         
-        .whatsapp-btn {
+        .whatsapp-chatbot-btn {
             background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            font-size: 1rem;
-        }
-        
-        .whatsapp-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-        }
-
-        
-        /* OTP Verification Styles */
-        .otp-verification-section {
-            margin-bottom: 40px;
-            padding: 25px;
-            background: linear-gradient(135deg, var(--light-green) 0%, #e8f5e9 100%);
-            border-radius: 15px;
-            border: 2px solid var(--medium-green);
-            display: none;
-        }
-
-        .otp-verification-section.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .otp-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .otp-icon {
-            background: var(--medium-green);
-            color: white;
-            width: 50px;
-            height: 50px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .otp-header h4 {
-            color: var(--dark-blue);
-            font-size: 1.4rem;
-            margin: 0;
-        }
-
-        .otp-message {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            color: var(--dark-gray);
-            border-left: 4px solid var(--medium-green);
-        }
-
-        .otp-input-container {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .otp-input {
-            width: 60px;
-            height: 60px;
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            background: white;
-            transition: all 0.3s ease;
-        }
-
-        .otp-input:focus {
-            border-color: var(--medium-green);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
-        }
-
-        .otp-input.filled {
-            border-color: var(--medium-green);
-            background-color: #f0fff0;
-        }
-
-        .otp-actions {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .verify-otp-btn {
-            background: linear-gradient(135deg, var(--medium-green) 0%, var(--dark-green) 100%);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .verify-otp-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
-        }
-
-        .verify-otp-btn:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .resend-otp-btn {
-            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--dark-blue) 100%);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .resend-otp-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
-        }
-
-        .resend-otp-btn:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .timer {
-            text-align: center;
-            color: var(--dark-blue);
-            font-weight: 600;
-            margin-top: 10px;
-            font-size: 0.9rem;
-        }
-
-        .otp-success {
-            background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
-            color: var(--dark-green);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            border: 2px solid var(--dark-green);
-            margin-top: 20px;
-            display: none;
-        }
-
-        .otp-success.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .otp-success i {
             font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--dark-green);
-        }
-
-        .verify-btn {
-            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-weight: 600;
             cursor: pointer;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
             transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .verify-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
-        }
-
-        .mobile-verify-container {
             position: relative;
-        }
-
-        .mobile-verify-btn {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: none;
-        }
-
-        .mobile-verify-btn.active {
-            display: block;
-        }
-
-        .mobile-verify-btn:hover {
-            background: linear-gradient(135deg, #f57c00 0%, #e65100 100%);
-        }
-
-        .mobile-verify-btn:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-        }
-
-        /* Hide form sections until OTP is verified */
-        .form-section {
-            display: none;
-        }
-
-        .form-section.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
+            z-index: 2;
         }
         
-        /* Footer */
+        .whatsapp-chatbot-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.6);
+        }
+        
+        .whatsapp-chatbot-popup {
+            position: absolute;
+            bottom: 85px;
+            right: 0;
+            width: 320px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            display: none;
+            animation: slideUp 0.3s ease;
+            z-index: 1;
+        }
+        
+        .whatsapp-chatbot-popup.show {
+            display: block;
+        }
+        
+        .chatbot-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .chatbot-header i {
+            color: #25D366;
+            font-size: 1.8rem;
+        }
+        
+        .chatbot-header h4 {
+            color: var(--navy-blue);
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+        
+        .chatbot-message {
+            background: var(--light-green);
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            color: var(--dark-gray);
+            border: 1px solid #e0e0e0;
+        }
+        
+        .chatbot-option {
+            background: var(--light-pink);
+            border: 2px solid var(--medium-green);
+            color: var(--navy-blue);
+            padding: 14px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin-bottom: 12px;
+            display: block;
+            width: 100%;
+            text-decoration: none;
+        }
+        
+        .chatbot-option:hover {
+            background: var(--medium-green);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+        
+        .chatbot-note {
+            font-size: 0.85rem;
+            color: #666;
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+        }
+        
+        /* ===== FOOTER ===== */
         footer {
             background: linear-gradient(90deg, var(--dark-blue) 0%, #0d47a1 100%);
             color: var(--white);
@@ -1200,24 +848,29 @@
         
         .footer-logo .agent-name {
             color: var(--white);
+            font-size: 32px;
             margin-bottom: 15px;
+            font-weight: 900;
         }
         
         .footer-logo p {
             margin-top: 20px;
             opacity: 0.9;
             line-height: 1.7;
+            font-size: 16px;
         }
         
-        .footer-links h3, .footer-contact h3 {
-            font-size: 1.5rem;
+        .footer-contact h3,
+        .footer-links h3 {
+            font-size: 1.6rem;
             margin-bottom: 25px;
             position: relative;
             padding-bottom: 15px;
             font-weight: 800;
         }
         
-        .footer-links h3::after, .footer-contact h3::after {
+        .footer-contact h3::after,
+        .footer-links h3::after {
             content: '';
             position: absolute;
             width: 50px;
@@ -1226,29 +879,6 @@
             bottom: 0;
             left: 0;
             border-radius: 2px;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 15px;
-        }
-        
-        .footer-links a {
-            color: var(--white);
-            text-decoration: none;
-            opacity: 0.9;
-            transition: all 0.3s ease;
-            display: inline-block;
-            font-size: 1.05rem;
-        }
-        
-        .footer-links a:hover {
-            opacity: 1;
-            color: var(--light-green);
-            transform: translateX(5px);
         }
         
         .footer-contact p {
@@ -1265,6 +895,20 @@
             width: 30px;
         }
         
+        .map-container {
+            border: 2px solid #1a56db;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            height: 300px;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
         .copyright {
             text-align: center;
             padding-top: 40px;
@@ -1273,40 +917,121 @@
             font-size: 0.95rem;
         }
         
-        /* Responsive Design */
-          /* Mobile Responsive */
+        /* ===== FORM ELEMENTS (Reduced Size) ===== */
+        .form-section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .form-section:last-child {
+            border-bottom: none;
+        }
+        
+        .form-section-title {
+            color: var(--navy-blue);
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-pink);
+            font-weight: 800;
+        }
+        
+        .gender-options {
+            display: flex;
+            gap: 20px;
+            margin-top: 5px;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        
+        .checkbox-label input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--medium-green);
+        }
+        
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .add-btn {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--dark-blue) 100%);
+            color: var(--white);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 20px auto;
+            font-size: 0.95rem;
+        }
+        
+        .add-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+        }
+        
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 1200px) {
+            .container {
+                max-width: 95%;
+            }
+        }
+        
         @media (max-width: 992px) {
-            .hero {
+            .hero .container {
                 flex-direction: column;
                 text-align: center;
-                padding: 50px 5%;
             }
             
             .hero-content {
-                margin-bottom: 40px;
+                max-width: 100%;
             }
             
-            .header {
+            .hero-content h1 {
+                font-size: 38px;
+            }
+            
+            .brands-container {
+                flex-direction: column;
+            }
+            
+            .brand-card {
+                max-width: 100%;
+            }
+            
+            .header-container {
                 flex-direction: column;
                 gap: 20px;
-                padding: 15px 5%;
             }
             
-            .header-left, .header-right {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .nav {
-                gap: 15px;
+            .main-nav {
                 flex-wrap: wrap;
                 justify-content: center;
+                gap: 20px;
             }
         }
-         @media (max-width: 768px) {
-            .top-head {
-                font-size: 14px;
-                padding: 8px 10px;
+        
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 0;
+                min-height: auto;
             }
             
             .hero-content h1 {
@@ -1317,52 +1042,112 @@
                 font-size: 16px;
             }
             
+            .section-title h2 {
+                font-size: 32px;
+            }
+            
+            .section-title p {
+                font-size: 16px;
+            }
+            
+            .customer-photo {
+                width: 70px;
+                height: 70px;
+            }
+            
             .agent-info h2 {
-                font-size: 18px;
+                font-size: 20px;
+            }
+            
+            .form-body {
+                padding: 30px;
+            }
+            
+            .form-header {
+                padding: 30px;
+            }
+            
+            .form-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .services-grid,
+            .why-choose-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .checkbox-grid {
+                grid-template-columns: 1fr;
             }
         }
-        @media (max-width: 768px) {
-            .logo-img {
-                width: 90px;
-                height: 90px;
+        
+        @media (max-width: 576px) {
+            .main-nav {
+                flex-direction: column;
+                gap: 15px;
             }
             
-            .agent-name {
-                font-size: 1.8rem;
+            .consultation-btn {
+                width: 100%;
+                justify-content: center;
             }
             
-            .agent-title {
-                font-size: 0.9rem;
-            }
-            
-            nav ul {
+            .form-row {
+                flex-direction: column;
                 gap: 20px;
             }
             
-            nav a {
-                font-size: 1rem;
+            .form-group {
+                min-width: 100%;
             }
             
-            .hero h1 {
-                font-size: 2.3rem;
+            .gender-options {
+                flex-direction: column;
+                gap: 10px;
             }
             
-            .hero p {
-                font-size: 1.1rem;
+            .whatsapp-chatbot-popup {
+                width: 280px;
+                right: -30px;
             }
             
             .section-title h2 {
-                font-size: 2rem;
+                font-size: 28px;
             }
             
+            .brand-content {
+                padding: 25px;
+            }
+            
+            .brand-content h4 {
+                font-size: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
             .header-top .container {
                 flex-direction: column;
                 gap: 15px;
                 text-align: center;
             }
             
-            .form-body {
-                padding: 35px 25px;
+            .social-icons {
+                justify-content: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            
+            .cta-button,
+            .submit-btn {
+                width: 100%;
+                justify-content: center;
             }
             
             .whatsapp-chatbot {
@@ -1371,232 +1156,75 @@
             }
             
             .whatsapp-chatbot-popup {
-                width: 280px;
-                right: -50px;
-            }
-            
-            .gender-options {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .checkbox-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .family-member-card {
-                padding: 15px;
-            }
-        }
-         @media (max-width: 992px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding: 50px 5%;
-            }
-            
-            .hero-content {
-                margin-bottom: 40px;
-            }
-            
-            .header {
-                flex-direction: column;
-                gap: 20px;
-                padding: 15px 5%;
-            }
-            
-            .header-left, .header-right {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .nav {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            
-            .brands-container {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .brand-card {
-                width: 100%;
-                max-width: 100%;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .top-head {
-                font-size: 14px;
-                padding: 8px 10px;
-            }
-            
-            .hero-content h1 {
-                font-size: 32px;
-            }
-            
-            .hero-content p {
-                font-size: 16px;
-            }
-            
-            .agent-info h2 {
-                font-size: 18px;
-            }
-            
-            .section-title {
-                font-size: 28px;
-            }
-            
-            .brand-header h3 {
-                font-size: 24px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .form-body {
-                padding: 30px 20px;
-            }
-            
-            .hero {
-                padding: 70px 0 50px;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .main-header .container {
-                flex-direction: column;
-                gap: 25px;
-            }
-            
-            .logo-container {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
-                width: auto;
-            }
-            
-            nav {
-                width: 100%;
-                margin-top: 0;
-            }
-            
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px 25px;
-            }
-            
-            .whatsapp-chatbot-popup {
                 width: 250px;
-                right: -80px;
-            }
-         @media (max-width: 768px) {
-            .otp-input {
-                width: 50px;
-                height: 50px;
-                font-size: 1.3rem;
-            }
-
-            .otp-input-container {
-                gap: 10px;
-            }
-
-            .otp-actions {
-                flex-direction: column;
-            }
-
-            .verify-otp-btn,
-            .resend-otp-btn {
-                width: 100%;
-                min-width: unset;
-            }
-
-            .mobile-verify-btn {
-                position: static;
-                transform: none;
-                margin-top: 10px;
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .otp-input {
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
-
-            .otp-input-container {
-                gap: 8px;
+                right: -50px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header Section - NOT Fixed (Scrolls Normally) -->
-    <header id="mainHeader">
-        <div class="header-top">
-            <div class="container">
-                <div class="whatsapp-container">
-                    <div class="whatsapp-icon">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <span>+91 77085 89817</span>
-                    <div class="whatsapp-hover-note">
-                        <strong>Say Hi to insurance on WhatsApp!</strong>
-                        <p>Enjoy services at your convenience anytime anywhere by just sending hi to our WhatsApp number</p>
-                    </div>
+    <!-- Header Top -->
+    <div class="header-top">
+        <div class="container">
+            <div class="whatsapp-container" id="whatsappHeader">
+                <div class="whatsapp-icon">
+                    <i class="fab fa-whatsapp"></i>
                 </div>
-                <div class="social-icons">
-                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                <span>+91 77085 89817</span>
+                <div class="whatsapp-hover-note">
+                    <strong>Say Hi to insurance on WhatsApp!</strong>
+                    <p>Enjoy services at your convenience anytime anywhere by just sending hi to our WhatsApp number</p>
                 </div>
             </div>
-        </div>
-        
-        <header class="header">
-        <div class="header-left">
-            <!-- Customer Photo -->
-            <img src="jana-logo.png" alt="JANA Certified Agent" class="customer-photo">
-            <div class="agent-info">
-                <h2>JANA Certified Insurance Agent</h2>
-                <p>10+ Years Experience | Professional Insurance Advisor</p>
+            <div class="social-icons">
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
             </div>
         </div>
-        
-        <div class="header-right">
-            <nav class="nav">
-                <a href="#"><i class="fas fa-home"></i> Home</a>
-                <a href="#"><i class="fas fa-user"></i> About</a>
-                <a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
-                <a href="#"><i class="fas fa-phone-alt"></i> Contact</a>
-            </nav>
-            <button class="consultation-btn">
-                <i class="fas fa-calendar-check"></i> Get Free Consultation
-            </button>
+    </div>
+    
+    <!-- Main Header (Fixed) -->
+    <header class="main-header" id="mainHeader">
+        <div class="container header-container">
+            <div class="logo-section">
+                <img src="jana-logo.png" alt="JANA Certified Agent" class="customer-photo">
+                <div class="agent-info">
+                    <h2>JANA Certified Insurance Agent</h2>
+                    <p>10+ Years Experience | Professional Insurance Advisor</p>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <nav class="main-nav">
+                    <a href="#home" class="active"><i class="fas fa-home"></i> Home</a>
+                    <a href="#about"><i class="fas fa-user"></i> About</a>
+                    <a href="#services"><i class="fas fa-concierge-bell"></i> Services</a>
+                    <a href="#insurance-brands"><i class="fas fa-building"></i> Insurance Brands</a>
+                    <a href="#contact"><i class="fas fa-phone-alt"></i> Contact</a>
+                </nav>
+                <button class="consultation-btn" id="consultationBtn">
+                    <i class="fas fa-calendar-check"></i> Get Free Consultation
+                </button>
+            </div>
         </div>
     </header>
     
-    <!-- Hero Section (New Design) -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Secure Your Future with Personalized Insurance</h1>
-            <p>With over 10 years of expertise, I provide comprehensive insurance coverage tailored to your unique needs. From life and health to auto and home insurance, I'm here to protect what matters most to you.</p>
-            <button class="cta-button">
-                <i class="fas fa-shield-alt"></i> Start Protecting Today
-            </button>
-        </div>
-        <div class="hero-image">
-            <!-- You can replace this with your own image -->
-            <img src="insulogo.png" alt="Insurance Protection">
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Secure Your Future with Personalized Insurance</h1>
+                <p>With over 10 years of expertise, I provide comprehensive insurance coverage tailored to your unique needs. From life and health to auto and home insurance, I'm here to protect what matters most to you.</p>
+                <button class="cta-button" id="heroConsultationBtn">
+                    <i class="fas fa-shield-alt"></i> Start Protecting Today
+                </button>
+            </div>
+            <div class="hero-image">
+                <img src="insulogo.png" alt="Insurance Protection">
+            </div>
         </div>
     </section>
-
     
     <!-- Services Section -->
     <section class="services" id="services">
@@ -1673,129 +1301,101 @@
             </div>
         </div>
     </section>
-        
-          <!-- Our INSURANCE BRANDS Section -->
-    <section class="insurance-brands">
-        <h2 class="section-title">Our INSURANCE BRANDS</h2>
-        
-        <div class="brands-container">
-            <!-- Star Health Insurance Card -->
-            <div class="brand-card">
-                <div class="brand-header">
-                    <img src="starhealthlogo.jpeg" alt="Star Health Insurance Logo" class="brand-logo">
-                    <h3>Star Health Insurance</h3>
-                    <p>Comprehensive Health Insurance Solutions</p>
+    
+    <!-- Insurance Brands Section -->
+    <section class="insurance-brands" id="insurance-brands">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Insurance Brands</h2>
+                <p>Partnering with leading insurance companies to provide you the best coverage</p>
+            </div>
+            
+            <div class="brands-container">
+                <!-- Star Health Insurance Card -->
+                <div class="brand-card">
+                    <div class="brand-header">
+                        <img src="starhealthlogo.jpeg" alt="Star Health Insurance Logo" class="brand-logo">
+                        <h3>Star Health Insurance</h3>
+                        <p>Comprehensive Health Insurance Solutions</p>
+                    </div>
+                    
+                    <div class="brand-content">
+                        <h4>Health Insurance Services</h4>
+                        <p>Health insurance is a financial safety net that protects you and your family from rising medical costs. With increasing healthcare expenses, having the right health insurance plan ensures quality treatment without financial stress.</p>
+                        
+                        <h4>Key Insurance Plans</h4>
+                        <ul>
+                            <li><strong>₹1 Crore Health Insurance:</strong> Extensive coverage for major medical emergencies and critical illnesses</li>
+                            <li><strong>Individual Health Insurance:</strong> Personalized coverage based on age, lifestyle, and medical history</li>
+                            <li><strong>Family Health Insurance:</strong> Complete family coverage under one policy with shared sum insured</li>
+                            <li><strong>Cancer Insurance:</strong> Financial support for cancer diagnosis, treatment, and recovery</li>
+                            <li><strong>Cashless Health Insurance:</strong> Treatment at network hospitals without upfront payments</li>
+                        </ul>
+                        
+                        <div class="highlight-box">
+                            <strong>Why Choose Star Health:</strong> India's first standalone health insurance company with specialized health coverage solutions and extensive hospital network.
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="brand-content">
-                    <h4>Health Insurance Services</h4>
-                    <p>Health insurance is a financial safety net that protects you and your family from rising medical costs. With increasing healthcare expenses, having the right health insurance plan ensures quality treatment without financial stress.</p>
+                <!-- TATA AIA Insurance Card -->
+                <div class="brand-card">
+                    <div class="brand-header">
+                        <img src="tatalogo.jpeg" alt="TATA AIA Logo" class="brand-logo">
+                        <h3>TATA AIA Life Insurance</h3>
+                        <p>Life Insurance & Financial Protection Solutions</p>
+                    </div>
                     
-                    <h4>Key Insurance Plans</h4>
-                    <ul>
-                        <li><strong>₹1 Crore Health Insurance:</strong> Extensive coverage for major medical emergencies and critical illnesses</li>
-                        <li><strong>Individual Health Insurance:</strong> Personalized coverage based on age, lifestyle, and medical history</li>
-                        <li><strong>Family Health Insurance:</strong> Complete family coverage under one policy with shared sum insured</li>
-                        <li><strong>Cancer Insurance:</strong> Financial support for cancer diagnosis, treatment, and recovery</li>
-                        <li><strong>Cashless Health Insurance:</strong> Treatment at network hospitals without upfront payments</li>
-                        <li><strong>Senior Citizen Health Insurance:</strong> Coverage for age-related medical conditions and hospitalization</li>
-                        <li><strong>Health Insurance for Parents:</strong> Medical care coverage for aging parents</li>
-                        <li><strong>Group Health Insurance:</strong> Employee medical coverage for businesses and organizations</li>
-                        <li><strong>Critical Illness Insurance:</strong> Lump-sum benefit on diagnosis of serious illnesses</li>
-                        <li><strong>Affordable Health Insurance:</strong> Essential medical coverage at budget-friendly premiums</li>
-                        <li><strong>OPD Health Insurance:</strong> Coverage for outpatient expenses and routine medical needs</li>
-                        <li><strong>Maternity Insurance:</strong> Pregnancy, childbirth, and newborn care expenses</li>
-                        <li><strong>Top-up Health Insurance:</strong> Additional coverage over existing policies</li>
-                        <li><strong>Arogya Sanjeevani Policy:</strong> Standard health insurance with uniform benefits</li>
-                        <li><strong>Comprehensive Health Insurance:</strong> Wide-ranging coverage including wellness benefits</li>
-                        <li><strong>Health Insurance for NRIs:</strong> Medical treatment coverage in India for NRIs</li>
-                    </ul>
-                    
-                    <div class="highlight-box">
-                        <strong>Why Choose Star Health:</strong> India's first standalone health insurance company with specialized health coverage solutions and extensive hospital network.
+                    <div class="brand-content">
+                        <h4>Life Insurance Products</h4>
+                        <ul>
+                            <li><strong>Term Plans:</strong> Pure protection plans - Sampoorna Raksha and Param Raksha</li>
+                            <li><strong>Savings & Investment:</strong> ULIPs and Endowment plans for long-term growth</li>
+                            <li><strong>Retirement Plans:</strong> Secured retirement income solutions</li>
+                            <li><strong>Child Plans:</strong> Specialized plans for children's futures</li>
+                        </ul>
+                        
+                        <h4>Health & Wellness Solutions</h4>
+                        <ul>
+                            <li><strong>Tata AIA Pro Fit:</strong> Outpatient consultation and diagnostic tests</li>
+                            <li><strong>Critical Care Support:</strong> Comprehensive critical illness coverage</li>
+                            <li><strong>Cashless Claims:</strong> Hassle-free claim settlement process</li>
+                            <li><strong>Telemedicine Services:</strong> Remote medical consultations</li>
+                            <li><strong>Health Screenings:</strong> Preventive health check-ups</li>
+                        </ul>
+                        
+                        <div class="highlight-box">
+                            <strong>Key Highlights:</strong>
+                            <ul>
+                                <li>99.41% individual death claim settlement ratio</li>
+                                <li>International medical expenses coverage in select plans</li>
+                                <li>Covers over 89 lakh families nationwide</li>
+                                <li>Managed assets exceeding ₹1.3 lakh crore</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
             
-            <!-- TATA AIA Insurance Card -->
-            <div class="brand-card">
-                <div class="brand-header">
-                    <img src="tatalogo.jpeg" alt="TATA AIA Logo" class="brand-logo">
-                    <h3>TATA AIA Life Insurance</h3>
-                    <p>Life Insurance & Financial Protection Solutions</p>
+            <!-- SEO Keywords Section -->
+            <div class="seo-keywords">
+                <h4>Insurance Services & Coverage</h4>
+                <div class="keywords-container">
+                    <span class="keyword-tag">Health Insurance</span>
+                    <span class="keyword-tag">Life Insurance</span>
+                    <span class="keyword-tag">Term Insurance</span>
+                    <span class="keyword-tag">Critical Illness Insurance</span>
+                    <span class="keyword-tag">Family Health Insurance</span>
+                    <span class="keyword-tag">Senior Citizen Insurance</span>
+                    <span class="keyword-tag">Cashless Hospitalization</span>
+                    <span class="keyword-tag">ULIP Plans</span>
+                    <span class="keyword-tag">Retirement Plans</span>
+                    <span class="keyword-tag">Child Education Plans</span>
                 </div>
-                
-                <div class="brand-content">
-                    <h4>Life Insurance Products</h4>
-                    <ul>
-                        <li><strong>Term Plans:</strong> Pure protection plans - Sampoorna Raksha and Param Raksha</li>
-                        <li><strong>Savings & Investment:</strong> ULIPs and Endowment plans for long-term growth</li>
-                        <li><strong>Retirement Plans:</strong> Secured retirement income solutions</li>
-                        <li><strong>Child Plans:</strong> Specialized plans for children's futures</li>
-                    </ul>
-                    
-                    <h4>Health & Wellness Solutions</h4>
-                    <ul>
-                        <li><strong>Tata AIA Pro Fit:</strong> Outpatient consultation and diagnostic tests</li>
-                        <li><strong>Critical Care Support:</strong> Comprehensive critical illness coverage</li>
-                        <li><strong>Cashless Claims:</strong> Hassle-free claim settlement process</li>
-                        <li><strong>Telemedicine Services:</strong> Remote medical consultations</li>
-                        <li><strong>Health Screenings:</strong> Preventive health check-ups</li>
-                    </ul>
-                    
-                    <h4>Customer Services & Support</h4>
-                    <ul>
-                        <li><strong>Digital Tools:</strong> Online policy tracking and premium payments</li>
-                        <li><strong>4-Hour Express Claims:</strong> Fast claim settlement process</li>
-                        <li><strong>Click & Claim:</strong> Digital claim submission options</li>
-                        <li><strong>7-Day Service Turnaround:</strong> Quick policy servicing</li>
-                    </ul>
-                    
-                    <div class="highlight-box">
-                        <strong>Key Highlights:</strong>
-                        <ul>
-                            <li>99.41% individual death claim settlement ratio</li>
-                            <li>International medical expenses coverage in select plans</li>
-                            <li>Covers over 89 lakh families nationwide</li>
-                            <li>Managed assets exceeding ₹1.3 lakh crore</li>
-                            <li>Joint venture between Tata Sons and AIA Group</li>
-                        </ul>
-                    </div>
-                    
-                    <h4>Global Coverage & Financial Protection</h4>
-                    <p>Select TATA AIA plans offer international medical expense coverage, making them ideal for frequent travelers and globally mobile individuals. The company provides financial protection to over 89 lakh families across India.</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- SEO Keywords Section -->
-        <div class="seo-keywords">
-            <h4>Insurance Services & Coverage</h4>
-            <div class="keywords-container">
-                <span class="keyword-tag">Health Insurance</span>
-                <span class="keyword-tag">Life Insurance</span>
-                <span class="keyword-tag">Term Insurance</span>
-                <span class="keyword-tag">Critical Illness Insurance</span>
-                <span class="keyword-tag">Family Health Insurance</span>
-                <span class="keyword-tag">Senior Citizen Insurance</span>
-                <span class="keyword-tag">Cashless Hospitalization</span>
-                <span class="keyword-tag">ULIP Plans</span>
-                <span class="keyword-tag">Retirement Plans</span>
-                <span class="keyword-tag">Child Education Plans</span>
-                <span class="keyword-tag">Group Health Insurance</span>
-                <span class="keyword-tag">Maternity Insurance</span>
-                <span class="keyword-tag">Cancer Insurance</span>
-                <span class="keyword-tag">Arogya Sanjeevani Policy</span>
-                <span class="keyword-tag">NRI Insurance</span>
-                <span class="keyword-tag">Affordable Insurance</span>
-                <span class="keyword-tag">Insurance Agent Near Me</span>
-                <span class="keyword-tag">Best Insurance Plans</span>
-                <span class="keyword-tag">Financial Protection</span>
             </div>
         </div>
     </section>
     
-    <!-- Consultation Form -->
     <!-- Consultation Form -->
     <section class="consultation-form-section" id="contact">
         <div class="container">
@@ -1812,7 +1412,7 @@
                 <div class="form-body">
                     <form id="consultationForm">
                         <!-- Personal Information -->
-                        <div class="form-section active" id="personal-info-section">
+                        <div class="form-section">
                             <h3 class="form-section-title">Personal Information</h3>
                             
                             <div class="form-row">
@@ -1827,12 +1427,9 @@
                             </div>
                             
                             <div class="form-row">
-                                <div class="form-group mobile-verify-container">
+                                <div class="form-group">
                                     <label for="mobile">Mobile Number *</label>
                                     <input type="tel" id="mobile" class="form-control" placeholder="Enter your 10-digit mobile number" pattern="[0-9]{10}" required maxlength="10">
-                                    <button type="button" class="mobile-verify-btn" id="mobileVerifyBtn">
-                                        <i class="fas fa-mobile-alt"></i> Verify Mobile
-                                    </button>
                                 </div>
                                 <div class="form-group">
                                     <label>Gender *</label>
@@ -1868,103 +1465,9 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- OTP Verification Section -->
-                        <div class="otp-verification-section" id="otpSection">
-                            <div class="otp-header">
-                                <div class="otp-icon">
-                                    <i class="fas fa-shield-alt"></i>
-                                </div>
-                                <h4>Mobile Number Verification</h4>
-                            </div>
-                            
-                            <div class="otp-message">
-                                <p>We've sent a 6-digit OTP to your mobile number <strong id="mobileDisplay"></strong>. Please enter it below to verify your number.</p>
-                                <p class="timer">OTP valid for: <span id="otpTimer">05:00</span></p>
-                            </div>
-                            
-                            <div class="otp-input-container">
-                                <input type="text" class="otp-input" maxlength="1" data-index="1">
-                                <input type="text" class="otp-input" maxlength="1" data-index="2">
-                                <input type="text" class="otp-input" maxlength="1" data-index="3">
-                                <input type="text" class="otp-input" maxlength="1" data-index="4">
-                                <input type="text" class="otp-input" maxlength="1" data-index="5">
-                                <input type="text" class="otp-input" maxlength="1" data-index="6">
-                            </div>
-                            
-                            <div class="otp-actions">
-                                <button type="button" class="verify-otp-btn" id="verifyOtpBtn" disabled>
-                                    <i class="fas fa-check-circle"></i> Verify OTP
-                                </button>
-                                <button type="button" class="resend-otp-btn" id="resendOtpBtn" disabled>
-                                    <i class="fas fa-redo"></i> Resend OTP
-                                </button>
-                            </div>
-                            
-                            <div class="otp-success" id="otpSuccess">
-                                <i class="fas fa-check-circle"></i>
-                                <h4>Mobile Number Verified Successfully!</h4>
-                                <p>Your mobile number has been verified. You can now proceed with the rest of the form.</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Family Members Section (Conditional) -->
-                        <div class="form-section" id="family-section">
-                            <h3 class="form-section-title">Family Members Details</h3>
-                            <div class="form-note">
-                                <p>Please provide details of all family members to be covered</p>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="family-count">Number of Family Members (Including You)</label>
-                                    <select id="family-count" class="form-control">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6+</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div id="family-members-container">
-                                <!-- Family member fields will be added here dynamically -->
-                            </div>
-                            
-                            <div class="form-row">
-                                <button type="button" id="add-family-member" class="add-btn">
-                                    <i class="fas fa-plus"></i> Add Another Family Member
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Existing Insurance -->
-                        <div class="form-section" id="existing-insurance-section">
-                            <h3 class="form-section-title">Existing Insurance Information</h3>
-                            
-                            <div class="form-row">
-                                <div class="form-group full-width">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" id="existing-employee-insurance">
-                                        <span>Do you already have any employee insurance?</span>
-                                    </label>
-                                </div>
-                            </div>
-                            
-                            <div class="form-row">
-                                <div class="form-group full-width">
-                                    <label class="checkbox-label">
-                                        <input type="checkbox" id="existing-individual-insurance">
-                                        <span>Do you already have any individual insurance?</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
                         
                         <!-- Medical History -->
-                        <div class="form-section" id="medical-history-section">
+                        <div class="form-section">
                             <h3 class="form-section-title">Medical History</h3>
                             <div class="form-note">
                                 <p>Please provide accurate medical history for better insurance planning</p>
@@ -2000,22 +1503,6 @@
                                                 <input type="checkbox" name="medical-conditions" value="cancer">
                                                 <span>Cancer</span>
                                             </label>
-                                            <label class="checkbox-label">
-                                                <input type="checkbox" name="medical-conditions" value="kidney-disorder">
-                                                <span>Chronic kidney disorder</span>
-                                            </label>
-                                            <label class="checkbox-label">
-                                                <input type="checkbox" name="medical-conditions" value="alzheimer">
-                                                <span>Alzheimer's disease</span>
-                                            </label>
-                                            <label class="checkbox-label">
-                                                <input type="checkbox" name="medical-conditions" value="parkinson">
-                                                <span>Parkinson's disease</span>
-                                            </label>
-                                            <label class="checkbox-label">
-                                                <input type="checkbox" name="medical-conditions" value="other">
-                                                <span>Other diseases/ailments</span>
-                                            </label>
                                         </div>
                                     </div>
                                 </div>
@@ -2023,14 +1510,14 @@
                                 <div class="form-row">
                                     <div class="form-group full-width">
                                         <label for="medical-details">Additional Medical Details (if any)</label>
-                                        <textarea id="medical-details" class="form-control" rows="4" placeholder="Please provide details about medical conditions, treatments, medications, etc."></textarea>
+                                        <textarea id="medical-details" class="form-control" rows="3" placeholder="Please provide details about medical conditions, treatments, medications, etc."></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
                         <!-- Submit Button -->
-                        <button type="submit" class="submit-btn" id="submitBtn" disabled>
+                        <button type="submit" class="submit-btn" id="submitBtn">
                             <i class="fas fa-paper-plane"></i> Submit for Free Consultation
                         </button>
                         
@@ -2065,23 +1552,12 @@
                     <p><i class="fab fa-whatsapp"></i> +91 77085 89817 (WhatsApp)</p>
                 </div>
                 
-                <div style="flex: 1; min-width: 250px; max-width: 350px;">
-                    <div style="border: 2px solid #1a56db; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); height: 100%;">
-                        <div style="background: #1e40af; color: white; padding: 10px 15px; text-align: center; font-weight: bold;">
-                            📍 Find Our Office
-                        </div>
-                       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.881835952011!2d78.1530812879018!3d12.120236649077562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bac16f95a63ed01%3A0x3f2cb64e61c93aef!2sDharmapuri%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1770180333102!5m2!1sen!2sin" 
-                           width="600" 
-                           height="450" 
-                           style="border:0;" 
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.881835952011!2d78.1530812879018!3d12.120236649077562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bac16f95a63ed01%3A0x3f2cb64e61c93aef!2sDharmapuri%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1770180333102!5m2!1sen!2sin" 
                            allowfullscreen="" 
                            loading="lazy" 
                            referrerpolicy="no-referrer-when-downgrade">
-                           </iframe>
-                        <div style="background: #f0f7ff; padding: 10px; text-align: center; font-size: 0.85rem; color: #555;">
-                            <strong>Dharmapuri, Tamilnadu,</strong>
-                        </div>
-                    </div>
+                    </iframe>
                 </div>
             </div>
             
@@ -2125,692 +1601,259 @@
     </div>
     
     <script>
-        // Simple hover effect enhancement
-        document.querySelectorAll('.consultation-btn, .cta-button').forEach(button => {
-            button.addEventListener('mouseenter', function() {
-                this.style.transition = 'all 0.3s ease';
-            });
-        });
-        
-        // Mobile menu toggle (optional enhancement)
-        if (window.innerWidth <= 992) {
-            document.querySelector('.nav').style.flexDirection = 'column';
-        }
-        
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        
-        // OTP Verification Variables
-        let otpSent = false;
-        let otpVerified = false;
-        let otpTimer = null;
-        let timeLeft = 300; // 5 minutes in seconds
-        let generatedOTP = "";
-
-        // Mobile number verification
-        const mobileInput = document.getElementById('mobile');
-        const mobileVerifyBtn = document.getElementById('mobileVerifyBtn');
-        const otpSection = document.getElementById('otpSection');
-        const mobileDisplay = document.getElementById('mobileDisplay');
-        const otpInputs = document.querySelectorAll('.otp-input');
-        const verifyOtpBtn = document.getElementById('verifyOtpBtn');
-        const resendOtpBtn = document.getElementById('resendOtpBtn');
-        const otpTimerDisplay = document.getElementById('otpTimer');
-        const otpSuccess = document.getElementById('otpSuccess');
-        const submitBtn = document.getElementById('submitBtn');
-
-        // Form sections
-        const formSections = document.querySelectorAll('.form-section:not(#personal-info-section)');
-
-        // Show verify button when mobile number is valid
-        mobileInput.addEventListener('input', function() {
-            const mobileNumber = this.value.replace(/\D/g, '');
-            this.value = mobileNumber;
-            
-            if (mobileNumber.length === 10 && !otpVerified) {
-                mobileVerifyBtn.classList.add('active');
-                mobileVerifyBtn.disabled = false;
-            } else {
-                mobileVerifyBtn.classList.remove('active');
-                mobileVerifyBtn.disabled = true;
-            }
-        });
-
-        // Send OTP
-        mobileVerifyBtn.addEventListener('click', function() {
-            const mobileNumber = mobileInput.value;
-            if (mobileNumber.length !== 10) {
-                alert('Please enter a valid 10-digit mobile number');
-                return;
-            }
-
-            // Generate random 6-digit OTP
-            generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
-            
-            // For demo purposes, show OTP in alert
-            alert(`OTP for verification: ${generatedOTP}\n\nIn a real application, this would be sent via SMS to ${mobileNumber}`);
-            
-            // Show OTP section
-            mobileDisplay.textContent = `+91 ${mobileNumber}`;
-            otpSection.classList.add('active');
-            otpSent = true;
-            
-            // Start timer
-            startOTPTimer();
-            
-            // Scroll to OTP section
-            otpSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
-
-        // OTP input handling
-        otpInputs.forEach((input, index) => {
-            input.addEventListener('input', function() {
-                // Move to next input
-                if (this.value.length === 1 && index < otpInputs.length - 1) {
-                    otpInputs[index + 1].focus();
-                }
-                
-                // Check if all inputs are filled
-                checkOTPInputs();
-            });
-            
-            input.addEventListener('keydown', function(e) {
-                // Handle backspace
-                if (e.key === 'Backspace' && this.value.length === 0 && index > 0) {
-                    otpInputs[index - 1].focus();
-                }
-            });
-        });
-
-        // Check OTP inputs
-        function checkOTPInputs() {
-            let allFilled = true;
-            otpInputs.forEach(input => {
-                if (input.value.length === 0) {
-                    allFilled = false;
-                } else {
-                    input.classList.add('filled');
-                }
-            });
-            
-            verifyOtpBtn.disabled = !allFilled;
-        }
-
-        // Verify OTP
-        verifyOtpBtn.addEventListener('click', function() {
-            if (!otpSent) {
-                alert('Please request an OTP first');
-                return;
-            }
-
-            // Get entered OTP
-            let enteredOTP = '';
-            otpInputs.forEach(input => {
-                enteredOTP += input.value;
-            });
-
-            // Verify OTP (in real app, this would be verified with server)
-            if (enteredOTP === generatedOTP) {
-                otpVerified = true;
-                
-                // Show success message
-                otpSuccess.classList.add('active');
-                
-                // Enable form sections
-                formSections.forEach(section => {
-                    section.classList.add('active');
-                });
-                
-                // Enable submit button
-                submitBtn.disabled = false;
-                
-                // Clear timer
-                clearInterval(otpTimer);
-                
-                // Scroll to next section
-                setTimeout(() => {
-                    document.getElementById('family-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 1500);
-                
-                // Update UI
-                verifyOtpBtn.disabled = true;
-                resendOtpBtn.disabled = true;
-                mobileVerifyBtn.disabled = true;
-                mobileVerifyBtn.innerHTML = '<i class="fas fa-check-circle"></i> Verified';
-                mobileVerifyBtn.style.background = 'linear-gradient(135deg, var(--medium-green) 0%, var(--dark-green) 100%)';
-                
-                // Store verification status
-                localStorage.setItem('mobileVerified', 'true');
-                localStorage.setItem('verifiedMobile', mobileInput.value);
-            } else {
-                alert('Invalid OTP. Please try again.');
-                // Clear OTP inputs
-                otpInputs.forEach(input => {
-                    input.value = '';
-                    input.classList.remove('filled');
-                });
-                otpInputs[0].focus();
-                verifyOtpBtn.disabled = true;
-            }
-        });
-
-        // Resend OTP
-        resendOtpBtn.addEventListener('click', function() {
-            if (!mobileInput.value || mobileInput.value.length !== 10) {
-                alert('Please enter a valid mobile number');
-                return;
-            }
-
-            // Generate new OTP
-            generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
-            
-            // For demo purposes
-            alert(`New OTP sent: ${generatedOTP}`);
-            
-            // Reset timer
-            clearInterval(otpTimer);
-            timeLeft = 300;
-            updateTimerDisplay();
-            startOTPTimer();
-            
-            // Clear OTP inputs
-            otpInputs.forEach(input => {
-                input.value = '';
-                input.classList.remove('filled');
-            });
-            otpInputs[0].focus();
-            verifyOtpBtn.disabled = true;
-            
-            // Hide success message if shown
-            otpSuccess.classList.remove('active');
-        });
-
-        // Start OTP timer
-        function startOTPTimer() {
-            // Enable resend button after 30 seconds
-            setTimeout(() => {
-                resendOtpBtn.disabled = false;
-            }, 30000);
-            
-            otpTimer = setInterval(() => {
-                timeLeft--;
-                updateTimerDisplay();
-                
-                if (timeLeft <= 0) {
-                    clearInterval(otpTimer);
-                    verifyOtpBtn.disabled = true;
-                    resendOtpBtn.disabled = false;
-                    otpSent = false;
-                    alert('OTP has expired. Please request a new one.');
-                }
-            }, 1000);
-        }
-
-        // Update timer display
-        function updateTimerDisplay() {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
-            otpTimerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
-
-        // Check if mobile was already verified
+        // ===== NAVIGATION SMOOTH SCROLLING =====
         document.addEventListener('DOMContentLoaded', function() {
-            const isVerified = localStorage.getItem('mobileVerified') === 'true';
-            const savedMobile = localStorage.getItem('verifiedMobile');
-            
-            if (isVerified && savedMobile) {
-                mobileInput.value = savedMobile;
-                otpVerified = true;
-                mobileVerifyBtn.disabled = true;
-                mobileVerifyBtn.innerHTML = '<i class="fas fa-check-circle"></i> Verified';
-                mobileVerifyBtn.style.background = 'linear-gradient(135deg, var(--medium-green) 0%, var(--dark-green) 100%)';
-                mobileVerifyBtn.classList.add('active');
-                
-                // Enable form sections
-                formSections.forEach(section => {
-                    section.classList.add('active');
-                });
-                
-                // Enable submit button
-                submitBtn.disabled = false;
-            }
-        });
-
-        // Update form submission to include verification status
-        document.getElementById('consultationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Check if mobile is verified
-            if (!otpVerified) {
-                alert('Please verify your mobile number before submitting the form.');
-                otpSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                return;
-            }
-            
-            // ... Your existing form submission code ...
-            // Make sure to include mobile verification status in the WhatsApp message
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                mobile: document.getElementById('mobile').value,
-                mobileVerified: otpVerified,
-                // ... rest of your form data
-            };
-            
-            // ... rest of your form submission logic
-        });
-
-        // Your existing form JavaScript code remains here...
-        // Make sure to integrate it with the OTP verification flow
-
-        // Family Members Section Logic
-        document.getElementById('insurance-for').addEventListener('change', function() {
-            const familySection = document.getElementById('family-section');
-            if (this.value === 'family') {
-                familySection.style.display = 'block';
-                updateFamilyMembers();
-            } else {
-                familySection.style.display = 'none';
-                clearFamilyMembers();
-            }
-        });
-        
-        // Update family members based on count
-        document.getElementById('family-count').addEventListener('change', updateFamilyMembers);
-        
-        function updateFamilyMembers() {
-            const count = parseInt(document.getElementById('family-count').value);
-            const container = document.getElementById('family-members-container');
-            
-            // Clear existing members
-            container.innerHTML = '';
-            
-            // Create member forms
-            for (let i = 0; i < count; i++) {
-                const memberNumber = i + 1;
-                const isFirst = i === 0;
-                
-                const memberCard = document.createElement('div');
-                memberCard.className = 'family-member-card';
-                memberCard.innerHTML = `
-                    <h4>Family Member ${memberNumber} ${isFirst ? '(You)' : ''}</h4>
-                    ${!isFirst ? '<button type="button" class="remove-member" onclick="removeFamilyMember(this)"><i class="fas fa-times"></i></button>' : ''}
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="member-name-${memberNumber}">Full Name *</label>
-                            <input type="text" id="member-name-${memberNumber}" class="form-control" placeholder="Enter full name" ${isFirst ? 'value="' + document.getElementById('name').value + '"' : ''} required>
-                        </div>
-                        <div class="form-group">
-                            <label for="member-relationship-${memberNumber}">Relationship *</label>
-                            <select id="member-relationship-${memberNumber}" class="form-control" required>
-                                <option value="">Select relationship</option>
-                                ${isFirst ? '<option value="self" selected>Self</option>' : ''}
-                                <option value="spouse">Spouse</option>
-                                <option value="son">Son</option>
-                                <option value="daughter">Daughter</option>
-                                <option value="father">Father</option>
-                                <option value="mother">Mother</option>
-                                <option value="brother">Brother</option>
-                                <option value="sister">Sister</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="member-gender-${memberNumber}">Gender *</label>
-                            <select id="member-gender-${memberNumber}" class="form-control" required>
-                                <option value="">Select gender</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="member-dob-${memberNumber}">Date of Birth *</label>
-                            <input type="date" id="member-dob-${memberNumber}" class="form-control" ${isFirst ? 'value="' + document.getElementById('dob').value + '"' : ''} required>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(memberCard);
-                
-                // Auto-fill first member as self
-                if (isFirst) {
-                    document.getElementById(`member-relationship-${memberNumber}`).value = 'self';
-                    const genderRadios = document.querySelectorAll('input[name="gender"]:checked');
-                    if (genderRadios.length > 0) {
-                        document.getElementById(`member-gender-${memberNumber}`).value = genderRadios[0].value;
-                    }
-                }
-            }
-        }
-        
-        function clearFamilyMembers() {
-            document.getElementById('family-members-container').innerHTML = '';
-        }
-        
-        function removeFamilyMember(button) {
-            button.closest('.family-member-card').remove();
-            updateMemberNumbers();
-        }
-        
-        function updateMemberNumbers() {
-            const members = document.querySelectorAll('.family-member-card');
-            members.forEach((member, index) => {
-                const memberNumber = index + 1;
-                const isFirst = index === 0;
-                member.querySelector('h4').textContent = `Family Member ${memberNumber} ${isFirst ? '(You)' : ''}`;
-            });
-        }
-        
-        // Add family member button
-        document.getElementById('add-family-member').addEventListener('click', function() {
-            const container = document.getElementById('family-members-container');
-            const memberCount = container.children.length + 1;
-            
-            const memberCard = document.createElement('div');
-            memberCard.className = 'family-member-card';
-            memberCard.innerHTML = `
-                <h4>Family Member ${memberCount}</h4>
-                <button type="button" class="remove-member" onclick="removeFamilyMember(this)"><i class="fas fa-times"></i></button>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="member-name-${memberCount}">Full Name *</label>
-                        <input type="text" id="member-name-${memberCount}" class="form-control" placeholder="Enter full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="member-relationship-${memberCount}">Relationship *</label>
-                        <select id="member-relationship-${memberCount}" class="form-control" required>
-                            <option value="">Select relationship</option>
-                            <option value="spouse">Spouse</option>
-                            <option value="son">Son</option>
-                            <option value="daughter">Daughter</option>
-                            <option value="father">Father</option>
-                            <option value="mother">Mother</option>
-                            <option value="brother">Brother</option>
-                            <option value="sister">Sister</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="member-gender-${memberCount}">Gender *</label>
-                        <select id="member-gender-${memberCount}" class="form-control" required>
-                            <option value="">Select gender</option>
-                            <option value="male">Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="member-dob-${memberCount}">Date of Birth *</label>
-                        <input type="date" id="member-dob-${memberCount}" class="form-control" required>
-                    </div>
-                </div>
-            `;
-            container.appendChild(memberCard);
-            
-            // Update family count
-            document.getElementById('family-count').value = memberCount;
-        });
-        
-        // Medical History Toggle
-        document.getElementById('medical-history').addEventListener('change', function() {
-            const medicalDetailsSection = document.getElementById('medical-details-section');
-            if (this.checked) {
-                medicalDetailsSection.style.display = 'block';
-            } else {
-                medicalDetailsSection.style.display = 'none';
-            }
-        });
-        
-        // Form Submission - Send to WhatsApp
-        document.getElementById('consultationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Collect form data
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                mobile: document.getElementById('mobile').value,
-                gender: document.querySelector('input[name="gender"]:checked')?.value,
-                dob: document.getElementById('dob').value,
-                insuranceFor: document.getElementById('insurance-for').value,
-                familyCount: document.getElementById('family-count').value,
-                existingEmployeeInsurance: document.getElementById('existing-employee-insurance').checked,
-                existingIndividualInsurance: document.getElementById('existing-individual-insurance').checked,
-                hasMedicalHistory: document.getElementById('medical-history').checked,
-                medicalConditions: [],
-                medicalDetails: document.getElementById('medical-details').value,
-                familyMembers: []
-            };
-            
-            // Collect medical conditions
-            document.querySelectorAll('input[name="medical-conditions"]:checked').forEach(checkbox => {
-                formData.medicalConditions.push(checkbox.value);
-            });
-            
-            // Collect family members data
-            if (formData.insuranceFor === 'family') {
-                const memberCards = document.querySelectorAll('.family-member-card');
-                memberCards.forEach((card, index) => {
-                    const memberNumber = index + 1;
-                    const memberName = document.getElementById(`member-name-${memberNumber}`)?.value;
-                    const memberRelationship = document.getElementById(`member-relationship-${memberNumber}`)?.value;
-                    const memberGender = document.getElementById(`member-gender-${memberNumber}`)?.value;
-                    const memberDOB = document.getElementById(`member-dob-${memberNumber}`)?.value;
-                    
-                    if (memberName && memberRelationship && memberGender && memberDOB) {
-                        formData.familyMembers.push({
-                            name: memberName,
-                            relationship: memberRelationship,
-                            gender: memberGender,
-                            dob: memberDOB
-                        });
-                    }
-                });
-            }
-            
-            // Create WhatsApp message
-            let whatsappMessage = `*New Insurance Consultation Request*\n\n`;
-            whatsappMessage += `*👤 Personal Information:*\n`;
-            whatsappMessage += `• Name: ${formData.name}\n`;
-            whatsappMessage += `• Email: ${formData.email}\n`;
-            whatsappMessage += `• Mobile: ${formData.mobile}\n`;
-            whatsappMessage += `• Gender: ${formData.gender || 'Not specified'}\n`;
-            whatsappMessage += `• Date of Birth: ${formData.dob || 'Not specified'}\n\n`;
-            
-            whatsappMessage += `*🏠 Insurance Coverage:*\n`;
-            whatsappMessage += `• For: ${formData.insuranceFor === 'family' ? 'Family' : 'Individual'}\n`;
-            
-            if (formData.insuranceFor === 'family') {
-                whatsappMessage += `• Family Members: ${formData.familyCount}\n`;
-                if (formData.familyMembers.length > 0) {
-                    whatsappMessage += `• Family Details:\n`;
-                    formData.familyMembers.forEach((member, index) => {
-                        whatsappMessage += `  ${index + 1}. ${member.name} (${member.relationship}) - ${member.gender}, DOB: ${member.dob}\n`;
-                    });
-                }
-            }
-            
-            whatsappMessage += `\n*📋 Existing Insurance:*\n`;
-            whatsappMessage += `• Employee Insurance: ${formData.existingEmployeeInsurance ? 'Yes' : 'No'}\n`;
-            whatsappMessage += `• Individual Insurance: ${formData.existingIndividualInsurance ? 'Yes' : 'No'}\n`;
-            
-            whatsappMessage += `\n*🏥 Medical History:*\n`;
-            whatsappMessage += `• Medical History: ${formData.hasMedicalHistory ? 'Yes' : 'No'}\n`;
-            
-            if (formData.hasMedicalHistory) {
-                if (formData.medicalConditions.length > 0) {
-                    whatsappMessage += `• Medical Conditions: ${formData.medicalConditions.join(', ')}\n`;
-                }
-                if (formData.medicalDetails) {
-                    whatsappMessage += `• Additional Details: ${formData.medicalDetails}\n`;
-                }
-            }
-            
-            whatsappMessage += `\n*📅 Submitted On:* ${new Date().toLocaleString()}`;
-            whatsappMessage += `\n\n---\n*Sent from Jana Insurance Website*`;
-            
-            // Encode message for WhatsApp URL
-            const encodedMessage = encodeURIComponent(whatsappMessage);
-            const whatsappNumber = "917708589817"; // Agent's WhatsApp number
-            
-            // Create WhatsApp URL
-            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-            
-            // Ask user if they want to send via WhatsApp
-            if (confirm("Your consultation request is ready! Click OK to send it to our insurance agent via WhatsApp.")) {
-                // Open WhatsApp in new tab
-                window.open(whatsappURL, '_blank');
-                
-                // Show success message
-                alert(`Thank you ${formData.name}! Your consultation request has been prepared and will be sent via WhatsApp. Please complete the process in the WhatsApp window that opens.`);
-                
-                // Reset the form
-                this.reset();
-                clearFamilyMembers();
-                document.getElementById('family-section').style.display = 'none';
-                document.getElementById('medical-details-section').style.display = 'none';
-                
-                // Uncheck medical history checkbox
-                document.getElementById('medical-history').checked = false;
-                
-                // Reset gender selection
-                document.querySelectorAll('input[name="gender"]').forEach(radio => {
-                    radio.checked = false;
-                });
-                
-                // Reset insurance for
-                document.getElementById('insurance-for').value = '';
-                
-                // Reset family count
-                document.getElementById('family-count').value = '1';
-            }
-        });
-        
-        // Auto-fill first family member when name changes
-        document.getElementById('name').addEventListener('input', function() {
-            const firstMemberName = document.getElementById('member-name-1');
-            if (firstMemberName) {
-                firstMemberName.value = this.value;
-            }
-        });
-        
-        // Auto-fill first family member when DOB changes
-        document.getElementById('dob').addEventListener('change', function() {
-            const firstMemberDOB = document.getElementById('member-dob-1');
-            if (firstMemberDOB) {
-                firstMemberDOB.value = this.value;
-            }
-        });
-        
-        // Auto-fill first family member when gender changes
-        document.querySelectorAll('input[name="gender"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                const firstMemberGender = document.getElementById('member-gender-1');
-                if (firstMemberGender && this.checked) {
-                    firstMemberGender.value = this.value;
-                }
-            });
-        });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('nav a, .consultation-btn').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                if(this.getAttribute('href') && this.getAttribute('href').startsWith('#')) {
+            // Smooth scroll for all navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
-                    if(targetId === '#') return;
+                    if (targetId === '#') return;
                     
                     const targetElement = document.querySelector(targetId);
-                    if(targetElement) {
+                    if (targetElement) {
+                        const headerOffset = 100;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
                         window.scrollTo({
-                            top: targetElement.offsetTop - 20,
+                            top: offsetPosition,
                             behavior: 'smooth'
                         });
                         
                         // Update active navigation
-                        document.querySelectorAll('nav a').forEach(link => {
+                        document.querySelectorAll('.main-nav a').forEach(link => {
                             link.classList.remove('active');
                         });
                         this.classList.add('active');
+                        
+                        // Close mobile menu if open
+                        if (window.innerWidth <= 768) {
+                            document.querySelector('.main-nav').classList.remove('show');
+                        }
+                    }
+                });
+            });
+            
+            // Active navigation based on scroll position
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.main-nav a');
+            
+            function updateActiveNav() {
+                let current = '';
+                const scrollPosition = window.pageYOffset + 150;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', updateActiveNav);
+            updateActiveNav(); // Initial call
+            
+            // ===== BUTTON CLICK HANDLERS =====
+            document.getElementById('consultationBtn').addEventListener('click', function() {
+                document.getElementById('contact').scrollIntoView({behavior: 'smooth'});
+                // Update active nav
+                document.querySelectorAll('.main-nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                document.querySelector('a[href="#contact"]').classList.add('active');
+            });
+            
+            document.getElementById('heroConsultationBtn').addEventListener('click', function() {
+                document.getElementById('contact').scrollIntoView({behavior: 'smooth'});
+                // Update active nav
+                document.querySelectorAll('.main-nav a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                document.querySelector('a[href="#contact"]').classList.add('active');
+            });
+            
+            // ===== WHATSAPP FUNCTIONALITY =====
+            // WhatsApp header click
+            document.getElementById('whatsappHeader').addEventListener('click', function() {
+                window.open('https://wa.me/917708589817?text=Hi!%20I%20visited%20your%20website%20and%20want%20to%20know%20more%20about%20insurance%20services.', '_blank');
+            });
+            
+            // WhatsApp chatbot toggle
+            const chatbotToggle = document.getElementById('chatbotToggle');
+            const chatbotPopup = document.getElementById('chatbotPopup');
+            
+            chatbotToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                chatbotPopup.classList.toggle('show');
+            });
+            
+            // Close chatbot when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!document.getElementById('whatsappChatbot').contains(event.target)) {
+                    chatbotPopup.classList.remove('show');
+                }
+            });
+            
+            // Auto-open WhatsApp for chatbot options (they already have href)
+            document.querySelectorAll('.chatbot-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    chatbotPopup.classList.remove('show');
+                });
+            });
+            
+            // ===== FORM FUNCTIONALITY =====
+            // Medical history toggle
+            document.getElementById('medical-history').addEventListener('change', function() {
+                const medicalDetailsSection = document.getElementById('medical-details-section');
+                medicalDetailsSection.style.display = this.checked ? 'block' : 'none';
+            });
+            
+            // Form submission
+            document.getElementById('consultationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Collect form data
+                const formData = {
+                    name: document.getElementById('name').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    mobile: document.getElementById('mobile').value.trim(),
+                    gender: document.querySelector('input[name="gender"]:checked')?.value || 'Not specified',
+                    dob: document.getElementById('dob').value,
+                    insuranceFor: document.getElementById('insurance-for').value,
+                    hasMedicalHistory: document.getElementById('medical-history').checked,
+                    medicalConditions: [],
+                    medicalDetails: document.getElementById('medical-details').value.trim()
+                };
+                
+                // Validate required fields
+                if (!formData.name || !formData.email || !formData.mobile || !formData.gender || !formData.dob || !formData.insuranceFor) {
+                    alert('Please fill all required fields marked with *');
+                    return;
+                }
+                
+                // Validate mobile number
+                if (!/^[0-9]{10}$/.test(formData.mobile)) {
+                    alert('Please enter a valid 10-digit mobile number');
+                    return;
+                }
+                
+                // Collect medical conditions
+                document.querySelectorAll('input[name="medical-conditions"]:checked').forEach(checkbox => {
+                    formData.medicalConditions.push(checkbox.value);
+                });
+                
+                // Create WhatsApp message
+                let whatsappMessage = `*📋 New Insurance Consultation Request*\n\n`;
+                whatsappMessage += `*👤 Personal Information:*\n`;
+                whatsappMessage += `• Name: ${formData.name}\n`;
+                whatsappMessage += `• Email: ${formData.email}\n`;
+                whatsappMessage += `• Mobile: ${formData.mobile}\n`;
+                whatsappMessage += `• Gender: ${formData.gender}\n`;
+                whatsappMessage += `• Date of Birth: ${formData.dob}\n`;
+                whatsappMessage += `• Insurance For: ${formData.insuranceFor === 'family' ? 'Family' : 'Individual'}\n\n`;
+                
+                whatsappMessage += `*🏥 Medical History:*\n`;
+                whatsappMessage += `• Medical History: ${formData.hasMedicalHistory ? 'Yes' : 'No'}\n`;
+                
+                if (formData.hasMedicalHistory) {
+                    if (formData.medicalConditions.length > 0) {
+                        whatsappMessage += `• Medical Conditions: ${formData.medicalConditions.join(', ')}\n`;
+                    }
+                    if (formData.medicalDetails) {
+                        whatsappMessage += `• Additional Details: ${formData.medicalDetails}\n`;
                     }
                 }
-            });
-        });
-        
-        // Add active state to navigation based on scroll position
-        window.addEventListener('scroll', function() {
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('nav a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if(window.pageYOffset >= (sectionTop - 100)) {
-                    current = section.getAttribute('id');
+                
+                whatsappMessage += `\n*📅 Submitted On:* ${new Date().toLocaleString()}`;
+                whatsappMessage += `\n\n---\n*Sent from Jana Insurance Website*`;
+                
+                // Encode message for WhatsApp URL
+                const encodedMessage = encodeURIComponent(whatsappMessage);
+                const whatsappURL = `https://wa.me/917708589817?text=${encodedMessage}`;
+                
+                // Ask user for confirmation
+                if (confirm(`Thank you ${formData.name}! Your consultation request is ready.\n\nClick OK to send it to our insurance agent via WhatsApp.`)) {
+                    // Open WhatsApp in new tab
+                    window.open(whatsappURL, '_blank');
+                    
+                    // Reset the form
+                    this.reset();
+                    document.getElementById('medical-details-section').style.display = 'none';
+                    
+                    // Show success message
+                    alert('Your request has been prepared! Please complete the process in the WhatsApp window that opens.');
                 }
             });
             
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if(link.getAttribute('href') === `#${current}`) {
-                    link.classList.add('active');
+            // ===== RESPONSIVE MENU TOGGLE =====
+            const createMobileMenu = () => {
+                if (window.innerWidth <= 768) {
+                    if (!document.querySelector('.menu-toggle')) {
+                        const menuToggle = document.createElement('button');
+                        menuToggle.className = 'menu-toggle';
+                        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                        menuToggle.style.cssText = `
+                            background: var(--navy-blue);
+                            color: white;
+                            border: none;
+                            padding: 12px 20px;
+                            border-radius: 5px;
+                            cursor: pointer;
+                            font-size: 1.2rem;
+                            display: none;
+                        `;
+                        
+                        document.querySelector('.header-container').prepend(menuToggle);
+                        
+                        const mainNav = document.querySelector('.main-nav');
+                        mainNav.style.cssText = `
+                            display: none;
+                            position: absolute;
+                            top: 100%;
+                            left: 0;
+                            right: 0;
+                            background: var(--light-green);
+                            padding: 20px;
+                            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                            z-index: 1000;
+                            flex-direction: column;
+                            gap: 15px;
+                        `;
+                        
+                        menuToggle.style.display = 'block';
+                        
+                        menuToggle.addEventListener('click', function() {
+                            mainNav.style.display = mainNav.style.display === 'flex' ? 'none' : 'flex';
+                        });
+                        
+                        // Close menu when clicking a link
+                        document.querySelectorAll('.main-nav a').forEach(link => {
+                            link.addEventListener('click', () => {
+                                mainNav.style.display = 'none';
+                            });
+                        });
+                    }
+                } else {
+                    const menuToggle = document.querySelector('.menu-toggle');
+                    const mainNav = document.querySelector('.main-nav');
+                    if (menuToggle) menuToggle.remove();
+                    if (mainNav) mainNav.style.cssText = '';
                 }
-            });
-        });
-        
-        // Consultation button click handlers
-        document.getElementById('consultationBtn').addEventListener('click', function() {
-            document.getElementById('contact').scrollIntoView({behavior: 'smooth'});
-        });
-        
-        document.getElementById('heroConsultationBtn').addEventListener('click', function() {
-            document.getElementById('contact').scrollIntoView({behavior: 'smooth'});
-        });
-        
-        // WhatsApp Chatbot Toggle
-        const chatbotToggle = document.getElementById('chatbotToggle');
-        const chatbotPopup = document.getElementById('chatbotPopup');
-        
-        chatbotToggle.addEventListener('click', function() {
-            chatbotPopup.classList.toggle('show');
-        });
-        
-        // Close chatbot when clicking outside
-        document.addEventListener('click', function(event) {
-            const isClickInsideChatbot = document.getElementById('whatsappChatbot').contains(event.target);
-            if (!isClickInsideChatbot) {
-                chatbotPopup.classList.remove('show');
-            }
-        });
-        
-        // Auto open WhatsApp with pre-filled message for chatbot options
-        document.querySelectorAll('.chatbot-option').forEach(option => {
-            option.addEventListener('click', function(e) {
-                // The WhatsApp link is already in the href, so it will open automatically
-                chatbotPopup.classList.remove('show');
-            });
-        });
-        
-        // Auto open WhatsApp when clicking WhatsApp number in header
-        document.querySelector('.whatsapp-container').addEventListener('click', function() {
-            window.open('https://wa.me/917708589817?text=Hi!%20I%20visited%20your%20website%20and%20want%20to%20know%20more%20about%20insurance%20services.', '_blank');
-        });
-        
-        // Auto open WhatsApp for header WhatsApp icon
-        document.querySelector('.whatsapp-icon').addEventListener('click', function(e) {
-            e.stopPropagation(); // Prevent triggering parent click
-            window.open('https://wa.me/917708589817?text=Hi!%20I%20visited%20your%20website%20and%20want%20to%20know%20more%20about%20insurance%20services.', '_blank');
+            };
+            
+            // Initialize and update on resize
+            createMobileMenu();
+            window.addEventListener('resize', createMobileMenu);
         });
     </script>
 </body>
