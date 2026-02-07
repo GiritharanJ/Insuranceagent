@@ -66,21 +66,21 @@
         
         .whatsapp-hover-note {
             position: absolute;
-            top: 100%;
+            top: 120%;
             left: 0;
-            width: 320px;
-            background-color: var(--light-green);
-            color: var(--dark-blue);
-            padding: 15px;
+            width: 240px;
+            background: #1b5e20; 
+            color: #ffffff;
+            padding: 12px 14px;
             border-radius: 10px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+            font-size: 13px;
+            line-height: 1.4;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 100;
-            font-size: 0.9rem;
-            border: 2px solid var(--medium-green);
-            transform: translateY(10px);
+            transform: translateY(8px);
+            transition: all 0.25s ease;
+            z-index: 9999;
         }
         
         .whatsapp-container:hover .whatsapp-hover-note {
@@ -88,6 +88,17 @@
             visibility: visible;
             transform: translateY(0);
         }
+        .whatsapp-hover-note strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.whatsapp-hover-note p {
+  margin: 0;
+  color: #e8f5e9; /* soft white-green */
+}
         
         .whatsapp-icon {
             color: #25D366;
@@ -1940,6 +1951,24 @@
     </div>
     
     <script>
+const whatsappBox = document.querySelector('.whatsapp-container');
+
+  whatsappBox.addEventListener('click', function (e) {
+    e.stopPropagation();
+    const note = this.querySelector('.whatsapp-hover-note');
+    note.style.opacity = note.style.opacity === '1' ? '0' : '1';
+    note.style.visibility = note.style.visibility === 'visible' ? 'hidden' : 'visible';
+    note.style.transform = 'translateY(0)';
+  });
+
+  document.addEventListener('click', function () {
+    const note = document.querySelector('.whatsapp-hover-note');
+    if (note) {
+      note.style.opacity = '0';
+      note.style.visibility = 'hidden';
+    }
+  });
+        
         // ===== NAVIGATION SMOOTH SCROLLING =====
         document.addEventListener('DOMContentLoaded', function() {
             // Smooth scroll for all navigation links
