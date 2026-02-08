@@ -306,7 +306,7 @@
         }
         
         .cta-button:hover {
-            background: linear-gradient(135deg, #AD1457, #C2185B);
+            background: #ff82ff;
             transform: translateY(-5px);
             box-shadow: 0 12px 25px rgba(136, 14, 79, 0.4);
         }
@@ -399,6 +399,10 @@
   padding: 34px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   transition: all 0.3s ease;
+    display: flex;
+  flex-direction: column;
+  align-items: center;   /* centers all content horizontally */
+  text-align: center;
 }
 
 .service-card:hover {
@@ -410,7 +414,7 @@
 .service-icon {
   font-size: 42px;
   color: #1a73e8;
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 /* Title */
@@ -418,6 +422,7 @@
   font-size: 22px;
   color: #1a2b6d;
   margin-bottom: 10px;
+    text-align: center;
 }
 
 /* Intro text */
@@ -425,18 +430,28 @@
   font-size: 15px;
   color: #5f6c7b;
   margin-bottom: 16px;
+     text-align: center;
+  max-width: 90%;
 }
 
 /* List */
 .service-card ul {
   padding-left: 18px;
   margin-bottom: 25px;
+    margin-top: 18px;
+  width: 100%;
+  max-width: 420px;      /* keeps list visually centered */
+  padding: 0;
+  list-style: none;
 }
 
 .service-card ul li {
   font-size: 14px;
   color: #263238;
   margin-bottom: 8px;
+    text-align: left;      /* keeps readability */
+  padding-left: 22px;
+  position: relative;
 }
 
 /* Button */
@@ -454,10 +469,16 @@
 .service-btn:hover {
   background: #155fc0;
 }
+        .service-card ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #1a73e8;
+}
         
         /* ===== WHY CHOOSE ME ===== */
         .why-choose {
-            background-color: #eab3f2;
+            background-color: #d6f6ff;
         }
         
         .why-choose-grid {
@@ -1624,14 +1645,6 @@
         <li>critical illness and cancer insurance plans</li>
         <li>maternity and newborn coverage</li>
         <li>opd and outpatient expense coverage</li>
-        <li>top-up and super top-up health plans</li>
-        <li>standard plans like arogya sanjeevani</li>
-        <li>comprehensive health insurance solutions</li>
-        <li>health insurance for nris</li>
-        <li>affordable and budget-friendly health plans</li>
-        <li>group health insurance for employees</li>
-        <li>tax benefits under section 80d</li>
-        <li>lifetime renewability options</li>
       </ul>
     </div>
 
