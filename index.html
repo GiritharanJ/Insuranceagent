@@ -1911,9 +1911,6 @@
                                 <button type="button" class="verify-otp-btn" id="verifyOtpBtn" disabled>
                                     <i class="fas fa-check-circle"></i> Verify OTP
                                 </button>
-                                <button type="button" class="resend-otp-btn" id="resendOtpBtn" disabled>
-                                    <i class="fas fa-redo"></i> Resend OTP
-                                </button>
                             </div>
                             
                             <div class="otp-success" id="otpSuccess">
@@ -2093,6 +2090,8 @@
         </div>
     </div>
 
+   
+
     <!-- Firebase SDK -->
 <!-- Firebase SDKs (COMPAT) -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -2116,28 +2115,27 @@
   const auth = firebase.auth();
 </script>
 
-  <script>
-  window.onload = function () {
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-      "recaptcha-container",
-      {
-        size: "normal",
-        callback: function () {
-          console.log("reCAPTCHA verified");
-        },
-        "expired-callback": function () {
-          console.log("reCAPTCHA expired");
-        }
-      }
-    );
-
-    recaptchaVerifier.render().then(function (widgetId) {
-      window.recaptchaWidgetId = widgetId;
-    });
-  };
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+    "recaptcha-container",
+    { size: "normal" }
+  );
+  recaptchaVerifier.render();
+});
 </script>
+
     
     <script>
+        // ===== ELEMENT REFERENCES =====
+const mobileInput = document.getElementById("mobile");
+const mobileVerifyBtn = document.getElementById("mobileVerifyBtn");
+const otpSection = document.getElementById("otpSection");
+const verifyOtpBtn = document.getElementById("verifyOtpBtn");
+const otpSuccess = document.getElementById("otpSuccess");
+const submitBtn = document.getElementById("submitBtn");
+const mobileDisplay = document.getElementById("mobileDisplay");
+
 const whatsappBox = document.querySelector('.whatsapp-container');
 
   whatsappBox.addEventListener('click', function (e) {
@@ -2244,19 +2242,20 @@ const whatsappBox = document.querySelector('.whatsapp-container');
             });
             
             // WhatsApp chatbot toggle
-            const chatbotToggle = document.getElementById("chatbotToggle");
+           const chatbotToggle = document.getElementById("chatbotToggle");
 const chatbotPopup = document.getElementById("chatbotPopup");
 
-chatbotToggle.addEventListener("click", function (e) {
+chatbotToggle.addEventListener("click", e => {
   e.stopPropagation();
   chatbotPopup.classList.toggle("show");
 });
 
-document.addEventListener("click", function (e) {
+document.addEventListener("click", e => {
   if (!document.getElementById("whatsappChatbot").contains(e.target)) {
     chatbotPopup.classList.remove("show");
   }
 });
+
 
             
             // Auto-open WhatsApp for chatbot options (they already have href)
@@ -2265,21 +2264,22 @@ document.addEventListener("click", function (e) {
                     chatbotPopup.classList.remove('show');
                 });
             });
+            </script>
+    <script>
             
             // ===== FORM FUNCTIONALITY =====
             
        // ===== OTP VARIABLES =====
 let otpVerified = false;
 
-// Verify button visibility
-mobileInput.addEventListener("input", function () {
-  this.value = this.value.replace(/\D/g, "");
-  if (this.value.length === 10 && !otpVerified) {
-    mobileVerifyBtn.classList.add("active");
-  } else {
-    mobileVerifyBtn.classList.remove("active");
-  }
+// Show verify button
+mobileInput.addEventListener("input", () => {
+  mobileInput.value = mobileInput.value.replace(/\D/g, "");
+  mobileVerifyBtn.classList.toggle("active", mobileInput.value.length === 10);
 });
+
+// CONNECT BUTTON (YOU MISSED THIS)
+mobileVerifyBtn.addEventListener("click", sendOTP);
 
 // SEND OTP
 function sendOTP() {
@@ -2291,13 +2291,11 @@ function sendOTP() {
       otpSection.classList.add("active");
       mobileDisplay.innerText = phoneNumber;
     })
-    .catch((error) => {
-      alert(error.message);
-    });
+    .catch(err => alert(err.message));
 }
 
 // VERIFY OTP
-verifyOtpBtn.addEventListener("click", function () {
+verifyOtpBtn.addEventListener("click", () => {
   let code = "";
   document.querySelectorAll(".otp-input").forEach(i => code += i.value);
 
@@ -2318,25 +2316,15 @@ verifyOtpBtn.addEventListener("click", function () {
                 otpSuccess.classList.add('active');
                 
                 // Enable form sections
-                formSections.forEach(section => {
-                    section.classList.add('active');
-                });
+                
                 
                 // Enable submit button
                 submitBtn.disabled = true;
                 submitBtn.disabled = false;
                 
-                // Clear timer
-                clearInterval(otpTimer);
-                
-                // Scroll to next section
-                setTimeout(() => {
-                    document.getElementById('family-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }, 1500);
-                
+            
                 // Update UI
                 verifyOtpBtn.disabled = true;
-                resendOtpBtn.disabled = true;
                 mobileVerifyBtn.disabled = true;
                 mobileVerifyBtn.innerHTML = '<i class="fas fa-check-circle"></i> Verified';
                 mobileVerifyBtn.style.background = 'linear-gradient(135deg, var(--medium-green) 0%, var(--dark-green) 100%)';
@@ -2346,74 +2334,6 @@ verifyOtpBtn.addEventListener("click", function () {
                 localStorage.setItem('verifiedMobile', mobileInput.value);
             } else {
                 alert('Invalid OTP. Please try again.');
-                // Clear OTP inputs
-                otpInputs.forEach(input => {
-                    input.value = '';
-                    input.classList.remove('filled');
-                });
-                otpInputs[0].focus();
-                verifyOtpBtn.disabled = true;
-            }
-        });
-
-        // Resend OTP
-        resendOtpBtn.addEventListener('click', function() {
-            if (!mobileInput.value || mobileInput.value.length !== 10) {
-                alert('Please enter a valid mobile number');
-                return;
-            }
-
-            // Generate new OTP
-            generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
-            
-            // For demo purposes
-            alert(`New OTP sent: ${generatedOTP}`);
-            
-            // Reset timer
-            clearInterval(otpTimer);
-            timeLeft = 300;
-            updateTimerDisplay();
-            startOTPTimer();
-            
-            // Clear OTP inputs
-            otpInputs.forEach(input => {
-                input.value = '';
-                input.classList.remove('filled');
-            });
-            otpInputs[0].focus();
-            verifyOtpBtn.disabled = true;
-            
-            // Hide success message if shown
-            otpSuccess.classList.remove('active');
-        });
-
-        // Start OTP timer
-        function startOTPTimer() {
-            // Enable resend button after 30 seconds
-            setTimeout(() => {
-                resendOtpBtn.disabled = false;
-            }, 30000);
-            
-            otpTimer = setInterval(() => {
-                timeLeft--;
-                updateTimerDisplay();
-                
-                if (timeLeft <= 0) {
-                    clearInterval(otpTimer);
-                    verifyOtpBtn.disabled = true;
-                    resendOtpBtn.disabled = false;
-                    otpSent = false;
-                    alert('OTP has expired. Please request a new one.');
-                }
-            }, 1000);
-        }
-
-        // Update timer display
-        function updateTimerDisplay() {
-            const minutes = Math.floor(timeLeft / 60);
-            const seconds = timeLeft % 60;
-            otpTimerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }
 
         // Check if mobile was already verified
         document.addEventListener('DOMContentLoaded', function() {
@@ -2445,10 +2365,9 @@ verifyOtpBtn.addEventListener("click", function () {
             
             // Check if mobile is verified
             if (!otpVerified) {
-                alert('Please verify your mobile number before submitting the form.');
-                otpSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                return;
-            }
+  alert("Please verify your mobile number first");
+  return;
+}
             
             // ... Your existing form submission code ...
             // Make sure to include mobile verification status in the WhatsApp message
