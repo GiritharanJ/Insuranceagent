@@ -1876,8 +1876,9 @@
     </button>
   </div>
 </div>
+                            <div id="recaptcha-container"></div>
                                  
-                        <!-- OTP Verification Section -->
+                     <!-- OTP Verification Section -->
                         <div class="otp-verification-section" id="otpSection">
                             <div class="otp-header">
                                 <div class="otp-icon">
@@ -2255,12 +2256,20 @@ const whatsappBox = document.querySelector('.whatsapp-container');
 
 
         // Send OTP
-        mobileVerifyBtn.addEventListener('click', function() {
-            const mobileNumber = mobileInput.value;
-            if (mobileNumber.length !== 10) {
-                alert('Please enter a valid 10-digit mobile number');
-                return;
-            }
+       function sendOTP() {
+  const phoneNumber = "+91" + document.getElementById("mobile").value;
+
+  firebase.auth().signInWithPhoneNumber(phoneNumber, window.recaptchaVerifier)
+    .then((confirmationResult) => {
+      window.confirmationResult = confirmationResult;
+      document.getElementById("otpSection").classList.add("active");
+      alert("OTP sent successfully");
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
+}
+
 
             // Generate random 6-digit OTP
             generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
@@ -2269,23 +2278,15 @@ const whatsappBox = document.querySelector('.whatsapp-container');
             alert(`OTP for verification: ${generatedOTP}\n\nIn a real application, this would be sent via SMS to ${mobileNumber}`);
             
             // Show OTP section
-            mobileDisplay.textContent = `+91 ${mobileNumber}`;
-            otpSection.classList.add('active');
-
-setTimeout(() => {
-  otpSection.scrollIntoView({
-    behavior: 'smooth',
-    block: 'center'
-  });
-}, 200);
-
+          
         // OTP input handling
-        otpInputs.forEach((input, index) => {
+       otpInputs.forEach((input, index) => {
             input.addEventListener('input', function() {
                 // Move to next input
                 if (this.value.length === 1 && index < otpInputs.length - 1) {
                     otpInputs[index + 1].focus();
                 }
+
                 
                 // Check if all inputs are filled
                 checkOTPInputs();
@@ -2314,11 +2315,21 @@ setTimeout(() => {
         }
 
         // Verify OTP
-        verifyOtpBtn.addEventListener('click', function() {
-            if (!otpSent) {
-                alert('Please request an OTP first');
-                return;
-            }
+        function verifyOTP() {
+  let code = "";
+  document.querySelectorAll(".otp-input").forEach(i => code += i.value);
+
+  confirmationResult.confirm(code)
+    .then(() => {
+      alert("Mobile number verified");
+      otpVerified = true;
+      document.getElementById("submitBtn").disabled = false;
+    })
+    .catch(() => {
+      alert("Invalid OTP");
+    });
+}
+
 
             // Get entered OTP
             let enteredOTP = '';
@@ -2622,5 +2633,43 @@ setTimeout(() => {
             window.addEventListener('resize', createMobileMenu);
         });
     </script>
+<!-- Firebase SDK -->
+<!-- Firebase SDKs (COMPAT) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+<script>
+  // Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyC...",
+    authDomain: "jana-insurance.firebaseapp.com",
+    projectId: "jana-insurance",
+    storageBucket: "jana-insurance.appspot.com",
+    messagingSenderId: "608967208864",
+    appId: "1:608967208864:web:f88164efcbdc473118a65",
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Firebase Auth reference
+  const auth = firebase.auth();
+</script>
+
+    <script>
+window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+  'recaptcha-container',
+  {
+    size: 'normal',
+    callback: () => {
+      console.log("reCAPTCHA verified");
+    }
+  }
+);
+
+recaptchaVerifier.render();
+
+</script>
+
 </body>
 </html>
