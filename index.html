@@ -2155,7 +2155,7 @@ const whatsappBox = document.querySelector('.whatsapp-container');
   });
         
         // ===== NAVIGATION SMOOTH SCROLLING =====
-        document.addEventListener('DOMContentLoaded', function() {
+       
             // Smooth scroll for all navigation links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
@@ -2265,37 +2265,60 @@ document.addEventListener("click", e => {
                 });
             });
             </script>
-    <script>
-            
-            // ===== FORM FUNCTIONALITY =====
-            
-       // ===== OTP VARIABLES =====
-let otpVerified = false;
+   <script>
+document.addEventListener("DOMContentLoaded", () => {
 
-// Show verify button
-mobileInput.addEventListener("input", () => {
-  mobileInput.value = mobileInput.value.replace(/\D/g, "");
-  mobileVerifyBtn.classList.toggle("active", mobileInput.value.length === 10);
-});
+  const mobileInput = document.getElementById("mobile");
+  const mobileVerifyBtn = document.getElementById("mobileVerifyBtn");
+  const otpSection = document.getElementById("otpSection");
+  const verifyOtpBtn = document.getElementById("verifyOtpBtn");
+  const otpSuccess = document.getElementById("otpSuccess");
+  const submitBtn = document.getElementById("submitBtn");
+  const mobileDisplay = document.getElementById("mobileDisplay");
+  const form = document.getElementById("consultationForm");
 
-// CONNECT BUTTON (YOU MISSED THIS)
-mobileVerifyBtn.addEventListener("click", sendOTP);
+  let confirmationResult = null;
+  let otpVerified = false;
 
-// SEND OTP
-function sendOTP() {
-  const phoneNumber = "+91" + mobileInput.value;
+  // Disable submit initially
+  submitBtn.disabled = true;
 
-  firebase.auth().signInWithPhoneNumber(phoneNumber, window.recaptchaVerifier)
-    .then((confirmationResult) => {
-      window.confirmationResult = confirmationResult;
-      otpSection.classList.add("active");
-      mobileDisplay.innerText = phoneNumber;
-    })
-    .catch(err => alert(err.message));
-}
+  // Show verify button only when 10 digits entered
+  mobileInput.addEventListener("input", () => {
+    mobileInput.value = mobileInput.value.replace(/\D/g, "");
+    mobileVerifyBtn.classList.toggle("active", mobileInput.value.length === 10);
+  });
 
-// VERIFY OTP
-verifyOtpBtn.addEventListener("click", () => {
+  // Send OTP
+  mobileVerifyBtn.addEventListener("click", () => {
+    const phoneNumber = "+91" + mobileInput.value;
+
+    firebase.auth()
+      .signInWithPhoneNumber(phoneNumber, window.recaptchaVerifier)
+      .then(result => {
+        confirmationResult = result;
+        otpSection.classList.add("active");
+        mobileDisplay.textContent = phoneNumber;
+      })
+      .catch(err => alert(err.message));
+  });
+
+  // Enable verify button when OTP filled
+  document.querySelectorAll(".otp-input").forEach(input => {
+    input.addEventListener("input", () => {
+      let code = "";
+      document.querySelectorAll(".otp-input").forEach(i => code += i.value);
+      verifyOtpBtn.disabled = code.length !== 6;
+    });
+  });
+
+  // Verify OTP
+  verifyOtpBtn.addEventListener("click", () => {
+  if (!confirmationResult) {
+    alert("Please request OTP first");
+    return;
+  }
+
   let code = "";
   document.querySelectorAll(".otp-input").forEach(i => code += i.value);
 
@@ -2304,228 +2327,41 @@ verifyOtpBtn.addEventListener("click", () => {
       otpVerified = true;
       otpSuccess.classList.add("active");
       submitBtn.disabled = false;
-      mobileVerifyBtn.innerHTML = "✔ Verified";
+
+      mobileVerifyBtn.textContent = "✔ Verified";
       mobileVerifyBtn.disabled = true;
+
+      localStorage.setItem("mobileVerified", "true");
+      localStorage.setItem("verifiedMobile", mobileInput.value);
     })
     .catch(() => alert("Invalid OTP"));
 });
 
 
+  // Restore verification on reload
+  const savedMobile = localStorage.getItem("verifiedMobile");
+  if (localStorage.getItem("mobileVerified") === "true" && savedMobile) {
+    mobileInput.value = savedMobile;
+    submitBtn.disabled = false;
+    mobileVerifyBtn.textContent = "✔ Verified";
+    mobileVerifyBtn.disabled = true;
+  }
 
-                // Show success message
-                otpSuccess.classList.add('active');
-                
-                // Enable form sections
-                
-                
-                // Enable submit button
-                submitBtn.disabled = true;
-                submitBtn.disabled = false;
-                
-            
-                // Update UI
-                verifyOtpBtn.disabled = true;
-                mobileVerifyBtn.disabled = true;
-                mobileVerifyBtn.innerHTML = '<i class="fas fa-check-circle"></i> Verified';
-                mobileVerifyBtn.style.background = 'linear-gradient(135deg, var(--medium-green) 0%, var(--dark-green) 100%)';
-                
-                // Store verification status
-                localStorage.setItem('mobileVerified', 'true');
-                localStorage.setItem('verifiedMobile', mobileInput.value);
-            } else {
-                alert('Invalid OTP. Please try again.');
+  // Final form submit
+  form.addEventListener("submit", e => {
+    e.preventDefault();
 
-        // Check if mobile was already verified
-        document.addEventListener('DOMContentLoaded', function() {
-            const isVerified = localStorage.getItem('mobileVerified') === 'true';
-            const savedMobile = localStorage.getItem('verifiedMobile');
-            
-            if (isVerified && savedMobile) {
-                mobileInput.value = savedMobile;
-                otpVerified = true;
-                mobileVerifyBtn.disabled = true;
-                mobileVerifyBtn.innerHTML = '<i class="fas fa-check-circle"></i> Verified';
-                mobileVerifyBtn.style.background = 'linear-gradient(135deg, var(--medium-green) 0%, var(--dark-green) 100%)';
-                mobileVerifyBtn.classList.add('active');
-                mobileVerifyBtn.addEventListener("click", sendOTP);
-                
-                // Enable form sections
-                formSections.forEach(section => {
-                    section.classList.add('active');
-                });
-                
-                // Enable submit button
-                submitBtn.disabled = false;
-            }
-        });
+    if (!otpVerified) {
+      alert("Please verify your mobile number first");
+      return;
+    }
 
-        // Update form submission to include verification status
-        document.getElementById('consultationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Check if mobile is verified
-            if (!otpVerified) {
-  alert("Please verify your mobile number first");
-  return;
-}
-            
-            // ... Your existing form submission code ...
-            // Make sure to include mobile verification status in the WhatsApp message
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                mobile: document.getElementById('mobile').value,
-                mobileVerified: otpVerified,
-                // ... rest of your form data
-            };
-            
-            // ... rest of your form submission logic
-        });
+    alert("Form verified successfully. WhatsApp will open.");
+    form.submit(); // or WhatsApp logic
+  });
 
-            // Medical history toggle
-            document.getElementById('medical-history').addEventListener('change', function() {
-                const medicalDetailsSection = document.getElementById('medical-details-section');
-                medicalDetailsSection.style.display = this.checked ? 'block' : 'none';
-            });
-            
-            // Form submission
-            document.getElementById('consultationForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Collect form data
-                const formData = {
-                    name: document.getElementById('name').value.trim(),
-                    email: document.getElementById('email').value.trim(),
-                    mobile: document.getElementById('mobile').value.trim(),
-                    gender: document.querySelector('input[name="gender"]:checked')?.value || 'Not specified',
-                    dob: document.getElementById('dob').value,
-                    insuranceFor: document.getElementById('insurance-for').value,
-                    hasMedicalHistory: document.getElementById('medical-history').checked,
-                    medicalConditions: [],
-                    medicalDetails: document.getElementById('medical-details').value.trim()
-                };
-                
-                // Validate required fields
-                if (!formData.name || !formData.email || !formData.mobile || !formData.gender || !formData.dob || !formData.insuranceFor) {
-                    alert('Please fill all required fields marked with *');
-                    return;
-                }
-                
-                // Validate mobile number
-                if (!/^[0-9]{10}$/.test(formData.mobile)) {
-                    alert('Please enter a valid 10-digit mobile number');
-                    return;
-                }
-                
-                // Collect medical conditions
-                document.querySelectorAll('input[name="medical-conditions"]:checked').forEach(checkbox => {
-                    formData.medicalConditions.push(checkbox.value);
-                });
-                
-                // Create WhatsApp message
-                let whatsappMessage = `*📋 New Insurance Consultation Request*\n\n`;
-                whatsappMessage += `*👤 Personal Information:*\n`;
-                whatsappMessage += `• Name: ${formData.name}\n`;
-                whatsappMessage += `• Email: ${formData.email}\n`;
-                whatsappMessage += `• Mobile: ${formData.mobile}\n`;
-                whatsappMessage += `• Gender: ${formData.gender}\n`;
-                whatsappMessage += `• Date of Birth: ${formData.dob}\n`;
-                whatsappMessage += `• Insurance For: ${formData.insuranceFor === 'family' ? 'Family' : 'Individual'}\n\n`;
-                
-                whatsappMessage += `*🏥 Medical History:*\n`;
-                whatsappMessage += `• Medical History: ${formData.hasMedicalHistory ? 'Yes' : 'No'}\n`;
-                
-                if (formData.hasMedicalHistory) {
-                    if (formData.medicalConditions.length > 0) {
-                        whatsappMessage += `• Medical Conditions: ${formData.medicalConditions.join(', ')}\n`;
-                    }
-                    if (formData.medicalDetails) {
-                        whatsappMessage += `• Additional Details: ${formData.medicalDetails}\n`;
-                    }
-                }
-                
-                whatsappMessage += `\n*📅 Submitted On:* ${new Date().toLocaleString()}`;
-                whatsappMessage += `\n\n---\n*Sent from Jana Insurance Website*`;
-                
-                // Encode message for WhatsApp URL
-                const encodedMessage = encodeURIComponent(whatsappMessage);
-                const whatsappURL = `https://wa.me/917708589817?text=${encodedMessage}`;
-                
-                // Ask user for confirmation
-                if (confirm(`Thank you ${formData.name}! Your consultation request is ready.\n\nClick OK to send it to our insurance agent via WhatsApp.`)) {
-                    // Open WhatsApp in new tab
-                    window.open(whatsappURL, '_blank');
-                    
-                    // Reset the form
-                    this.reset();
-                    document.getElementById('medical-details-section').style.display = 'none';
-                    
-                    // Show success message
-                    alert('Your request has been prepared! Please complete the process in the WhatsApp window that opens.');
-                }
-            });
-            
-            // ===== RESPONSIVE MENU TOGGLE =====
-            const createMobileMenu = () => {
-                if (window.innerWidth <= 768) {
-                    if (!document.querySelector('.menu-toggle')) {
-                        const menuToggle = document.createElement('button');
-                        menuToggle.className = 'menu-toggle';
-                        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                        menuToggle.style.cssText = `
-                            background: var(--navy-blue);
-                            color: white;
-                            border: none;
-                            padding: 12px 20px;
-                            border-radius: 5px;
-                            cursor: pointer;
-                            font-size: 1.2rem;
-                            display: none;
-                        `;
-                        
-                        document.querySelector('.header-container').prepend(menuToggle);
-                        
-                        const mainNav = document.querySelector('.main-nav');
-                        mainNav.style.cssText = `
-                            display: none;
-                            position: absolute;
-                            top: 100%;
-                            left: 0;
-                            right: 0;
-                            background: var(--light-green);
-                            padding: 20px;
-                            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-                            z-index: 1000;
-                            flex-direction: column;
-                            gap: 15px;
-                        `;
-                        
-                        menuToggle.style.display = 'block';
-                        
-                        menuToggle.addEventListener('click', function() {
-                            mainNav.style.display = mainNav.style.display === 'flex' ? 'none' : 'flex';
-                        });
-                        
-                        // Close menu when clicking a link
-                        document.querySelectorAll('.main-nav a').forEach(link => {
-                            link.addEventListener('click', () => {
-                                mainNav.style.display = 'none';
-                            });
-                        });
-                    }
-                } else {
-                    const menuToggle = document.querySelector('.menu-toggle');
-                    const mainNav = document.querySelector('.main-nav');
-                    if (menuToggle) menuToggle.remove();
-                    if (mainNav) mainNav.style.cssText = '';
-                }
-            };
-            
-            // Initialize and update on resize
-            createMobileMenu();
-            window.addEventListener('resize', createMobileMenu);
-        });
-    </script>
+});
+</script>
 
 
 
