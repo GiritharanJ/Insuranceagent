@@ -1710,7 +1710,7 @@
     
     
    <section class="insurance-brands" id="Insurance Brands">
-        <h2 class="section-title">Our INSURANCE BRANDS</h2>
+        <h2 class="section-title">Our Insurance Brands</h2>
         
         <div class="brands-container">
             <!-- Star Health Insurance Card -->
@@ -1846,7 +1846,7 @@
                 <div class="form-body">
                     <form id="consultationForm">
                         <!-- Personal Information -->
-                        <div class="form-section">
+                        <div class="form-section active" id="personal-info-section">
                             <h3 class="form-section-title">Personal Information</h3>
                             
                             <div class="form-row">
@@ -2228,7 +2228,9 @@ const whatsappBox = document.querySelector('.whatsapp-container');
         const submitBtn = document.getElementById('submitBtn');
 
         // Form sections
-        const formSections = document.querySelectorAll('.form-section:not(#personal-info-section)');
+        const formSections = document.querySelectorAll(
+  '.form-section:not(#personal-info-section)'
+);
 
         // Show verify button when mobile number is valid
         mobileInput.addEventListener('input', function() {
@@ -2330,6 +2332,7 @@ const whatsappBox = document.querySelector('.whatsapp-container');
                 });
                 
                 // Enable submit button
+                submitBtn.disabled = true;
                 submitBtn.disabled = false;
                 
                 // Clear timer
