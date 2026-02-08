@@ -1118,23 +1118,22 @@
         }
 
         .mobile-verify-btn {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: none;
-        }
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, #ff9800, #f57c00);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: none;
+}
 
         .mobile-verify-btn.active {
-            display: block;
+           display: inline-block;
         }
 
         .mobile-verify-btn:hover {
@@ -1862,21 +1861,28 @@
                                 </div>
                             </div>
                             
-                             <div class="form-row">
-  <div class="form-group mobile-verify-container">
-    <label for="mobile">Mobile Number *</label>
-    <input type="tel" id="mobile" class="form-control"
-      placeholder="Enter your 10-digit mobile number"
-      maxlength="10" required>
+                             <div class="form-group mobile-verify-container">
+  <label for="mobile">Mobile Number *</label>
 
-    <button type="button"
-      class="mobile-verify-btn"
-      id="mobileVerifyBtn">
-      Verify Mobile
-    </button>
-  </div>
+  <input
+    type="tel"
+    id="mobile"
+    class="form-control"
+    placeholder="Enter your 10-digit mobile number"
+    maxlength="10"
+  >
+
+  <button
+    type="button"
+    id="mobileVerifyBtn"
+    class="mobile-verify-btn">
+    Verify Mobile
+  </button>
 </div>
-                            <div id="recaptcha-container"></div>
+
+<!-- REQUIRED for Firebase OTP -->
+<div id="recaptcha-container" style="margin-top:15px;"></div>
+
                                  
                      <!-- OTP Verification Section -->
                         <div class="otp-verification-section" id="otpSection">
@@ -2252,6 +2258,22 @@ const whatsappBox = document.querySelector('.whatsapp-container');
     mobileVerifyBtn.classList.remove('active');
     mobileVerifyBtn.disabled = true;
   }
+});
+            //JS inside DOMContentLoaded
+
+            document.addEventListener("DOMContentLoaded", function () {
+  const mobileInput = document.getElementById("mobile");
+  const mobileVerifyBtn = document.getElementById("mobileVerifyBtn");
+
+  mobileInput.addEventListener("input", function () {
+    this.value = this.value.replace(/\D/g, "");
+
+    if (this.value.length === 10) {
+      mobileVerifyBtn.classList.add("active");
+    } else {
+      mobileVerifyBtn.classList.remove("active");
+    }
+  });
 });
 
 
@@ -2656,20 +2678,27 @@ const whatsappBox = document.querySelector('.whatsapp-container');
   const auth = firebase.auth();
 </script>
 
-    <script>
-window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-  'recaptcha-container',
-  {
-    size: 'normal',
-    callback: () => {
-      console.log("reCAPTCHA verified");
-    }
-  }
-);
+  <script>
+  window.onload = function () {
+    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+      "recaptcha-container",
+      {
+        size: "normal",
+        callback: function () {
+          console.log("reCAPTCHA verified");
+        },
+        "expired-callback": function () {
+          console.log("reCAPTCHA expired");
+        }
+      }
+    );
 
-recaptchaVerifier.render();
-
+    recaptchaVerifier.render().then(function (widgetId) {
+      window.recaptchaWidgetId = widgetId;
+    });
+  };
 </script>
+
 
 </body>
 </html>
