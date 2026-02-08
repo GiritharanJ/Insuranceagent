@@ -479,19 +479,20 @@
 }
         
         /* ===== WHY CHOOSE ME ===== */
-       .why-choose {
+      .why-choose {
   position: relative;
-  background-image: url("why-choose.png"); 
+  background-image: url("why-choose.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   padding: 100px 20px;
+  min-height: 650px;
 }
-   .why-choose::before {
+  .why-choose::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.85); /* soft light overlay */
+  background: rgba(255, 255, 255, 0.55); 
   z-index: 0;
 }
         .why-choose > * {
@@ -536,10 +537,11 @@
             color: #666;
             line-height: 1.6;
         }
-        @media (max-width: 768px) {
+       @media (max-width: 768px) {
   .why-choose {
     padding: 70px 15px;
     background-position: top;
+    min-height: auto;
   }
 }
         
