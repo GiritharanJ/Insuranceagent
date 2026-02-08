@@ -333,6 +333,7 @@
             text-transform: none;
             font-weight: 600;
             letter-spacing: 0.2px;
+            margin-bottom: 10px;
         }
         
         .section-title h2 {
@@ -695,6 +696,7 @@
         /* ===== CONSULTATION FORM ===== */
         .consultation-form-section {
             background-color: var(--light-pink);
+            padding: 60px 20px; 
         }
         
         .form-container {
@@ -709,7 +711,7 @@
         .form-header {
             background: linear-gradient(90deg, var(--navy-blue) 0%, var(--accent-blue) 100%);
             color: var(--white);
-            padding: 45px;
+            padding: 30px;
             text-align: center;
         }
         
@@ -1861,13 +1863,19 @@
                             </div>
                             
                              <div class="form-row">
-                                <div class="form-group mobile-verify-container">
-                                    <label for="mobile">Mobile Number *</label>
-                                    <input type="tel" id="mobile" class="form-control" placeholder="Enter your 10-digit mobile number" pattern="[0-9]{10}" required maxlength="10">
-                                    <button type="button" class="mobile-verify-btn" id="mobileVerifyBtn">
-                                        <i class="fas fa-mobile-alt"></i> Verify Mobile
-                                    </button>
-                                </div>
+  <div class="form-group mobile-verify-container">
+    <label for="mobile">Mobile Number *</label>
+    <input type="tel" id="mobile" class="form-control"
+      placeholder="Enter your 10-digit mobile number"
+      maxlength="10" required>
+
+    <button type="button"
+      class="mobile-verify-btn"
+      id="mobileVerifyBtn">
+      Verify Mobile
+    </button>
+  </div>
+</div>
                                  
                         <!-- OTP Verification Section -->
                         <div class="otp-verification-section" id="otpSection">
@@ -2233,18 +2241,18 @@ const whatsappBox = document.querySelector('.whatsapp-container');
 );
 
         // Show verify button when mobile number is valid
-        mobileInput.addEventListener('input', function() {
-            const mobileNumber = this.value.replace(/\D/g, '');
-            this.value = mobileNumber;
-            
-            if (mobileNumber.length === 10 && !otpVerified) {
-                mobileVerifyBtn.classList.add('active');
-                mobileVerifyBtn.disabled = false;
-            } else {
-                mobileVerifyBtn.classList.remove('active');
-                mobileVerifyBtn.disabled = true;
-            }
-        });
+       mobileInput.addEventListener('input', function () {
+  this.value = this.value.replace(/\D/g, '');
+
+  if (this.value.length === 10 && !otpVerified) {
+    mobileVerifyBtn.classList.add('active');
+    mobileVerifyBtn.disabled = false;
+  } else {
+    mobileVerifyBtn.classList.remove('active');
+    mobileVerifyBtn.disabled = true;
+  }
+});
+
 
         // Send OTP
         mobileVerifyBtn.addEventListener('click', function() {
@@ -2263,14 +2271,13 @@ const whatsappBox = document.querySelector('.whatsapp-container');
             // Show OTP section
             mobileDisplay.textContent = `+91 ${mobileNumber}`;
             otpSection.classList.add('active');
-            otpSent = true;
-            
-            // Start timer
-            startOTPTimer();
-            
-            // Scroll to OTP section
-            otpSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        });
+
+setTimeout(() => {
+  otpSection.scrollIntoView({
+    behavior: 'smooth',
+    block: 'center'
+  });
+}, 200);
 
         // OTP input handling
         otpInputs.forEach((input, index) => {
