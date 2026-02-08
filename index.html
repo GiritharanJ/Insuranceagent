@@ -479,20 +479,26 @@
 }
         
         /* ===== WHY CHOOSE ME ===== */
-      .why-choose {
+     .why-choose {
   position: relative;
   background-image: url("why-choose.png");
   background-size: cover;
-  background-position: center;
+  background-position: center 65%; /* 👈 pushes puzzle down */
   background-repeat: no-repeat;
-  padding: 100px 20px;
+  padding: 110px 20px;
   min-height: 650px;
+  filter: saturate(0.95) brightness(0.95);
 }
-  .why-choose::before {
+ .why-choose::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.55); 
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.75),
+    rgba(255,255,255,0.45),
+    rgba(255,255,255,0.65)
+  );
   z-index: 0;
 }
         .why-choose > * {
@@ -539,8 +545,8 @@
         }
        @media (max-width: 768px) {
   .why-choose {
-    padding: 70px 15px;
-    background-position: top;
+    padding: 80px 15px;
+    background-position: center;
     min-height: auto;
   }
 }
