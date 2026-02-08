@@ -1117,33 +1117,7 @@
             position: relative;
         }
 
-        .mobile-verify-btn {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: linear-gradient(135deg, #ff9800, #f57c00);
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 20px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    display: none;
-}
-
-        .mobile-verify-btn.active {
-           display: inline-block;
-        }
-
-        .mobile-verify-btn:hover {
-            background: linear-gradient(135deg, #f57c00 0%, #e65100 100%);
-        }
-
-        .mobile-verify-btn:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-        }
+     
 
         /* Hide form sections until OTP is verified */
         .form-section {
@@ -1876,7 +1850,7 @@
     type="button"
     id="mobileVerifyBtn"
     class="mobile-verify-btn">
-    Verify Mobile
+    > Verify Mobile
   </button>
 </div>
 
