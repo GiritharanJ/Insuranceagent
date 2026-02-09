@@ -744,12 +744,9 @@
         }
         
         .form-group label {
-            display: block;
-            margin-bottom: 12px;
-            color: var(--navy-blue);
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
+             font-size: 14px;
+  font-weight: 600;
+}
         
         .form-control {
             width: 100%;
@@ -759,6 +756,7 @@
             font-size: 1rem;
             transition: all 0.3s ease;
             background-color: #fafafa;
+            height: 48px;
         }
         
         .form-control:focus {
@@ -923,11 +921,10 @@
         
         /* ===== FORM SECTIONS STYLING ===== */
         .form-section {
-            margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid #e0e0e0;
-            display: block;
-        }
+            background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+}
         
         .form-section-title {
             color: var(--navy-blue);
@@ -1913,14 +1910,8 @@
                     <div class="form-group" style="margin-top: 25px;">
                         <label class="required">Do you already have any employee insurance or individual insurance?</label>
                         <div class="checkbox-grid">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="existingInsurance" value="Yes">
-                                Yes
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="existingInsurance" value="No">
-                                No
-                            </label>
+                           <label><input type="radio" name="existingInsurance" value="Yes" required> Yes</label>
+                           <label><input type="radio" name="existingInsurance" value="No"> No</label>
                         </div>
                     </div>
                     
@@ -1936,14 +1927,8 @@
                             </ul>
                         </div>
                         <div class="checkbox-grid">
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="medicalHistory" value="Yes">
-                                Yes
-                            </label>
-                            <label class="checkbox-label">
-                                <input type="checkbox" name="medicalHistory" value="No">
-                                No
-                            </label>
+                            <label><input type="radio" name="medicalHistory" value="Yes" required> Yes</label>
+                            <label><input type="radio" name="medicalHistory" value="No"> No</label>
                         </div>
                     </div>
                     
@@ -2044,6 +2029,28 @@
     </div>
 
         <script>
+
+            /* =========================
+   FORM FLOW
+========================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const mobileInput = document.getElementById("mobile");
+  const personalInfoSection = document.getElementById("personalInfoSection");
+  const submitBtn = document.getElementById("submitBtn");
+
+  mobileInput.addEventListener("input", () => {
+    mobileInput.value = mobileInput.value.replace(/\D/g, "").slice(0, 10);
+
+    if (mobileInput.value.length === 10) {
+      personalInfoSection.style.display = "block";
+      submitBtn.disabled = false;
+    } else {
+      personalInfoSection.style.display = "none";
+      submitBtn.disabled = true;
+    }
+  });
+});
+            
     // CONFIGURATION: Set YOUR WhatsApp number here
     const YOUR_WHATSAPP_NUMBER = "918778373517"; // Your WhatsApp number
     
@@ -2178,30 +2185,31 @@
         }, 5000);
     });
     
-    function generateWhatsAppMessage(data) {
-        let message = `*New Insurance Consultation Request*%0A%0A`;
-        message += `*Name:* ${data.fullName}%0A`;
-        message += `*Mobile:* ${data.mobile}%0A`;
-        message += `*Email:* ${data.email}%0A`;
-        message += `*Date of Birth:* ${data.dob}%0A`;
-        message += `*Gender:* ${data.gender}%0A`;
-        message += `*Pincode:* ${data.pincode}%0A`;
-        message += `*Insurance For:* ${data.insuranceFor}%0A`;
-        
-        if (data.insuranceFor === 'Family' && data.familyMembers.length > 0) {
-            message += `*Family Members:*%0A`;
-            data.familyMembers.forEach((member, index) => {
-                message += `  ${index + 1}. ${member.relationship} - DOB: ${member.dob}%0A`;
-            });
-        }
-        
-        message += `*Existing Insurance:* ${data.existingInsurance || 'Not specified'}%0A`;
-        message += `*Medical History:* ${data.medicalHistory || 'Not specified'}%0A`;
-        message += `*Submitted:* ${new Date().toLocaleString()}%0A`;
-        
-        return message;
-    }
-    
+   function generateWhatsAppMessage(data) {
+  let msg = `*🛡️ Insurance Consultation Request*%0A%0A`;
+
+  msg += `👤 *Name:* ${data.fullName}%0A`;
+  msg += `📞 *Mobile:* ${data.mobile}%0A`;
+  msg += `📧 *Email:* ${data.email}%0A`;
+  msg += `🎂 *DOB:* ${data.dob}%0A`;
+  msg += `🚻 *Gender:* ${data.gender}%0A`;
+  msg += `📍 *Pincode:* ${data.pincode}%0A`;
+  msg += `🏠 *Insurance For:* ${data.insuranceFor}%0A`;
+
+  if (data.familyMembers.length) {
+    msg += `%0A👨‍👩‍👧 *Family Members:*%0A`;
+    data.familyMembers.forEach((m, i) => {
+      msg += `${i + 1}. ${m.relationship} – DOB: ${m.dob}%0A`;
+    });
+  }
+
+  msg += `%0A📄 *Existing Insurance:* ${data.existingInsurance}%0A`;
+  msg += `🩺 *Medical History:* ${data.medicalHistory}%0A`;
+  msg += `%0A🕒 *Submitted:* ${new Date().toLocaleString()}`;
+
+  return msg;
+}
+
     function sendToWhatsApp(message) {
         const whatsappURL = `https://wa.me/${YOUR_WHATSAPP_NUMBER}?text=${message}`;
         window.open(whatsappURL, '_blank');
