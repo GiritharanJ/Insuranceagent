@@ -921,70 +921,53 @@
             font-style: italic;
         }
         /* OTP Verification Styles */
-        .otp-verification-section {
-            margin-bottom: 40px;
-            padding: 25px;
-            background: linear-gradient(135deg, var(--light-green) 0%, #e8f5e9 100%);
-            border-radius: 15px;
-            border: 2px solid var(--medium-green);
-            display: none;
+        /* Mobile Verify Button */
+        .mobile-verify-container {
+            position: relative;
         }
-
-        .otp-verification-section.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .otp-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .otp-icon {
-            background: var(--medium-green);
+        
+        .mobile-verify-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, var(--accent-blue), var(--dark-blue));
             color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: none;
+            font-size: 14px;
         }
-
-        .otp-header h4 {
-            color: var(--dark-blue);
-            font-size: 1.4rem;
-            margin: 0;
+        
+        .mobile-verify-btn.active {
+            display: block;
         }
-
-        .otp-message {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            color: var(--dark-gray);
-            border-left: 4px solid var(--medium-green);
+        
+        .mobile-verify-btn:hover {
+            background: linear-gradient(135deg, var(--dark-blue), var(--navy-blue));
         }
-
+        
+        .mobile-verify-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
+        
+        /* OTP Verification Improvements */
         .otp-input-container {
             display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin-bottom: 25px;
             justify-content: center;
             flex-wrap: wrap;
         }
-
+        
         .otp-input {
-            width: 60px;
-            height: 60px;
+            width: 55px;
+            height: 55px;
             text-align: center;
             font-size: 1.5rem;
             font-weight: bold;
@@ -993,132 +976,87 @@
             background: white;
             transition: all 0.3s ease;
         }
-
+        
         .otp-input:focus {
             border-color: var(--medium-green);
             outline: none;
             box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
         }
-
-        .otp-input.filled {
-            border-color: var(--medium-green);
-            background-color: #f0fff0;
-        }
-
-        .otp-actions {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .verify-otp-btn {
-            background: linear-gradient(135deg, var(--medium-green) 0%, var(--dark-green) 100%);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .verify-otp-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
-        }
-
-        .verify-otp-btn:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .resend-otp-btn {
-            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--dark-blue) 100%);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 30px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .resend-otp-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
-        }
-
-        .resend-otp-btn:disabled {
-            background: #cccccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-
-        .timer {
-            text-align: center;
-            color: var(--dark-blue);
-            font-weight: 600;
-            margin-top: 10px;
-            font-size: 0.9rem;
-        }
-
-        .otp-success {
+        
+        /* Success Message */
+        .success-message {
             background: linear-gradient(135deg, #d4edda 0%, #c3e6cb 100%);
             color: var(--dark-green);
             padding: 20px;
             border-radius: 10px;
             text-align: center;
             border: 2px solid var(--dark-green);
-            margin-top: 20px;
+            margin: 20px 0;
             display: none;
         }
-
-        .otp-success.active {
+        
+        .success-message.show {
             display: block;
             animation: fadeIn 0.5s ease;
         }
-
-        .otp-success i {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: var(--dark-green);
+        
+        /* Form Sections */
+        .form-section {
+            display: none;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e0e0e0;
         }
-
-        .verify-btn {
-            background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
+        
+        .form-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
         }
-
-        .verify-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3);
+        
+        /* recaptcha container */
+        #recaptcha-container {
+            margin: 15px 0;
+            display: flex;
+            justify-content: center;
         }
-
-        .mobile-verify-container {
+        
+        /* Form validation */
+        .error-message {
+            color: #dc3545;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .form-control.error {
+            border-color: #dc3545;
+        }
+        
+        /* Loading state */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
             position: relative;
         }
-
-     
-
+        
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--accent-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
         /* Hide form sections until OTP is verified */
         .form-section {
             display: none;
@@ -1820,110 +1758,201 @@
                 </div>
                 <div class="form-body">
                     <form id="consultationForm">
-                        <!-- Personal Information -->
-                       <div class="form-section active" id="basic-section">
-                       <h3 class="form-section-title">Basic Information</h3>
+                        <!-- Step 1: Basic Information with OTP -->
+                        <div class="form-section active" id="basic-section">
+                            <h3 class="form-section-title">Basic Information</h3>
                             
-                           <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" class="form-control" required>
-                              </div>
-                                                           
-  <!-- Mobile -->
-  <div class="form-group mobile-verify-container">
-    <label for="mobile">Mobile Number *</label>
-    <input type="tel" id="mobile" class="form-control" maxlength="10">
-    <button type="button" id="mobileVerifyBtn" class="mobile-verify-btn">
-      Verify Mobile
-    </button>
-  </div>
-
- <!-- reCAPTCHA -->
-  <div id="recaptcha-container" style="margin-top:15px;"></div>
-                                 
-                     <!-- OTP Verification Section -->
-                        <div class="otp-verification-section" id="otpSection">
-                            <div class="otp-header">
-                                <div class="otp-icon">
-                                    <i class="fas fa-shield-alt"></i>
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label for="name">Full Name *</label>
+                                    <input type="text" id="name" class="form-control" required>
+                                    <div class="error-message" id="name-error"></div>
                                 </div>
-                                <h4>Mobile Number Verification</h4>
                             </div>
                             
-                            <div class="otp-message">
-                                <p>We've sent a 6-digit OTP to your mobile number <strong id="mobileDisplay"></strong>. Please enter it below to verify your number.</p>
-                                <p class="timer">OTP valid for: <span id="otpTimer">05:00</span></p>
+                            <div class="form-row">
+                                <div class="form-group mobile-verify-container full-width">
+                                    <label for="mobile">Mobile Number *</label>
+                                    <input type="tel" id="mobile" class="form-control" 
+                                           maxlength="10" 
+                                           pattern="[0-9]{10}"
+                                           placeholder="Enter 10-digit mobile number"
+                                           required>
+                                    <button type="button" id="mobileVerifyBtn" class="mobile-verify-btn">
+                                        Verify Mobile
+                                    </button>
+                                    <div class="error-message" id="mobile-error"></div>
+                                </div>
                             </div>
                             
-                         
-                            <div class="otp-actions">
-                                <button type="button" class="verify-otp-btn" id="verifyOtpBtn" disabled>
-                                    <i class="fas fa-check-circle"></i> Verify OTP
-                                </button>
-                            </div>
-
-                            <div class="otp-input-container">
-                              <input type="text" class="otp-input" maxlength="1">
-                              <input type="text" class="otp-input" maxlength="1">
-                              <input type="text" class="otp-input" maxlength="1">
-                              <input type="text" class="otp-input" maxlength="1">
-                              <input type="text" class="otp-input" maxlength="1">
-                              <input type="text" class="otp-input" maxlength="1">
-                            </div>
-
+                            <!-- reCAPTCHA container -->
+                            <div id="recaptcha-container"></div>
                             
-                            <div class="otp-success" id="otpSuccess">
-                                <i class="fas fa-check-circle"></i>
-                                <h4>Mobile Number Verified Successfully!</h4>
-                                <p>Your mobile number has been verified. You can now proceed with the rest of the form.</p>
+                            <!-- OTP Verification Section -->
+                            <div class="otp-verification-section" id="otpSection">
+                                <div class="otp-header">
+                                    <div class="otp-icon">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </div>
+                                    <h4>Mobile Number Verification</h4>
+                                </div>
+                                
+                                <div class="otp-message">
+                                    <p>We've sent a 6-digit OTP to your mobile number <strong id="mobileDisplay"></strong>. Please enter it below to verify your number.</p>
+                                    <p class="timer">OTP valid for: <span id="otpTimer">05:00</span></p>
+                                </div>
+                                
+                                <div class="otp-input-container">
+                                    <input type="text" class="otp-input" maxlength="1" data-index="1">
+                                    <input type="text" class="otp-input" maxlength="1" data-index="2">
+                                    <input type="text" class="otp-input" maxlength="1" data-index="3">
+                                    <input type="text" class="otp-input" maxlength="1" data-index="4">
+                                    <input type="text" class="otp-input" maxlength="1" data-index="5">
+                                    <input type="text" class="otp-input" maxlength="1" data-index="6">
+                                </div>
+                                
+                                <div class="otp-actions">
+                                    <button type="button" class="verify-otp-btn" id="verifyOtpBtn" disabled>
+                                        <i class="fas fa-check-circle"></i> Verify OTP
+                                    </button>
+                                    <button type="button" class="resend-otp-btn" id="resendOtpBtn">
+                                        <i class="fas fa-redo"></i> Resend OTP
+                                    </button>
+                                </div>
+                                
+                                <div class="otp-success" id="otpSuccess">
+                                    <i class="fas fa-check-circle"></i>
+                                    <h4>Mobile Number Verified Successfully!</h4>
+                                    <p>Your mobile number has been verified. You can now proceed with the rest of the form.</p>
+                                </div>
                             </div>
                         </div>
-
-                           <div class="form-section" id="details-section">
-
+                        
+                        <!-- Step 2: Personal Details (shown after OTP verification) -->
+                        <div class="form-section" id="details-section">
                             <h3 class="form-section-title">Personal Details</h3>
-
-                        <div class="form-group">
-                        <label>Email Address *</label>
-                         <input type="email" id="email" class="form-control" required>
-                          </div>
-                                 
-                                <div class="form-group">
-    <label>Gender *</label>
-    <div class="gender-options">
-      <label><input type="radio" name="gender" required> Male</label>
-      <label><input type="radio" name="gender"> Female</label>
-      <label><input type="radio" name="gender"> Other</label>
-    </div>
-  </div>
                             
-                            <div class="form-group">
-    <label>Date of Birth *</label>
-    <input type="date" id="dob" class="form-control" required>
-  </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" class="form-control" required>
+                                    <div class="error-message" id="email-error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Date of Birth *</label>
+                                    <input type="date" id="dob" class="form-control" required>
+                                    <div class="error-message" id="dob-error"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Gender *</label>
+                                    <div class="gender-options">
+                                        <label class="radio-option">
+                                            <input type="radio" name="gender" value="male" required>
+                                            <span>Male</span>
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="gender" value="female">
+                                            <span>Female</span>
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="gender" value="other">
+                                            <span>Other</span>
+                                        </label>
+                                    </div>
+                                    <div class="error-message" id="gender-error"></div>
+                                </div>
+                                
                                 <div class="form-group">
                                     <label for="insurance-for">Need Insurance For *</label>
                                     <select id="insurance-for" class="form-control" required>
                                         <option value="">Select an option</option>
                                         <option value="individual">Individual</option>
                                         <option value="family">Family</option>
+                                        <option value="business">Business</option>
                                     </select>
+                                    <div class="error-message" id="insurance-for-error"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Additional fields for family insurance -->
+                            <div id="family-fields" style="display: none;">
+                                <div class="form-row">
+                                    <div class="form-group full-width">
+                                        <label for="family-count">Number of Family Members</label>
+                                        <select id="family-count" class="form-control">
+                                            <option value="2">2 Members</option>
+                                            <option value="3">3 Members</option>
+                                            <option value="4">4 Members</option>
+                                            <option value="5">5+ Members</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Medical History -->
-                        <div class="form-section">
-                            <h3 class="form-section-title">Medical History</h3>
-                            <div class="form-note">
-                                <p>Please provide accurate medical history for better insurance planning</p>
+                        <!-- Step 3: Insurance Details -->
+                        <div class="form-section" id="insurance-section">
+                            <h3 class="form-section-title">Insurance Details</h3>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="insurance-type">Type of Insurance Needed *</label>
+                                    <select id="insurance-type" class="form-control" required>
+                                        <option value="">Select insurance type</option>
+                                        <option value="health">Health Insurance</option>
+                                        <option value="life">Life Insurance</option>
+                                        <option value="both">Both Health & Life</option>
+                                        <option value="vehicle">Vehicle Insurance</option>
+                                        <option value="home">Home Insurance</option>
+                                        <option value="travel">Travel Insurance</option>
+                                    </select>
+                                    <div class="error-message" id="insurance-type-error"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="annual-income">Annual Income (₹) *</label>
+                                    <input type="number" id="annual-income" class="form-control" 
+                                           placeholder="e.g., 500000" 
+                                           min="100000" 
+                                           step="50000"
+                                           required>
+                                    <div class="error-message" id="income-error"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label for="insurance-budget">Monthly Insurance Budget (₹)</label>
+                                    <input type="number" id="insurance-budget" class="form-control" 
+                                           placeholder="e.g., 5000"
+                                           min="1000"
+                                           step="500">
+                                </div>
                             </div>
                             
                             <div class="form-row">
                                 <div class="form-group full-width">
                                     <label class="checkbox-label">
+                                        <input type="checkbox" id="existing-insurance">
+                                        <span>Do you have existing insurance policy?</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 4: Medical History -->
+                        <div class="form-section" id="medical-section">
+                            <h3 class="form-section-title">Medical History</h3>
+                            
+                            <div class="form-row">
+                                <div class="form-group full-width">
+                                    <label class="checkbox-label">
                                         <input type="checkbox" id="medical-history">
-                                        <span>Do you or any of your family members have any medical history?</span>
+                                        <span>Do you or any family members have medical history?</span>
                                     </label>
                                 </div>
                             </div>
@@ -1931,23 +1960,31 @@
                             <div id="medical-details-section" style="display: none;">
                                 <div class="form-row">
                                     <div class="form-group full-width">
-                                        <label>Please specify medical conditions (check all that apply):</label>
+                                        <label>Medical Conditions (if any):</label>
                                         <div class="checkbox-grid">
                                             <label class="checkbox-label">
+                                                <input type="checkbox" name="medical-conditions" value="diabetes">
+                                                <span>Diabetes</span>
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="medical-conditions" value="hypertension">
+                                                <span>Hypertension</span>
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="medical-conditions" value="heart-disease">
+                                                <span>Heart Disease</span>
+                                            </label>
+                                            <label class="checkbox-label">
                                                 <input type="checkbox" name="medical-conditions" value="surgery">
-                                                <span>Any surgery/operation done in past</span>
-                                            </label>
-                                            <label class="checkbox-label">
-                                                <input type="checkbox" name="medical-conditions" value="regular-medicine">
-                                                <span>Taking any regular medicine</span>
-                                            </label>
-                                            <label class="checkbox-label">
-                                                <input type="checkbox" name="medical-conditions" value="stroke">
-                                                <span>Stroke</span>
+                                                <span>Past Surgery</span>
                                             </label>
                                             <label class="checkbox-label">
                                                 <input type="checkbox" name="medical-conditions" value="cancer">
                                                 <span>Cancer</span>
+                                            </label>
+                                            <label class="checkbox-label">
+                                                <input type="checkbox" name="medical-conditions" value="none">
+                                                <span>None</span>
                                             </label>
                                         </div>
                                     </div>
@@ -1955,15 +1992,26 @@
                                 
                                 <div class="form-row">
                                     <div class="form-group full-width">
-                                        <label for="medical-details">Additional Medical Details (if any)</label>
-                                        <textarea id="medical-details" class="form-control" rows="3" placeholder="Please provide details about medical conditions, treatments, medications, etc."></textarea>
+                                        <label for="medical-details">Additional Medical Details (optional)</label>
+                                        <textarea id="medical-details" class="form-control" rows="3" 
+                                                  placeholder="Please provide details about any medical conditions, treatments, or medications..."></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
+                        <!-- Success Message -->
+                        <div class="success-message" id="successMessage">
+                            <i class="fas fa-check-circle" style="font-size: 3rem; margin-bottom: 15px;"></i>
+                            <h4>Form Submitted Successfully!</h4>
+                            <p>Your consultation request has been received. We'll contact you shortly.</p>
+                            <button type="button" id="whatsappBtn" class="whatsapp-btn" style="margin-top: 15px;">
+                                <i class="fab fa-whatsapp"></i> Chat on WhatsApp Now
+                            </button>
+                        </div>
+                        
                         <!-- Submit Button -->
-                        <button type="submit" class="submit-btn" id="submitBtn">
+                        <button type="submit" class="submit-btn" id="submitBtn" disabled>
                             <i class="fas fa-paper-plane"></i> Submit for Free Consultation
                         </button>
                         
@@ -1975,7 +2023,6 @@
             </div>
         </div>
     </section>
-    
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -2065,20 +2112,482 @@
   };
 
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-
-  // Firebase Auth reference
-  const auth = firebase.auth();
-</script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-    "recaptcha-container",
-    { size: "normal" }
-  );
-  recaptchaVerifier.render();
-});
+ // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        
+        // ===== FORM FUNCTIONALITY =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Element references
+            const form = document.getElementById('consultationForm');
+            const mobileInput = document.getElementById('mobile');
+            const mobileVerifyBtn = document.getElementById('mobileVerifyBtn');
+            const verifyOtpBtn = document.getElementById('verifyOtpBtn');
+            const resendOtpBtn = document.getElementById('resendOtpBtn');
+            const otpInputs = document.querySelectorAll('.otp-input');
+            const otpSection = document.getElementById('otpSection');
+            const otpSuccess = document.getElementById('otpSuccess');
+            const submitBtn = document.getElementById('submitBtn');
+            const mobileDisplay = document.getElementById('mobileDisplay');
+            const otpTimer = document.getElementById('otpTimer');
+            const recaptchaContainer = document.getElementById('recaptcha-container');
+            
+            let confirmationResult = null;
+            let recaptchaVerifier;
+            let otpVerified = false;
+            let timerInterval;
+            let timeLeft = 300; // 5 minutes
+            
+            // Initialize reCAPTCHA
+            function initializeRecaptcha() {
+                recaptchaVerifier = new firebase.auth.RecaptchaVerifier(recaptchaContainer, {
+                    'size': 'normal',
+                    'callback': (response) => {
+                        console.log('reCAPTCHA solved');
+                    },
+                    'expired-callback': () => {
+                        console.log('reCAPTCHA expired');
+                    }
+                });
+                recaptchaVerifier.render();
+            }
+            
+            // Show verify button when mobile is valid
+            mobileInput.addEventListener('input', function() {
+                const mobile = this.value.replace(/\D/g, '');
+                this.value = mobile;
+                
+                if (mobile.length === 10) {
+                    mobileVerifyBtn.classList.add('active');
+                    mobileVerifyBtn.disabled = false;
+                } else {
+                    mobileVerifyBtn.classList.remove('active');
+                    mobileVerifyBtn.disabled = true;
+                }
+            });
+            
+            // Send OTP
+            mobileVerifyBtn.addEventListener('click', async function() {
+                const mobile = mobileInput.value;
+                
+                if (mobile.length !== 10) {
+                    showError('mobile-error', 'Please enter a valid 10-digit mobile number');
+                    return;
+                }
+                
+                try {
+                    mobileVerifyBtn.classList.add('loading');
+                    mobileVerifyBtn.disabled = true;
+                    
+                    // Initialize reCAPTCHA if not already done
+                    if (!recaptchaVerifier) {
+                        initializeRecaptcha();
+                    }
+                    
+                    const phoneNumber = '+91' + mobile;
+                    confirmationResult = await auth.signInWithPhoneNumber(phoneNumber, recaptchaVerifier);
+                    
+                    // Show OTP section
+                    otpSection.classList.add('active');
+                    mobileDisplay.textContent = phoneNumber;
+                    
+                    // Start timer
+                    startTimer();
+                    
+                    // Enable OTP inputs
+                    otpInputs[0].focus();
+                    
+                    // Scroll to OTP section
+                    otpSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    showSuccess('mobile-error', 'OTP sent successfully!');
+                    
+                } catch (error) {
+                    console.error('Error sending OTP:', error);
+                    showError('mobile-error', 'Failed to send OTP. Please try again.');
+                } finally {
+                    mobileVerifyBtn.classList.remove('loading');
+                }
+            });
+            
+            // OTP input handling
+            otpInputs.forEach((input, index) => {
+                input.addEventListener('input', function(e) {
+                    const value = e.target.value;
+                    
+                    // Only allow numbers
+                    if (!/^\d*$/.test(value)) {
+                        this.value = '';
+                        return;
+                    }
+                    
+                    if (value.length === 1 && index < otpInputs.length - 1) {
+                        otpInputs[index + 1].focus();
+                    }
+                    
+                    checkOTPComplete();
+                });
+                
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Backspace' && this.value === '' && index > 0) {
+                        otpInputs[index - 1].focus();
+                    }
+                });
+            });
+            
+            // Check if OTP is complete
+            function checkOTPComplete() {
+                let complete = true;
+                otpInputs.forEach(input => {
+                    if (input.value === '') complete = false;
+                });
+                verifyOtpBtn.disabled = !complete;
+            }
+            
+            // Verify OTP
+            verifyOtpBtn.addEventListener('click', async function() {
+                if (!confirmationResult) {
+                    showError('mobile-error', 'Please request OTP first');
+                    return;
+                }
+                
+                try {
+                    verifyOtpBtn.classList.add('loading');
+                    
+                    let otp = '';
+                    otpInputs.forEach(input => otp += input.value);
+                    
+                    const result = await confirmationResult.confirm(otp);
+                    
+                    // OTP verified successfully
+                    otpVerified = true;
+                    otpSuccess.classList.add('active');
+                    
+                    // Show next sections
+                    document.getElementById('details-section').classList.add('active');
+                    submitBtn.disabled = false;
+                    
+                    // Update UI
+                    mobileVerifyBtn.textContent = '✓ Verified';
+                    mobileVerifyBtn.disabled = true;
+                    verifyOtpBtn.disabled = true;
+                    
+                    // Clear timer
+                    clearInterval(timerInterval);
+                    
+                    // Store verification status
+                    localStorage.setItem('mobileVerified', 'true');
+                    localStorage.setItem('verifiedMobile', mobileInput.value);
+                    
+                    // Scroll to next section
+                    setTimeout(() => {
+                        document.getElementById('details-section').scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'start' 
+                        });
+                    }, 1000);
+                    
+                } catch (error) {
+                    console.error('Error verifying OTP:', error);
+                    showError('mobile-error', 'Invalid OTP. Please try again.');
+                    
+                    // Clear OTP inputs
+                    otpInputs.forEach(input => {
+                        input.value = '';
+                        input.classList.remove('filled');
+                    });
+                    otpInputs[0].focus();
+                    verifyOtpBtn.disabled = true;
+                } finally {
+                    verifyOtpBtn.classList.remove('loading');
+                }
+            });
+            
+            // Resend OTP
+            resendOtpBtn.addEventListener('click', function() {
+                mobileVerifyBtn.click();
+            });
+            
+            // Timer function
+            function startTimer() {
+                clearInterval(timerInterval);
+                timeLeft = 300;
+                
+                timerInterval = setInterval(() => {
+                    timeLeft--;
+                    updateTimerDisplay();
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(timerInterval);
+                        verifyOtpBtn.disabled = true;
+                        showError('mobile-error', 'OTP expired. Please request a new one.');
+                    }
+                }, 1000);
+            }
+            
+            function updateTimerDisplay() {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                otpTimer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            }
+            
+            // Check saved verification on page load
+            function checkSavedVerification() {
+                const isVerified = localStorage.getItem('mobileVerified') === 'true';
+                const savedMobile = localStorage.getItem('verifiedMobile');
+                
+                if (isVerified && savedMobile && savedMobile.length === 10) {
+                    mobileInput.value = savedMobile;
+                    otpVerified = true;
+                    mobileVerifyBtn.textContent = '✓ Verified';
+                    mobileVerifyBtn.disabled = true;
+                    mobileVerifyBtn.classList.add('active');
+                    
+                    // Show next sections
+                    document.getElementById('details-section').classList.add('active');
+                    submitBtn.disabled = false;
+                }
+            }
+            
+            // Medical history toggle
+            document.getElementById('medical-history').addEventListener('change', function() {
+                const medicalDetails = document.getElementById('medical-details-section');
+                medicalDetails.style.display = this.checked ? 'block' : 'none';
+            });
+            
+            // Insurance type change
+            document.getElementById('insurance-for').addEventListener('change', function() {
+                const familyFields = document.getElementById('family-fields');
+                familyFields.style.display = this.value === 'family' ? 'block' : 'none';
+            });
+            
+            // Form submission
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                if (!otpVerified) {
+                    alert('Please verify your mobile number first');
+                    otpSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    return;
+                }
+                
+                // Collect form data
+                const formData = {
+                    name: document.getElementById('name').value,
+                    mobile: document.getElementById('mobile').value,
+                    email: document.getElementById('email').value,
+                    dob: document.getElementById('dob').value,
+                    gender: document.querySelector('input[name="gender"]:checked')?.value,
+                    insuranceFor: document.getElementById('insurance-for').value,
+                    insuranceType: document.getElementById('insurance-type').value,
+                    annualIncome: document.getElementById('annual-income').value,
+                    insuranceBudget: document.getElementById('insurance-budget').value || 'Not specified',
+                    existingInsurance: document.getElementById('existing-insurance').checked ? 'Yes' : 'No',
+                    medicalHistory: document.getElementById('medical-history').checked ? 'Yes' : 'No',
+                    medicalConditions: [],
+                    medicalDetails: document.getElementById('medical-details').value,
+                    timestamp: new Date().toLocaleString(),
+                    source: 'Website Form'
+                };
+                
+                // Collect medical conditions
+                document.querySelectorAll('input[name="medical-conditions"]:checked').forEach(checkbox => {
+                    formData.medicalConditions.push(checkbox.value);
+                });
+                
+                // Add family info if applicable
+                if (formData.insuranceFor === 'family') {
+                    formData.familyCount = document.getElementById('family-count').value;
+                }
+                
+                // Validate required fields
+                if (!validateForm(formData)) {
+                    return;
+                }
+                
+                try {
+                    submitBtn.classList.add('loading');
+                    submitBtn.disabled = true;
+                    
+                    // 1. Send to WhatsApp
+                    const whatsappMessage = formatWhatsAppMessage(formData);
+                    const whatsappURL = `https://wa.me/917708589817?text=${encodeURIComponent(whatsappMessage)}`;
+                    
+                    // 2. Send to Email (via FormSubmit or similar)
+                    await sendToEmail(formData);
+                    
+                    // 3. Show success message
+                    document.getElementById('successMessage').classList.add('show');
+                    
+                    // 4. Add WhatsApp button
+                    document.getElementById('whatsappBtn').addEventListener('click', function() {
+                        window.open(whatsappURL, '_blank');
+                    });
+                    
+                    // 5. Reset form after delay
+                    setTimeout(() => {
+                        form.reset();
+                        resetFormState();
+                        document.getElementById('successMessage').classList.remove('show');
+                        submitBtn.classList.remove('loading');
+                        submitBtn.disabled = false;
+                    }, 5000);
+                    
+                } catch (error) {
+                    console.error('Form submission error:', error);
+                    alert('Error submitting form. Please try again or contact us directly.');
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                }
+            });
+            
+            // Helper functions
+            function formatWhatsAppMessage(data) {
+                let message = `*📋 New Insurance Consultation Request*\n\n`;
+                message += `*👤 Personal Information:*\n`;
+                message += `• Name: ${data.name}\n`;
+                message += `• Mobile: ${data.mobile} (Verified ✓)\n`;
+                message += `• Email: ${data.email}\n`;
+                message += `• Gender: ${data.gender}\n`;
+                message += `• Date of Birth: ${data.dob}\n`;
+                message += `• Insurance For: ${data.insuranceFor}\n`;
+                
+                if (data.insuranceFor === 'family') {
+                    message += `• Family Members: ${data.familyCount}\n`;
+                }
+                
+                message += `\n*💰 Financial Details:*\n`;
+                message += `• Annual Income: ₹${data.annualIncome}\n`;
+                message += `• Insurance Budget: ₹${data.insuranceBudget}/month\n`;
+                
+                message += `\n*🛡️ Insurance Requirements:*\n`;
+                message += `• Insurance Type: ${data.insuranceType}\n`;
+                message += `• Existing Insurance: ${data.existingInsurance}\n`;
+                message += `• Medical History: ${data.medicalHistory}\n`;
+                
+                if (data.medicalHistory === 'Yes' && data.medicalConditions.length > 0) {
+                    message += `• Medical Conditions: ${data.medicalConditions.join(', ')}\n`;
+                }
+                
+                message += `\n*📅 Submitted On:* ${data.timestamp}\n`;
+                message += `*🌐 Source:* ${data.source}\n`;
+                message += `\n---\n*This message was sent from Jana Insurance Website Form*`;
+                
+                return message;
+            }
+            
+            async function sendToEmail(data) {
+                // Using FormSubmit.co (free service)
+                const emailEndpoint = 'https://formsubmit.co/ajax/jana@securelifeinsurance.com';
+                
+                const response = await fetch(emailEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: data.name,
+                        mobile: data.mobile,
+                        email: data.email,
+                        subject: 'New Insurance Consultation Request',
+                        message: JSON.stringify(data, null, 2),
+                        _subject: 'New Insurance Consultation Request - Website Form'
+                    })
+                });
+                
+                return response.json();
+            }
+            
+            function validateForm(data) {
+                let isValid = true;
+                
+                // Reset errors
+                document.querySelectorAll('.error-message').forEach(el => {
+                    el.textContent = '';
+                    el.style.display = 'none';
+                });
+                document.querySelectorAll('.form-control').forEach(el => {
+                    el.classList.remove('error');
+                });
+                
+                // Validate name
+                if (!data.name || data.name.trim().length < 2) {
+                    showError('name-error', 'Please enter a valid name');
+                    isValid = false;
+                }
+                
+                // Validate email
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!data.email || !emailRegex.test(data.email)) {
+                    showError('email-error', 'Please enter a valid email address');
+                    isValid = false;
+                }
+                
+                // Validate DOB
+                if (!data.dob) {
+                    showError('dob-error', 'Please select date of birth');
+                    isValid = false;
+                }
+                
+                // Validate gender
+                if (!data.gender) {
+                    showError('gender-error', 'Please select gender');
+                    isValid = false;
+                }
+                
+                return isValid;
+            }
+            
+            function showError(elementId, message) {
+                const element = document.getElementById(elementId);
+                if (element) {
+                    element.textContent = message;
+                    element.style.display = 'block';
+                    
+                    // Add error class to corresponding input
+                    const inputId = elementId.replace('-error', '');
+                    const input = document.getElementById(inputId);
+                    if (input) {
+                        input.classList.add('error');
+                    }
+                }
+            }
+            
+            function showSuccess(elementId, message) {
+                const element = document.getElementById(elementId);
+                if (element) {
+                    element.textContent = message;
+                    element.style.display = 'block';
+                    element.style.color = '#28a745';
+                }
+            }
+            
+            function resetFormState() {
+                otpVerified = false;
+                confirmationResult = null;
+                otpSection.classList.remove('active');
+                otpSuccess.classList.remove('active');
+                document.getElementById('details-section').classList.remove('active');
+                document.getElementById('insurance-section').classList.remove('active');
+                document.getElementById('medical-section').classList.remove('active');
+                
+                otpInputs.forEach(input => input.value = '');
+                verifyOtpBtn.disabled = true;
+                
+                mobileVerifyBtn.textContent = 'Verify Mobile';
+                mobileVerifyBtn.disabled = false;
+                mobileVerifyBtn.classList.remove('active');
+                
+                submitBtn.disabled = true;
+                
+                localStorage.removeItem('mobileVerified');
+                localStorage.removeItem('verifiedMobile');
+            }
+            
+            // Initialize
+            checkSavedVerification();
+        });
 </script>
 
     
@@ -2221,143 +2730,5 @@ document.addEventListener("click", e => {
                 });
             });
             </script>
-   <script>
-document.addEventListener("DOMContentLoaded", () => {
-
-  const mobileInput = document.getElementById("mobile");
-  const mobileVerifyBtn = document.getElementById("mobileVerifyBtn");
-  const otpSection = document.getElementById("otpSection");
-  const verifyOtpBtn = document.getElementById("verifyOtpBtn");
-  const otpSuccess = document.getElementById("otpSuccess");
-  const submitBtn = document.getElementById("submitBtn");
-  const mobileDisplay = document.getElementById("mobileDisplay");
-  const form = document.getElementById("consultationForm");
-
-  let confirmationResult = null;
-  let otpVerified = false;
-
-  // Disable submit initially
-  submitBtn.disabled = true;
-
-  // Show verify button only when 10 digits entered
- mobileInput.addEventListener("input", () => {
-  mobileInput.value = mobileInput.value.replace(/\D/g, "");
-
-  // RESET verification if number changes
-  localStorage.removeItem("mobileVerified");
-  localStorage.removeItem("verifiedMobile");
-
-  otpSection.classList.remove("active");
-  otpSuccess.classList.remove("active");
-  submitBtn.disabled = true;
-
-  mobileVerifyBtn.textContent = "Verify Mobile";
-  mobileVerifyBtn.disabled = false;
-
-  mobileVerifyBtn.classList.toggle(
-    "active",
-    mobileInput.value.length === 10
-  );
-});
-
-
-  // Send OTP
- mobileVerifyBtn.addEventListener("click", () => {
-  const phoneNumber = "+91" + mobileInput.value;
-
-  window.recaptchaVerifier.clear();
-  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-    "recaptcha-container",
-    { size: "normal" }
-  );
-
-  window.recaptchaVerifier.render();
-
-  firebase.auth()
-    .signInWithPhoneNumber(phoneNumber, window.recaptchaVerifier)
-    .then(result => {
-      confirmationResult = result;
-      otpSection.classList.add("active");
-      mobileDisplay.textContent = phoneNumber;
-    })
-    .catch(err => alert(err.message));
-});
-
-
-
-  // Enable verify button when OTP filled
-  document.querySelectorAll(".otp-input").forEach(input => {
-    input.addEventListener("input", () => {
-      let code = "";
-      document.querySelectorAll(".otp-input").forEach(i => code += i.value);
-      verifyOtpBtn.disabled = code.length !== 6;
-    });
-  });
-
-  // Verify OTP
-  verifyOtpBtn.addEventListener("click", () => {
-  if (!confirmationResult) {
-    alert("Please request OTP first");
-    return;
-  }
-
-  let code = "";
-  document.querySelectorAll(".otp-input").forEach(i => code += i.value);
-
-  confirmationResult.confirm(code)
-  .then(() => {
-      otpVerified = true;
-    otpSuccess.classList.add("active");
-
-// Show next section
- document.getElementById("details-section").classList.add("active");
-
-    submitBtn.disabled = false;
-
-    mobileVerifyBtn.textContent = "✔ Verified";
-    mobileVerifyBtn.disabled = true;
-
-    localStorage.setItem("mobileVerified", "true");
-    localStorage.setItem("verifiedMobile", mobileInput.value);
-
-    // Smooth UX
-    document.getElementById("details-section")
-      .scrollIntoView({ behavior: "smooth" });
-  })
-  .catch(() => alert("Invalid OTP"));
-
-
-  // Restore verification on reload
-  const savedMobile = localStorage.getItem("verifiedMobile");
-const isVerified = localStorage.getItem("mobileVerified") === "true";
-
-if (isVerified && savedMobile && savedMobile.length === 10) {
-  mobileInput.value = savedMobile;
-  mobileVerifyBtn.textContent = "✔ Verified";
-  mobileVerifyBtn.disabled = true;
-
-  document.getElementById("details-section").classList.add("active");
-  submitBtn.disabled = false;
-}
-
-
-  // Final form submit
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-
-    if (!otpVerified) {
-      alert("Please verify your mobile number first");
-      return;
-    }
-
-    alert("Form verified successfully. WhatsApp will open.");
-    form.submit(); // or WhatsApp logic
-  });
-
-});
-</script>
-
-
-
 </body>
 </html>
