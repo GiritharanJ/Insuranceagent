@@ -1861,6 +1861,16 @@
                                     <i class="fas fa-check-circle"></i> Verify OTP
                                 </button>
                             </div>
+
+                            <div class="otp-input-container">
+                              <input type="text" class="otp-input" maxlength="1">
+                              <input type="text" class="otp-input" maxlength="1">
+                              <input type="text" class="otp-input" maxlength="1">
+                              <input type="text" class="otp-input" maxlength="1">
+                              <input type="text" class="otp-input" maxlength="1">
+                              <input type="text" class="otp-input" maxlength="1">
+                            </div>
+
                             
                             <div class="otp-success" id="otpSuccess">
                                 <i class="fas fa-check-circle"></i>
@@ -2255,16 +2265,24 @@ document.addEventListener("DOMContentLoaded", () => {
  mobileVerifyBtn.addEventListener("click", () => {
   const phoneNumber = "+91" + mobileInput.value;
 
+  window.recaptchaVerifier.clear();
+  window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+    "recaptcha-container",
+    { size: "normal" }
+  );
+
+  window.recaptchaVerifier.render();
+
   firebase.auth()
     .signInWithPhoneNumber(phoneNumber, window.recaptchaVerifier)
     .then(result => {
       confirmationResult = result;
-
-      otpSection.classList.add("active"); // 👈 REQUIRED
+      otpSection.classList.add("active");
       mobileDisplay.textContent = phoneNumber;
     })
     .catch(err => alert(err.message));
 });
+
 
 
   // Enable verify button when OTP filled
@@ -2288,6 +2306,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   confirmationResult.confirm(code)
   .then(() => {
+      otpVerified = true;
     otpSuccess.classList.add("active");
 
 // Show next section
