@@ -2230,24 +2230,42 @@ document.addEventListener("DOMContentLoaded", () => {
   submitBtn.disabled = true;
 
   // Show verify button only when 10 digits entered
-  mobileInput.addEventListener("input", () => {
-    mobileInput.value = mobileInput.value.replace(/\D/g, "");
-    mobileVerifyBtn.classList.toggle("active", mobileInput.value.length === 10);
-  });
+ mobileInput.addEventListener("input", () => {
+  mobileInput.value = mobileInput.value.replace(/\D/g, "");
+
+  // RESET verification if number changes
+  localStorage.removeItem("mobileVerified");
+  localStorage.removeItem("verifiedMobile");
+
+  otpSection.classList.remove("active");
+  otpSuccess.classList.remove("active");
+  submitBtn.disabled = true;
+
+  mobileVerifyBtn.textContent = "Verify Mobile";
+  mobileVerifyBtn.disabled = false;
+
+  mobileVerifyBtn.classList.toggle(
+    "active",
+    mobileInput.value.length === 10
+  );
+});
+
 
   // Send OTP
-  mobileVerifyBtn.addEventListener("click", () => {
-    const phoneNumber = "+91" + mobileInput.value;
+ mobileVerifyBtn.addEventListener("click", () => {
+  const phoneNumber = "+91" + mobileInput.value;
 
-    firebase.auth()
-      .signInWithPhoneNumber(phoneNumber, window.recaptchaVerifier)
-      .then(result => {
-        confirmationResult = result;
-        otpSection.classList.add("active");
-        mobileDisplay.textContent = phoneNumber;
-      })
-      .catch(err => alert(err.message));
-  });
+  firebase.auth()
+    .signInWithPhoneNumber(phoneNumber, window.recaptchaVerifier)
+    .then(result => {
+      confirmationResult = result;
+
+      otpSection.classList.add("active"); // 👈 REQUIRED
+      mobileDisplay.textContent = phoneNumber;
+    })
+    .catch(err => alert(err.message));
+});
+
 
   // Enable verify button when OTP filled
   document.querySelectorAll(".otp-input").forEach(input => {
@@ -2269,45 +2287,39 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".otp-input").forEach(i => code += i.value);
 
   confirmationResult.confirm(code)
-    .then(() => {
-      otpVerified = true;
-      otpSuccess.classList.add("active");
+  .then(() => {
+    otpSuccess.classList.add("active");
 
 // Show next section
-document.getElementById("details-section").classList.add("active");
+ document.getElementById("details-section").classList.add("active");
 
-// Enable submit
-submitBtn.disabled = false;
+    submitBtn.disabled = false;
 
-// Optional UX polish
-document.getElementById("details-section")
-  .scrollIntoView({ behavior: "smooth", block: "start" });
+    mobileVerifyBtn.textContent = "✔ Verified";
+    mobileVerifyBtn.disabled = true;
 
+    localStorage.setItem("mobileVerified", "true");
+    localStorage.setItem("verifiedMobile", mobileInput.value);
 
-      mobileVerifyBtn.textContent = "✔ Verified";
-      mobileVerifyBtn.disabled = true;
-
-      localStorage.setItem("mobileVerified", "true");
-      localStorage.setItem("verifiedMobile", mobileInput.value);
-    })
-    .catch(() => alert("Invalid OTP"));
-});
+    // Smooth UX
+    document.getElementById("details-section")
+      .scrollIntoView({ behavior: "smooth" });
+  })
+  .catch(() => alert("Invalid OTP"));
 
 
   // Restore verification on reload
   const savedMobile = localStorage.getItem("verifiedMobile");
-  if (localStorage.getItem("mobileVerified") === "true" && savedMobile) {
-    mobileInput.value = savedMobile;
-    submitBtn.disabled = false;
-    mobileVerifyBtn.textContent = "✔ Verified";
-    mobileVerifyBtn.disabled = true;
-  }
-    confirmationResult.confirm(code).then(() => {
-  document.getElementById("details-section").classList.add("active");
-  document.getElementById("basic-section").classList.remove("active");
+const isVerified = localStorage.getItem("mobileVerified") === "true";
 
-  document.getElementById("submitBtn").disabled = false;
-});
+if (isVerified && savedMobile && savedMobile.length === 10) {
+  mobileInput.value = savedMobile;
+  mobileVerifyBtn.textContent = "✔ Verified";
+  mobileVerifyBtn.disabled = true;
+
+  document.getElementById("details-section").classList.add("active");
+  submitBtn.disabled = false;
+}
 
 
   // Final form submit
