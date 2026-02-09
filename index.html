@@ -1126,7 +1126,7 @@
 
         .form-section.active {
             display: block;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.4s ease;
         }
 
         
@@ -1821,42 +1821,25 @@
                 <div class="form-body">
                     <form id="consultationForm">
                         <!-- Personal Information -->
-                        <div class="form-section active" id="personal-info-section">
-                            <h3 class="form-section-title">Personal Information</h3>
+                       <div class="form-section active" id="basic-section">
+                       <h3 class="form-section-title">Basic Information</h3>
                             
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="name">Full Name *</label>
-                                    <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email Address *</label>
-                                    <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
-                                </div>
-                            </div>
-                            
-                             <div class="form-group mobile-verify-container">
-  <label for="mobile">Mobile Number *</label>
+                           <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" class="form-control" required>
+                              </div>
+                                                           
+  <!-- Mobile -->
+  <div class="form-group mobile-verify-container">
+    <label for="mobile">Mobile Number *</label>
+    <input type="tel" id="mobile" class="form-control" maxlength="10">
+    <button type="button" id="mobileVerifyBtn" class="mobile-verify-btn">
+      Verify Mobile
+    </button>
+  </div>
 
-  <input
-    type="tel"
-    id="mobile"
-    class="form-control"
-    placeholder="Enter your 10-digit mobile number"
-    maxlength="10"
-  >
-
-  <button
-    type="button"
-    id="mobileVerifyBtn"
-    class="mobile-verify-btn">
-    > Verify Mobile
-  </button>
-</div>
-
-<!-- REQUIRED for Firebase OTP -->
-<div id="recaptcha-container" style="margin-top:15px;"></div>
-
+ <!-- reCAPTCHA -->
+  <div id="recaptcha-container" style="margin-top:15px;"></div>
                                  
                      <!-- OTP Verification Section -->
                         <div class="otp-verification-section" id="otpSection">
@@ -1872,15 +1855,7 @@
                                 <p class="timer">OTP valid for: <span id="otpTimer">05:00</span></p>
                             </div>
                             
-                            <div class="otp-input-container">
-                                <input type="text" class="otp-input" maxlength="1" data-index="1">
-                                <input type="text" class="otp-input" maxlength="1" data-index="2">
-                                <input type="text" class="otp-input" maxlength="1" data-index="3">
-                                <input type="text" class="otp-input" maxlength="1" data-index="4">
-                                <input type="text" class="otp-input" maxlength="1" data-index="5">
-                                <input type="text" class="otp-input" maxlength="1" data-index="6">
-                            </div>
-                            
+                         
                             <div class="otp-actions">
                                 <button type="button" class="verify-otp-btn" id="verifyOtpBtn" disabled>
                                     <i class="fas fa-check-circle"></i> Verify OTP
@@ -1893,32 +1868,29 @@
                                 <p>Your mobile number has been verified. You can now proceed with the rest of the form.</p>
                             </div>
                         </div>
-                        
+
+                           <div class="form-section" id="details-section">
+
+                            <h3 class="form-section-title">Personal Details</h3>
+
+                        <div class="form-group">
+                        <label>Email Address *</label>
+                         <input type="email" id="email" class="form-control" required>
+                          </div>
                                  
                                 <div class="form-group">
-                                    <label>Gender *</label>
-                                    <div class="gender-options">
-                                        <label class="radio-option">
-                                            <input type="radio" name="gender" value="male" required>
-                                            <span>Male</span>
-                                        </label>
-                                        <label class="radio-option">
-                                            <input type="radio" name="gender" value="female">
-                                            <span>Female</span>
-                                        </label>
-                                        <label class="radio-option">
-                                            <input type="radio" name="gender" value="other">
-                                            <span>Other</span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
+    <label>Gender *</label>
+    <div class="gender-options">
+      <label><input type="radio" name="gender" required> Male</label>
+      <label><input type="radio" name="gender"> Female</label>
+      <label><input type="radio" name="gender"> Other</label>
+    </div>
+  </div>
                             
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="dob">Date of Birth *</label>
-                                    <input type="date" id="dob" class="form-control" required>
-                                </div>
+                            <div class="form-group">
+    <label>Date of Birth *</label>
+    <input type="date" id="dob" class="form-control" required>
+  </div>
                                 <div class="form-group">
                                     <label for="insurance-for">Need Insurance For *</label>
                                     <select id="insurance-for" class="form-control" required>
@@ -2300,7 +2272,17 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(() => {
       otpVerified = true;
       otpSuccess.classList.add("active");
-      submitBtn.disabled = false;
+
+// Show next section
+document.getElementById("details-section").classList.add("active");
+
+// Enable submit
+submitBtn.disabled = false;
+
+// Optional UX polish
+document.getElementById("details-section")
+  .scrollIntoView({ behavior: "smooth", block: "start" });
+
 
       mobileVerifyBtn.textContent = "✔ Verified";
       mobileVerifyBtn.disabled = true;
@@ -2320,6 +2302,13 @@ document.addEventListener("DOMContentLoaded", () => {
     mobileVerifyBtn.textContent = "✔ Verified";
     mobileVerifyBtn.disabled = true;
   }
+    confirmationResult.confirm(code).then(() => {
+  document.getElementById("details-section").classList.add("active");
+  document.getElementById("basic-section").classList.remove("active");
+
+  document.getElementById("submitBtn").disabled = false;
+});
+
 
   // Final form submit
   form.addEventListener("submit", e => {
