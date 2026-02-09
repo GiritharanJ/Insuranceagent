@@ -2161,19 +2161,23 @@
         
         // Initialize reCAPTCHA when needed
         function initializeRecaptcha() {
-            if (!recaptchaVerifier) {
-                recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-                    'size': 'invisible',
-                    'callback': function(response) {
-                        console.log('reCAPTCHA verified');
-                    },
-                    'expired-callback': function() {
-                        showFirebaseError('reCAPTCHA expired. Please try again.');
-                    }
-                });
-            }
-            return recaptchaVerifier;
+  if (!recaptchaVerifier) {
+    recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+      'recaptcha-container',
+      {
+        size: 'normal',
+        callback: () => console.log('reCAPTCHA solved'),
+        'expired-callback': () => {
+          showFirebaseError('reCAPTCHA expired. Please reload and try again.');
         }
+      }
+    );
+
+    recaptchaVerifier.render(); // 🔴 THIS WAS MISSING
+  }
+  return recaptchaVerifier;
+}
+
         
         // Mobile number validation
         if (mobileInput) {
