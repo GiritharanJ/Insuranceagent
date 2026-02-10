@@ -1238,6 +1238,8 @@
 /* Mobile */
 @media (max-width: 768px) {
 
+  @media (max-width: 768px) {
+
   .header-container {
     flex-direction: column;
     gap: 15px;
@@ -1247,17 +1249,11 @@
     width: 100%;
     justify-content: center;
     text-align: center;
-    display: flex;
-    align-items: center;
-    gap: 12px;
   }
 
   .customer-photo {
     width: 70px;
     height: 70px;
-  }
-    .agent-info {
-    flex: 1;
   }
 
   .agent-info h2 {
@@ -1267,70 +1263,39 @@
   .navigation {
     width: 100%;
     justify-content: space-between;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 10px;
-  }
-    .navigation.open {
-    display: flex;
   }
 
   .mobile-menu-toggle {
     display: block;
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: var(--navy-blue);
-    cursor: pointer;
   }
 
- .main-nav {
-   width: 40%;
-    align-self: flex-end;
-
-    background: #ffffff;
-    border-radius: 14px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-
-    padding: 8px 0;
+  .main-nav {
     display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 12px;
+    margin-top: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    overflow: hidden;
   }
 
   .main-nav.show {
-    display: block;
+    display: flex;
   }
 
   .main-nav a {
     padding: 14px 18px;
+    border-bottom: 1px solid #eee;
     font-size: 15px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-    .main-header {
-    position: relative;
-    z-index: 1000;
   }
 
-  .hero {
-    margin-top: 0; /* hero untouched */
-  }
- 
   .consultation-btn {
-    position: relative;
-    z-index: 1000; /* higher than menu */
-    margin-left: auto;
-    width: 55%;
+    width: calc(100% - 30px);
+    margin: 12px auto;
     justify-content: center;
-    align-self: flex-start;
-    margin: 0;
   }
-.consultation-btn.hide-on-menu {
-    display: none;
-  }
-}
-        
+}        
         
         @media (max-width: 992px) {
             .form-container {
