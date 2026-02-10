@@ -1269,6 +1269,11 @@
     justify-content: space-between;
     display: flex;
     align-items: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+    .navigation.open {
+    display: flex;
   }
 
   .mobile-menu-toggle {
@@ -1281,42 +1286,45 @@
   }
 
  .main-nav {
-    position: absolute;
-    top: 100%;
-    left: 16px;
-    width: 220px;
+   width: 40%;
+    align-self: flex-end;
+
     background: #ffffff;
     border-radius: 14px;
     box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-    padding: 12px 0;
-       /* hidden by default */
-    opacity: 0;
-    transform: translateY(-10px);
-    pointer-events: none;
-    transition: all 0.25s ease;
-    z-index: 999;
- }
+
+    padding: 8px 0;
+    display: none;
+  }
 
   .main-nav.show {
-    display: flex;
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+    display: block;
   }
 
   .main-nav a {
     padding: 14px 18px;
-    border-bottom: 1px solid #eee;
     font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+    .main-header {
+    position: relative;
+    z-index: 1000;
+  }
+
+  .hero {
+    margin-top: 0; /* hero untouched */
   }
  
   .consultation-btn {
-    width: calc(100% - 30px);
-    margin: 12px auto;
-    justify-content: center;
     position: relative;
     z-index: 1000; /* higher than menu */
     margin-left: auto;
+    width: 55%;
+    justify-content: center;
+    align-self: flex-start;
+    margin: 0;
   }
 .consultation-btn.hide-on-menu {
     display: none;
