@@ -1213,6 +1213,88 @@
         }
         
         /* ===== RESPONSIVE DESIGN ===== */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: var(--navy-blue);
+  cursor: pointer;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navigation {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+  .header-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .logo-section {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .customer-photo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .agent-info h2 {
+    font-size: 18px;
+  }
+
+  .navigation {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .main-nav {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 12px;
+    margin-top: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    overflow: hidden;
+  }
+
+  .main-nav.show {
+    display: flex;
+  }
+
+  .main-nav a {
+    padding: 14px 18px;
+    border-bottom: 1px solid #eee;
+    font-size: 15px;
+  }
+
+  .consultation-btn {
+    width: calc(100% - 30px);
+    margin: 12px auto;
+    justify-content: center;
+  }
+}
+        
         @media (max-width: 992px) {
             .form-container {
                 flex-direction: column;
@@ -1363,6 +1445,9 @@
                     <i class="fas fa-calendar-check"></i> Get Free Consultation
                 </button>
             </div>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+  <i class="fas fa-bars"></i>
+</button>
         </div>
     </header>
     
@@ -2091,6 +2176,16 @@
         
         window.addEventListener('scroll', updateActiveNav);
         updateActiveNav();
+
+
+        // Mobile Header Menu Toggle
+const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+const mainNav = document.querySelector('.main-nav');
+
+mobileMenuToggle.addEventListener('click', () => {
+  mainNav.classList.toggle('show');
+});
+
     </script>
 </body>
 </html>
