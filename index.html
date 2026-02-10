@@ -1247,11 +1247,17 @@
     width: 100%;
     justify-content: center;
     text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
 
   .customer-photo {
     width: 70px;
     height: 70px;
+  }
+    .agent-info {
+    flex: 1;
   }
 
   .agent-info h2 {
@@ -1265,6 +1271,11 @@
 
   .mobile-menu-toggle {
     display: block;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--navy-blue);
+    cursor: pointer;
   }
 
   .main-nav {
@@ -1273,7 +1284,7 @@
     width: 100%;
     background: #ffffff;
     border-radius: 12px;
-    margin-top: 10px;
+    margin-top: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.12);
     overflow: hidden;
   }
@@ -1432,7 +1443,11 @@
                     <h2>JANARTHANAN S</h2>
                     <p>10+ Years Experience | Professional Insurance Advisor</p>
                 </div>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+  <i class="fas fa-bars"></i>
+</button>
             </div>
+             
             
             <div class="navigation">
                 <nav class="main-nav">
@@ -1445,9 +1460,6 @@
                     <i class="fas fa-calendar-check"></i> Get Free Consultation
                 </button>
             </div>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">
-  <i class="fas fa-bars"></i>
-</button>
         </div>
     </header>
     
