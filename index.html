@@ -1267,6 +1267,8 @@
   .navigation {
     width: 100%;
     justify-content: space-between;
+    display: flex;
+    align-items: center;
   }
 
   .mobile-menu-toggle {
@@ -1278,19 +1280,28 @@
     cursor: pointer;
   }
 
-  .main-nav {
-    display: none;
-    flex-direction: column;
-    width: 100%;
+ .main-nav {
+    position: absolute;
+    top: 100%;
+    left: 16px;
+    width: 220px;
     background: #ffffff;
-    border-radius: 12px;
-    margin-top: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-    overflow: hidden;
-  }
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    padding: 12px 0;
+       /* hidden by default */
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.25s ease;
+    z-index: 999;
+ }
 
   .main-nav.show {
     display: flex;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   .main-nav a {
@@ -1298,11 +1309,14 @@
     border-bottom: 1px solid #eee;
     font-size: 15px;
   }
-
+ 
   .consultation-btn {
     width: calc(100% - 30px);
     margin: 12px auto;
     justify-content: center;
+    position: relative;
+    z-index: 1000; /* higher than menu */
+    margin-left: auto;
   }
 .consultation-btn.hide-on-menu {
     display: none;
