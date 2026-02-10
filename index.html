@@ -314,6 +314,8 @@
         .hero-image {
             flex: 1;
             text-align: center;
+            pointer-events: none;
+            cursor: default;
         }
         
         .hero-image img {
@@ -321,10 +323,12 @@
             border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
             transition: transform 0.3s ease;
+             pointer-events: none;
+            cursor: default;
         }
         
         .hero-image img:hover {
-            transform: scale(1.02);
+            transform: none
         }
         
         /* ===== SECTION TITLES ===== */
@@ -520,11 +524,13 @@
             text-align: center;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
+            pointer-events: none;
+            cursor: default;
         }
         
         .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            transform: none !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
         }
         
         .feature-icon {
@@ -1430,7 +1436,12 @@
      aria-label="Instagram">
     <i class="fab fa-instagram"></i>
   </a>
-                <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+               <a href="https://www.facebook.com/share/1CKZNuqBW6/"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Facebook">
+    <i class="fab fa-facebook"></i>
+  </a>
             </div>
         </div>
     </div>
@@ -1907,7 +1918,12 @@
      aria-label="Instagram">
     <i class="fab fa-instagram"></i>
   </a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.facebook.com/share/1CKZNuqBW6/"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Facebook">
+    <i class="fab fa-facebook"></i>
+  </a>
                     </div>
                 </div>
                 
