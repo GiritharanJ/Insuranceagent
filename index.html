@@ -707,26 +707,22 @@
     margin-bottom: 30px;
     font-size: 28px;
     font-weight: 700;
-    border: 1px solid #fc6ac4;
-    border-radius: 8px;
-    overflow: hidden;
     background: #fc6ac4;
 }
 
 .faq-item {
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     border-radius: 8px;
     overflow: hidden;
-    border: 1px solid #e0e0e0;
 }
 
 .faq-question {
-   width: 100%;
+    width: 100%;
     text-align: left;
-    padding: 14px 20px;
+    padding: 16px 20px;
     font-size: 16px;
     font-weight: 600;
-    background: #e4dcfc;   /* Light Pink */
+    background: transparent;   /* Same as section background */
     border: none;
     cursor: pointer;
     outline: none;
@@ -735,10 +731,12 @@
 
 .faq-answer {
     display: none;
-    padding: 14px 20px;
+    padding: 16px 20px;
     font-size: 15px;
-    background: #fff0f8;   /* Slightly different pink */
-    border-top: 1px solid #fc6ac4;
+    background: #fc6ac4;   /* Pink background */
+    color: #fff;
+    border-radius: 6px;
+    margin-top: 5px;
 }
 
 .faq-item.active .faq-answer {
