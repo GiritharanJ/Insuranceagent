@@ -695,6 +695,40 @@
             color: var(--navy-blue);
             font-size: 18px;
         }
+
+         /* =====FAQ ===== */
+
+        .faq-section {
+    background: #f8fbff;
+    padding: 80px 20px;
+}
+
+.faq-item {
+    margin-bottom: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 18px;
+    background: white;
+    border: none;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.faq-answer {
+    display: none;
+    padding: 18px;
+    background: #ffffff;
+    font-size: 14px;
+    color: #555;
+}
+
         
         /* ===== CONSULTATION FORM - REDESIGNED ===== */
         .consultation-form-section {
@@ -1720,6 +1754,50 @@
             </div>
         </div> 
     </section>
+
+    <section class="faq-section">
+    <div class="container">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                What is health insurance and why do I need it?
+            </button>
+            <div class="faq-answer">
+                Health insurance covers medical expenses like hospitalization, surgery, and treatment costs. It protects you from unexpected financial burden during medical emergencies.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                What is cashless hospitalization?
+            </button>
+            <div class="faq-answer">
+                Cashless hospitalization means the insurance company directly pays the hospital if it is a network hospital.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                What is term life insurance?
+            </button>
+            <div class="faq-answer">
+                Term insurance provides financial protection to your family if something happens to you during the policy term.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-question">
+                How much life insurance coverage do I need?
+            </button>
+            <div class="faq-answer">
+                Ideally, your life cover should be 10–15 times your annual income.
+            </div>
+        </div>
+
+    </div>
+</section>
+
     
     <!-- Consultation Form - REDESIGNED -->
     <section class="consultation-form-section" id="contact">
@@ -2232,7 +2310,14 @@ const mainNav = document.querySelector('.main-nav');
 mobileMenuToggle.addEventListener('click', () => {
   mainNav.classList.toggle('show');
 });
-
+        
+document.querySelectorAll(".faq-question").forEach(button => {
+    button.addEventListener("click", () => {
+        const answer = button.nextElementSibling;
+        answer.style.display = 
+            answer.style.display === "block" ? "none" : "block";
+    });
+});
     </script>
 </body>
 </html>
