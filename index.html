@@ -717,30 +717,33 @@
 }
 
 .faq-question {
-    width: 100%;
+   width: 100%;
     text-align: left;
-    padding: 16px 20px;
+    padding: 18px 20px;
     font-size: 16px;
     font-weight: 600;
-    background: transparent;   /* Same as section background */
-    border: none;
+    background: #f8fbff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
     cursor: pointer;
-    outline: none;
+    transition: all 0.3s ease;
 }
-
-
+        .faq-question:hover {
+    background: #f1f6ff;
+}
+        
 .faq-answer {
     display: none;
-    padding: 16px 20px;
-    font-size: 15px;
+    padding: 14px 18px;
+    font-size: 12px;
     background: #fc6ac4;   /* Pink background */
     color: #fff;
-    border-radius: 6px;
-    margin-top: 5px;
+    border-radius: 5px;
+    margin-top: 4px;
 }
 
 .faq-item.active .faq-answer {
-    display: block;
+    max-height: 300px;
 }
 
 
@@ -1853,6 +1856,8 @@
                 Submit required documents to the insurer, and after verification, the claim amount will be processed.
             </div>
         </div>
+    </div>
+ </section>
 
     
     <!-- Consultation Form - REDESIGNED -->
