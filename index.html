@@ -699,7 +699,7 @@
          /* =====FAQ ===== */
 
         .faq-section {
-    background: #e4dcfc;
+    background: #f8fbff;
     padding: 40px 0px;
 }
 .faq-section .section-title {
@@ -2369,9 +2369,11 @@ mobileMenuToggle.addEventListener('click', () => {
 
 document.querySelectorAll(".faq-question").forEach(button => {
     button.addEventListener("click", () => {
-        const faqItem = button.parentElement;
-        faqItem.classList.toggle("active");
+        const answer = button.nextElementSibling;
+        answer.style.display = 
+            answer.style.display === "block" ? "none" : "block";
     });
+});
     </script>
 </body>
 </html>
