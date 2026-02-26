@@ -810,7 +810,94 @@
     flex-direction: column;
   }
 }
+.feedback-testimonial-section {
+  padding: 70px 20px;
+  background: #f5f8ff;
+}
 
+.feedback-testimonial-section .container {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.feedback-box,
+.testimonial-box {
+  flex: 1;
+  min-width: 300px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.feedback-box h2,
+.testimonial-box h2 {
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: #2c3e50;
+}
+
+.feedback-box p {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+#feedbackForm input,
+#feedbackForm textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+#feedbackForm textarea {
+  height: 100px;
+  resize: none;
+}
+
+#feedbackForm button {
+  background: #4c8cf5;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: 600;
+}
+
+#feedbackForm button:hover {
+  background: #3a6fd8;
+}
+
+.testimonial-slider {
+  position: relative;
+  min-height: 120px;
+}
+
+.testimonial {
+  display: none;
+  text-align: center;
+}
+
+.testimonial.active {
+  display: block;
+}
+
+.testimonial p {
+  font-size: 15px;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+.testimonial h4 {
+  font-size: 14px;
+  color: #4c8cf5;
+}
 
         
         /* ===== CONSULTATION FORM - REDESIGNED ===== */
@@ -1952,6 +2039,56 @@ footer a:hover {
     </div>
  </section>
 
+<!-- ========================= -->
+<!-- CUSTOMER FEEDBACK SECTION -->
+<!-- ========================= -->
+
+<section class="feedback-testimonial-section">
+
+  <div class="container">
+
+    <!-- LEFT SIDE - FEEDBACK FORM -->
+    <div class="feedback-box">
+      <h2>Share Your Experience</h2>
+      <p>If you have used our insurance services, please share your valuable feedback.</p>
+
+      <form id="feedbackForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <textarea id="message" placeholder="Write your review here..." required></textarea>
+        <button type="submit">Submit Review</button>
+      </form>
+
+      <small>* Reviews will be verified before publishing.</small>
+    </div>
+
+
+    <!-- RIGHT SIDE - TESTIMONIAL SLIDER -->
+    <div class="testimonial-box">
+      <h2>Client Testimonials</h2>
+
+      <div class="testimonial-slider">
+
+        <div class="testimonial active">
+          <p>"Very clear explanation of policy details and quick service."</p>
+          <h4>- Rajesh Kumar</h4>
+        </div>
+
+        <div class="testimonial">
+          <p>"Helped me choose the right health insurance for my family."</p>
+          <h4>- Priya S</h4>
+        </div>
+
+        <div class="testimonial">
+          <p>"Professional advisor with strong claim support."</p>
+          <h4>- Aravind R</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    
     
     <!-- Consultation Form - REDESIGNED -->
     <section class="consultation-form-section" id="contact">
@@ -2233,6 +2370,33 @@ footer a:hover {
     </div>
 
     <script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    let testimonials = document.querySelectorAll(".testimonial");
+    let index = 0;
+
+    if (testimonials.length > 0) {
+        function showNextTestimonial() {
+            testimonials[index].classList.remove("active");
+            index = (index + 1) % testimonials.length;
+            testimonials[index].classList.add("active");
+        }
+
+        setInterval(showNextTestimonial, 4000);
+    }
+
+    let form = document.getElementById("feedbackForm");
+    if (form) {
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            alert("Thank you for your feedback! We will review it soon.");
+            this.reset();
+        });
+    }
+
+});
+
+        
         // WhatsApp Chatbot Toggle - FIXED
         document.addEventListener('DOMContentLoaded', function() {
             const chatbotToggle = document.getElementById('chatbotToggle');
