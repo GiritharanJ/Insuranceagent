@@ -811,92 +811,77 @@
   }
 }
 .feedback-testimonial-section {
-  padding: 70px 20px;
+  padding: 40px 15px;   /* reduced from 70px */
   background: #f5f8ff;
 }
 
 .feedback-testimonial-section .container {
   display: flex;
-  gap: 40px;
+  gap: 25px;   /* reduced spacing */
   flex-wrap: wrap;
+  max-width: 1000px;   /* limit total width */
+  margin: auto;
 }
 
 .feedback-box,
 .testimonial-box {
   flex: 1;
-  min-width: 300px;
+  min-width: 280px;
   background: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  padding: 20px;   /* reduced padding */
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
 }
 
 .feedback-box h2,
 .testimonial-box h2 {
-  margin-bottom: 15px;
-  font-size: 24px;
+  margin-bottom: 10px;
+  font-size: 20px;   /* smaller heading */
   color: #2c3e50;
 }
 
 .feedback-box p {
-  margin-bottom: 20px;
-  font-size: 14px;
+  margin-bottom: 15px;
+  font-size: 13px;
   color: #666;
 }
-
-#feedbackForm input,
+        #feedbackForm input,
 #feedbackForm textarea {
   width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border-radius: 8px;
+  padding: 8px 10px;   /* reduced padding */
+  margin-bottom: 10px;
+  border-radius: 6px;
   border: 1px solid #ccc;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 #feedbackForm textarea {
-  height: 100px;
+  height: 70px;   /* smaller height */
   resize: none;
 }
 
 #feedbackForm button {
   background: #4c8cf5;
   color: white;
-  padding: 12px;
+  padding: 8px;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
   width: 100%;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 13px;
 }
-
-#feedbackForm button:hover {
-  background: #3a6fd8;
-}
-
-.testimonial-slider {
-  position: relative;
-  min-height: 120px;
-}
-
-.testimonial {
-  display: none;
-  text-align: center;
-}
-
-.testimonial.active {
-  display: block;
+        .testimonial-slider {
+  min-height: 80px;   /* reduced height */
 }
 
 .testimonial p {
-  font-size: 15px;
-  color: #444;
-  margin-bottom: 10px;
+  font-size: 13px;
+  margin-bottom: 6px;
 }
 
 .testimonial h4 {
-  font-size: 14px;
-  color: #4c8cf5;
+  font-size: 12px;
 }
 
         
