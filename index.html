@@ -751,6 +751,65 @@
 .faq-item.active .faq-answer {
     max-height: 300px;
 }
+        /* FAQ Layout Wrapper */
+.faq-wrapper {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* Left FAQ */
+.faq-left {
+  flex: 2;
+}
+
+/* Right Form Section */
+.faq-right {
+  flex: 1;
+}
+
+/* NRI Box Styling */
+.nri-box {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+  border: 1px solid #eee;
+}
+
+.nri-box h3 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #1a237e;
+}
+
+.nri-box p {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.download-btn {
+  display: inline-block;
+  padding: 12px 18px;
+  background: #1a237e;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.download-btn:hover {
+  background: #fc6ac4;
+}
+
+/* Mobile Responsive */
+@media (max-width: 992px) {
+  .faq-wrapper {
+    flex-direction: column;
+  }
+}
 
 
         
@@ -1787,9 +1846,12 @@ footer a:hover {
         </div> 
     </section>
 
- <section class="faq-section">
-    <div class="container">
-        <h2 class="section-title">Frequently Asked Questions</h2>
+<section class="faq-section">
+  <div class="container faq-wrapper">
+
+    <!-- LEFT SIDE FAQ -->
+    <div class="faq-left">
+      <h2 class="section-title">Frequently Asked Questions</h2>
 
         <!-- 1 -->
         <div class="faq-item">
@@ -1870,6 +1932,23 @@ footer a:hover {
                 Submit required documents to the insurer, and after verification, the claim amount will be processed.
             </div>
         </div>
+    </div>
+      <div class="faq-right">
+      <div class="nri-box">
+        <h3>NRI Insurance Questionnaire</h3>
+        <p>
+          If you are an NRI client, please download and fill the
+          questionnaire form before consultation.
+        </p>
+
+        <a href="NRI-Questionnaire TATA-AIA.pdf"
+           download
+           class="download-btn">
+          Download NRI Form (PDF)
+        </a>
+      </div>
+    </div>
+  </div>
     </div>
  </section>
 
