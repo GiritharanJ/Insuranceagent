@@ -113,16 +113,12 @@
             justify-content: center;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
-        .google_translate_element select {
-    padding:6px 10px;
-    border-radius:6px;
-    border:none;
-    font-size:13px;
+        .goog-te-banner-frame.skiptranslate{
+display:none !important;
 }
 
-.goog-logo-link,
-.goog-te-gadget span {
-    display:none !important;
+body{
+top:0px !important;
 }
         
         .social-icons {
@@ -2371,17 +2367,57 @@ footer a:hover {
     </footer>
 
 <!-- Google Translate -->
+<div id="google_translate_element" style="display:none;"></div>
+
 <script>
 function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'en',
-    includedLanguages: 'en,ta,te,kn,ml,mr,gu,pa,bn,or,ur,sa',
-    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-  }, 'google_translate_element');
+new google.translate.TranslateElement(
+{
+pageLanguage: 'en',
+includedLanguages: 'en,ta,te,kn,ml,mr,gu,pa,bn,or,ur,sa'
+},
+'google_translate_element'
+);
 }
 </script>
 
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script>
+
+function autoDetectLanguage(){
+
+let userLang = navigator.language || navigator.userLanguage;
+
+if(!userLang) return;
+
+userLang = userLang.substring(0,2); // example: en-US -> en
+
+let supportedLanguages = ['ta','te','kn','ml','mr','gu','pa','bn','or','ur','sa'];
+
+if(supportedLanguages.includes(userLang)){
+
+let checkTranslate = setInterval(function(){
+
+let combo = document.querySelector(".goog-te-combo");
+
+if(combo){
+
+combo.value = userLang;
+combo.dispatchEvent(new Event("change"));
+
+clearInterval(checkTranslate);
+
+}
+
+},1000);
+
+}
+
+}
+
+window.addEventListener("load", autoDetectLanguage);
+
+</script>
 
     <script>
 document.addEventListener("DOMContentLoaded", function () {
