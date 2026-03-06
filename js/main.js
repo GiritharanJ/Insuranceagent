@@ -1,13 +1,16 @@
+/* GOOGLE TRANSLATE INIT */
+
 function googleTranslateElementInit() {
+
 new google.translate.TranslateElement({
 pageLanguage: 'en',
-includedLanguages: 'en,ta,te,kn,ml,mr,gu,pa,bn,or,ur,sa',
-layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+includedLanguages: 'en,ta,te,kn,ml,mr,gu,pa,bn,or,ur,sa'
 }, 'google_translate_element');
+
 }
- 
-/* ==============================LANGUAGE SELECTOR
-============================== */
+
+
+/* LANGUAGE SWITCHER */
 
 document.addEventListener("DOMContentLoaded", function(){
 
@@ -19,14 +22,17 @@ languageSelect.addEventListener("change", function(){
 
 let lang = this.value;
 
-let interval = setInterval(function(){
+let check = setInterval(function(){
 
 let combo = document.querySelector(".goog-te-combo");
 
 if(combo){
+
 combo.value = lang;
 combo.dispatchEvent(new Event("change"));
-clearInterval(interval);
+
+clearInterval(check);
+
 }
 
 },500);
@@ -36,8 +42,6 @@ clearInterval(interval);
 }
 
 });
-    
-
 function autoDetectLanguage(){
 
 let userLang = navigator.language || navigator.userLanguage;
