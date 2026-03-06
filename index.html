@@ -113,12 +113,20 @@
             justify-content: center;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
-        .goog-te-banner-frame.skiptranslate{
+      .goog-te-banner-frame.skiptranslate {
+display: none !important;
+}
+
+body {
+top: 0px !important;
+}
+
+.goog-logo-link {
 display:none !important;
 }
 
-body{
-top:0px !important;
+.goog-te-gadget span {
+display:none !important;
 }
         
         .social-icons {
@@ -1633,6 +1641,20 @@ footer a:hover {
             </div>
             <div class="top-language">
     <div id="google_translate_element"></div>
+                <select id="languageSelect">
+<option value="en">English</option>
+<option value="ta">தமிழ்</option>
+<option value="te">తెలుగు</option>
+<option value="kn">ಕನ್ನಡ</option>
+<option value="ml">മലയാളം</option>
+<option value="mr">मराठी</option>
+<option value="gu">ગુજરાતી</option>
+<option value="pa">ਪੰਜਾਬੀ</option>
+<option value="bn">বাংলা</option>
+<option value="or">ଓଡ଼ିଆ</option>
+<option value="ur">اردو</option>
+<option value="sa">संस्कृत</option>
+</select>
 </div>
             <div class="social-icons">
                 <a href="https://www.linkedin.com/in/janarthanans1997/"
@@ -2371,14 +2393,30 @@ footer a:hover {
 
 <script>
 function googleTranslateElementInit() {
-new google.translate.TranslateElement(
-{
+new google.translate.TranslateElement({
 pageLanguage: 'en',
-includedLanguages: 'en,ta,te,kn,ml,mr,gu,pa,bn,or,ur,sa'
-},
-'google_translate_element'
-);
+includedLanguages: 'en,ta,te,kn,ml,mr,gu,pa,bn,or,ur,sa',
+layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+}, 'google_translate_element');
 }
+    
+document.getElementById("languageSelect").addEventListener("change", function(){
+let lang = this.value;
+
+let interval = setInterval(function(){
+
+let combo = document.querySelector(".goog-te-combo");
+
+if(combo){
+combo.value = lang;
+combo.dispatchEvent(new Event("change"));
+clearInterval(interval);
+}
+
+},500);
+
+});
+    
 </script>
 
 <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
