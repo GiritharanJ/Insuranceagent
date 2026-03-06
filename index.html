@@ -113,6 +113,17 @@
             justify-content: center;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
+        .google_translate_element select {
+    padding:6px 10px;
+    border-radius:6px;
+    border:none;
+    font-size:13px;
+}
+
+.goog-logo-link,
+.goog-te-gadget span {
+    display:none !important;
+}
         
         .social-icons {
             display: flex;
@@ -1624,6 +1635,9 @@ footer a:hover {
                     <p>Enjoy services at your convenience anytime anywhere by just sending hi to our WhatsApp number</p>
                 </div>
             </div>
+            <div class="top-language">
+    <div id="google_translate_element"></div>
+</div>
             <div class="social-icons">
                 <a href="https://www.linkedin.com/in/janarthanans1997/"
      target="_blank"
@@ -1673,6 +1687,7 @@ footer a:hover {
                     <i class="fas fa-calendar-check"></i> Get Free Consultation
                 </button>
             </div>
+            
         </div>
     </header>
     
@@ -2353,6 +2368,20 @@ footer a:hover {
             <p class="chatbot-note">Click any option to open WhatsApp automatically</p>
         </div>
     </div>
+    </footer>
+
+<!-- Google Translate -->
+<script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,ta,te,kn,ml,mr,gu,pa,bn,or,ur,sa',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+}
+</script>
+
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script>
 document.addEventListener("DOMContentLoaded", function () {
