@@ -113,27 +113,31 @@
             justify-content: center;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
-      .goog-te-banner-frame.skiptranslate {
-display: none !important;
+    /* Hide Google Translate top banner */
+.goog-te-banner-frame.skiptranslate {
+display:none !important;
 }
 
+iframe.goog-te-banner-frame {
+display:none !important;
+}
+
+/* Prevent page shifting */
 body {
-top: 0px !important;
+top:0 !important;
 }
 
-.goog-logo-link {
+/* Hide Google branding */
+.goog-logo-link,
+.goog-te-gadget span,
+.goog-te-gadget-simple img {
 display:none !important;
 }
 
-.goog-te-gadget span {
-display:none !important;
-}
-        .goog-logo-link,
-.goog-te-gadget span {
-display:none !important;
-}
-        iframe.goog-te-banner-frame {
-display:none !important;
+/* Remove translation bar space */
+.goog-te-gadget {
+height:0;
+overflow:hidden;
 }
         
         .social-icons {
