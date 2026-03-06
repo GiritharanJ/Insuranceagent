@@ -1,13 +1,3 @@
-/* GOOGLE TRANSLATE INIT */
-
-function googleTranslateElementInit() {
-
-new google.translate.TranslateElement({
-pageLanguage: 'en',
-includedLanguages: 'en,ta,te,kn,ml,mr,gu,pa,bn,or,ur,sa'
-}, 'google_translate_element');
-
-}
 
 
 /* LANGUAGE SWITCHER */
