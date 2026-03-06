@@ -5,7 +5,18 @@ includedLanguages: 'en,ta,te,kn,ml,mr,gu,pa,bn,or,ur,sa',
 layout: google.translate.TranslateElement.InlineLayout.SIMPLE
 }, 'google_translate_element');
 }
- document.getElementById("languageSelect").addEventListener("change", function(){
+ 
+/* ==============================LANGUAGE SELECTOR
+============================== */
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const languageSelect = document.getElementById("languageSelect");
+
+if(languageSelect){
+
+languageSelect.addEventListener("change", function(){
+
 let lang = this.value;
 
 let interval = setInterval(function(){
@@ -19,6 +30,10 @@ clearInterval(interval);
 }
 
 },500);
+
+});
+
+}
 
 });
     
