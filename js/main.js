@@ -63,6 +63,17 @@ clearInterval(checkTranslate);
 
 }
 
+setInterval(function(){
+
+let banner = document.querySelector('.goog-te-banner-frame');
+
+if(banner){
+banner.style.display = "none";
+document.body.style.top = "0px";
+}
+
+},100);
+
 window.addEventListener("load", autoDetectLanguage);
 
 
